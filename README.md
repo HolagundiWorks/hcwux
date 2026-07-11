@@ -33,6 +33,19 @@ The human should never manage implementation. The human manages **intent**. The 
 
 ## Contents
 
-| Document | Purpose |
+| Path | Purpose |
 | --- | --- |
-| [`docs/ai-orchestration-ux-framework.md`](docs/ai-orchestration-ux-framework.md) | The complete design framework: philosophy, interface hierarchy, dashboard spec, reporting levels, cognitive modes, notification policy, and success metrics |
+| [`docs/ai-orchestration-ux-framework.md`](docs/ai-orchestration-ux-framework.md) | The framework: philosophy, interface hierarchy, dashboard spec, reporting levels, cognitive modes, notification policy, success metrics |
+| [`docs/design-system/`](docs/design-system/README.md) | **Orchestra** — the full UX design system implementing the framework: foundations, layout, component specs, patterns, voice & tone, accessibility |
+| [`tokens/`](tokens/) | Design tokens: `orchestra.tokens.json` (source of truth) + `orchestra.css` (CSS custom properties, light/dark) |
+| [`styleguide/index.html`](styleguide/index.html) | Living styleguide — the Mission Dashboard and component gallery rendered with real tokens (open locally in a browser) |
+
+## Design System at a Glance
+
+Orchestra turns the framework into buildable specification:
+
+- **Semantic tokens** — seven color meanings (`mission`, `progress`, `decision`, `risk`, `frozen`, `info`, neutrals), eight type roles mapped to the information hierarchy, light + dark themes.
+- **Normative layout** — app shell, dashboard zones in priority order (decisions always on top), drill-down drawer model, five cognitive-mode layout presets, mobile decision-first inversion.
+- **Component specs** — anatomy, content rules, states, behavior, and accessibility for the Mission Header, Decision Card & Queue, Frozen Decision Registry, Progress Board, Activity Card, Risk Board, Artifact Workspace, Executive Summary, Level Switcher, and notification surfaces.
+- **Behavioral patterns** — decision lifecycle, interruption budget, reporting-level invariants, trust-and-verification rules.
+- **Voice & tone** — the exact message templates the AI must use (Mission Update, Decision Request, Risk Report, Escalation, Completion).
