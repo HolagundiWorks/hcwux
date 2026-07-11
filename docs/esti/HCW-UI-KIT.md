@@ -19,15 +19,15 @@ every portal inherit the change. Do **not** fork rgba/blur/radius recipes in
 
 | Step | Where | What |
 |------|--------|------|
-| 1 | `packages/hcw-ui-kit/src/tokens.ts` | Colours, radii (`BUTTON_RADIUS`, `DOCK_PILL_RADIUS`, `DIALOG_RADIUS`), layer recipes (`ACTION_DOCK_TRAY`, `LIQUID_GLASS_BUTTON`, `SECTION_DOCK_CHIP_GLASS`, …) |
-| 2 | `packages/hcw-ui-kit/src/chrome-sx.ts` | Shared MUI `sx` helpers (`actionDockButtonSx`, `sectionDockChipSx`, …) |
+| 1 | `src/tokens.ts` | Colours, radii (`BUTTON_RADIUS`, `DOCK_PILL_RADIUS`, `DIALOG_RADIUS`), layer recipes (`ACTION_DOCK_TRAY`, `LIQUID_GLASS_BUTTON`, `SECTION_DOCK_CHIP_GLASS`, …) |
+| 2 | `src/chrome-sx.ts` | Shared MUI `sx` helpers (`actionDockButtonSx`, `sectionDockChipSx`, …) |
 | 3 | Kit component | `ActionDock.tsx`, `SectionDock.tsx`, `theme.ts` (`MuiDialog`, `MuiButton`, …) |
-| 4 | `packages/hcw-ui-kit/src/portal-chrome.scss` | Portal-wide class enforcement (imported once in `frontend/src/main.tsx`) |
+| 4 | `src/portal-chrome.scss` | Portal-wide class enforcement (imported once in `frontend/src/main.tsx`) |
 | 5 | `/design-system` | Specimens must use **real kit components** or import `*Sx` helpers — not hand-rolled CSS |
 | 6 | `landing.scss` | **Layout/editorial only** (contours, marketing atmosphere, hero grid). No duplicate glass recipes |
 
 After editing the kit in Docker dev, sync or restart `esti-frontend` so the bind
-mount picks up `packages/hcw-ui-kit/src` (Windows mounts can lag).
+mount picks up `src` (Windows mounts can lag).
 
 ## Thesis — *depth encodes importance*
 
@@ -320,7 +320,7 @@ brand font once (`@fontsource/urbanist` weights 400/500/600/700).
 ## What's in the package
 
 ```
-packages/hcw-ui-kit/src/
+src/
 ├─ tokens.ts          colour SCHEMES (light · dark/HC scaffolds), radius,
 │                     TYPE_SCALE, LAYER recipes + scale tokens: SPACING ·
 │                     BREAKPOINTS · Z_INDEX · OPACITY · MOTION · ELEVATION ·
@@ -341,14 +341,14 @@ packages/hcw-ui-kit/src/
 └─ BrandMark.tsx      asset-free wordmark
 ```
 
-Versioned from **0.1.0** — [`CHANGELOG.md`](../../packages/hcw-ui-kit/CHANGELOG.md).
+Versioned from **0.1.0** — [`CHANGELOG.md`](../../CHANGELOG.md).
 AI audit contract: [HCW-KIT-AI-KNOWLEDGE-BASE.md](HCW-KIT-AI-KNOWLEDGE-BASE.md).
 
 Source-only (like `@esti/contracts`); the consuming portal's bundler compiles it.
 Colour + shape live ONLY here (and, for the landing page's editorial type scale /
 contour atmosphere, in `landing.scss`).
 
-Package README: [`packages/hcw-ui-kit/README.md`](../../packages/hcw-ui-kit/README.md).
+Package README: [`README.md`](../../README.md).
 
 ## Adoption status & path
 

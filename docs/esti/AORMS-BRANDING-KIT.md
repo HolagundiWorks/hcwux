@@ -2,7 +2,7 @@
 
 > **⚠️ Live token values now ship from code (2026-07):** the canonical, executable
 > source of truth for colour/type/radius/surfaces is
-> **[`packages/hcw-ui-kit/src/tokens.ts`](../../packages/hcw-ui-kit/src/tokens.ts)**
+> **[`src/tokens.ts`](../../src/tokens.ts)**
 > (the `@hcw/ui-kit` package), and the philosophy/spatial model is
 > **[`HCW-UI-KIT.md`](HCW-UI-KIT.md)**. This document is the brand **heritage** —
 > naming, rationale, and colour/motion detail not yet mirrored in the kit — but

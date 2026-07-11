@@ -1,6 +1,6 @@
 # Token governance
 
-**Scope:** `packages/hcw-ui-kit/src/tokens.ts` — the single executable source of
+**Scope:** `src/tokens.ts` — the single executable source of
 visual values (Constitution II). **Adopted:** 2026-07-11.
 
 ## Tiers

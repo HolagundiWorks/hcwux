@@ -262,7 +262,7 @@ UX quality is reviewed against this document and:
 - Code + [NAVIGATION.md](NAVIGATION.md) vs shipped chrome
 - [07-UX-REVIEW-CHECKLISTS.md](../hcw-kit/07-UX-REVIEW-CHECKLISTS.md) (measurable pass/fail)
 - [11-audits/README.md](../hcw-kit/11-audits/README.md) — surface audit index
-- Token contrast in `packages/hcw-ui-kit/src/tokens.ts`
+- Token contrast in `src/tokens.ts`
 - Manual keyboard pass on new chrome
 
 When audit findings and code diverge, **code + this doc + the debt register** win.
@@ -273,7 +273,7 @@ When audit findings and code diverge, **code + this doc + the debt register** wi
 
 | Area | Path |
 |------|------|
-| Kit package | `packages/hcw-ui-kit/` |
+| Kit package | this repo — kit at root (`src/`) |
 | Workspace shell | `frontend/src/App.tsx`, `AppRibbon.tsx`, `AppFooterBar.tsx` |
 | Rail layout | `frontend/src/components/RailLayout.tsx` |
 | Marketing shell | `frontend/src/components/landing/MarketingShell.tsx` |

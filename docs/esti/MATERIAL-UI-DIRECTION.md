@@ -55,7 +55,7 @@ A **TabSplit** inside the Stage repeats the pattern for a single tab (20% meta +
 ## Brand font (whole product, landing included)
 
 > **Superseded:** the live brand face is **Urbanist**, not Open Sans below (see
-> `packages/hcw-ui-kit/src/tokens.ts`).
+> `src/tokens.ts`).
 
 - **Open Sans** (SIL OFL, free) is self-hosted via `@fontsource/open-sans`
   (weights 400/600/700 imported in `main.tsx`) — works offline, no CDN/CSP issue.

@@ -42,7 +42,7 @@ dialogs (8px) and the ActionDock capsule are rounded. One spatial model everywhe
 (LEFT destroy · CENTER create · RIGHT commit). `:focus-visible` receives the same
 Layer-3 glass lift as `:hover` — keyboard parity is a brand behaviour, not a patch.
 
-**Package layout** (`packages/hcw-ui-kit/src/`): `tokens.ts` (all raw values — colour,
+**Package layout** (`src/`): `tokens.ts` (all raw values — colour,
 radius, type, **scales**: `SPACING`, `BREAKPOINTS`, `Z_INDEX`, `OPACITY`, `MOTION`,
 `ELEVATION`, plus layer recipes), `theme.ts` (`createAormsTheme()` — every MUI override),
 `chrome-sx.ts`, and primitives `Surface`, `GlassRail`, `ActionDock` (+`useScreenActions`),

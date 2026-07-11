@@ -1,0 +1,61 @@
+{
+  "name": "@hcw/ui-kit",
+  "version": "0.5.2",
+  "private": true,
+  "type": "module",
+  "sideEffects": ["*.scss"],
+  "description": "HCW-UI-Kit (Human Centric Works) — the centralised layered design system: hyperminimalist · neumorphic · glassmorphism, deployed against every AORMS surface.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HolagundiWorks/hcwux.git"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./tokens": {
+      "types": "./dist/tokens.d.ts",
+      "default": "./dist/tokens.js"
+    },
+    "./portal-chrome.scss": "./dist/portal-chrome.scss"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
+    "prepare": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^9.2.0",
+    "@mui/x-data-grid": "^9.8.0",
+    "@mui/x-date-pickers": "^9.8.0",
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "dayjs": "^1.11.21",
+    "jsdom": "^25.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  },
+  "peerDependencies": {
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11",
+    "@mui/material": ">=9",
+    "@mui/x-data-grid": ">=9",
+    "@mui/x-date-pickers": ">=9",
+    "dayjs": ">=1.11",
+    "react": ">=18",
+    "react-dom": ">=18"
+  }
+}
