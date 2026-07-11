@@ -38,3 +38,6 @@ jobs:
           test -f dist/tokens.js
           test -f dist/portal-chrome.scss
           echo "dist/ emitted the expected entrypoints"
+
+      - name: Bundle size budget
+        run: pnpm size
