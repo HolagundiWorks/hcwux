@@ -107,6 +107,9 @@ import "@hcw/ui-kit/portal-chrome.scss";
 `@mui/x-data-grid`, `@mui/x-date-pickers`, `@emotion/react`, `@emotion/styled`,
 `dayjs`.
 
+Full adoption + workspace-migration guide (peers, dev-loop, pinning):
+[`docs/ADOPTING-THE-KIT.md`](docs/ADOPTING-THE-KIT.md).
+
 ---
 
 ## Working on the kit
