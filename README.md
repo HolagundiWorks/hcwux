@@ -85,6 +85,7 @@ The philosophy underneath the system — read these before the tokens.
 | [**The Calm Interface**](docs/whitepapers/the-calm-interface.md) | Design for the operator under pressure, not the explorer. Chrome serves the task, one spatial model, disclose the next step, work without a mouse. |
 | [**Orchestration Lives in the Rail**](docs/whitepapers/orchestration-lives-in-the-rail.md) | The core AI move — **content in the stage, orchestration in the rail, command at the bottom bar**. The chat window is the wrong shape for supervising an AI; HCW decomposes it. |
 | [**AI-Orchestration UX**](docs/ai-orchestration-ux-framework.md) | Mission-first, not conversation-first. The human supervises *intent*; the AI manages *execution*. ([prototype](docs/ai-orchestration-ux-prototype.html)) |
+| [**From the Report to the Model**](docs/whitepapers/from-report-to-model.md) | The spatial turn — from **flat reports to data modelled on the thing itself**. The DOS→GUI leap for information; why calm chrome lets the model speak. |
 
 Index + governance rationale: [`docs/whitepapers/`](docs/whitepapers) ·
 [`HCW-DESIGN-PLAYBOOK.md`](docs/HCW-DESIGN-PLAYBOOK.md).
