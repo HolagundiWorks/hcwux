@@ -281,16 +281,18 @@ the command bar and rail orchestration are implemented; see the note below the t
 | **Ask ESTI** | `AiAgentCommand.tsx` (bottom-bar command) | The command line — answer + hidden session memory | ✅ **Implemented**: decomposed to answer-first; transcript hidden as on-demand session history (session-scoped); publishes activity to the rail. |
 | **Rail orchestration** | `EstiOrchestrationStatus.tsx` → `RailLayout` | The rail's live window — mission + operation | ✅ **Implemented**: glass panel, mission then live operation; calm when idle; on every standard `RailLayout` screen. |
 | **AI Studio** | `AiStudio.tsx` (PRO-gated) | Draft generation | ✅ **Feeds the rail**: draft generation publishes activity. Target: options + confidence + freeze-on-accept. |
-| **Studio Intelligence** | `StudioAbstract.tsx` · `/` | The mission dashboard — L2 default | Dashboard-first already. Target: adopt the rail orchestration panel in its bespoke shell; explicit phase strip, decision queue, risk board. |
+| **Studio Intelligence** | `StudioAbstract.tsx` · `/` | The mission dashboard — L2 default | ✅ **Rail orchestration adopted** in its bespoke shell. Target: phase strip, decision queue, risk board (needs a multi-step backend). |
 | **ESTI Pulse** | activity/insight feed | §4.5 activity feed | "Currently working on / next", no code. |
 
 **Shipped so far** (esti `main`): a shared `esti-activity` signal + `EstiOrchestrationStatus`
 (rail, glass — mission + live operation, calm when idle) wired into `RailLayout` so
 *orchestration lives in the rail* on every standard screen; `AiAgentCommand` decomposed
-to the command-bar model; `AiStudio` publishes activity. **Next**: adopt the rail panel
-in `StudioAbstract`'s bespoke shell, and a multi-step AI backend to fill progress /
-decision-queue / risk (the rail shows a live operation today; richer state when the
-backend supports it).
+to the command-bar model; `AiStudio` publishes activity; a brief **completion state**
+("ESTI · finished") before the rail goes calm; adopted in `StudioAbstract`'s rail too.
+The activity lifecycle is **idle → orchestrating (mission · operation) → done → idle**.
+**Next**: a multi-step / streaming AI backend to fill progress · decision-queue · risk
+(the rail shows mission → operation → done today; richer state when the backend supports
+it).
 
 **Reuse, don't invent.** Every block in §4 already has a kit primitive
 ([HCW-UI-KIT.md](HCW-UI-KIT.md)): `StatusDot`, `HealthGlassOrb`, `DataState`,
