@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HCW-UI-Kit — Styleguide</title>
+<!--
+  Self-contained visual styleguide for @hcw/ui-kit. Open directly in a browser.
+  Token VALUES mirror src/tokens.ts (the source of truth). Components are static
+  renderings of the shipped primitives; the LIVE interactive gallery (real React
+  components) is AORMS-Studio's /design-system route. Light/dark aware.
+-->
+<style>
+  :root{
+    --bg:#F2F4F7; --layer01:#FFFFFF; --layer02:#E7EAF0;
+    --border:rgba(20,21,23,0.10); --border-strong:rgba(20,21,23,0.20);
+    --ink:#141517; --secondary:#5b616b; --helper:#667085;
+    --accent:#FF4F18; --accent-dark:#DB3E0F; --accent-soft:rgba(255,79,24,0.14);
+    --success:#1B7F5A; --warning:#FF9932; --error:#C8442E; --info:#3B5568;
+    --hover:rgba(20,21,23,0.04);
+    --neu-lo:rgba(20,21,23,0.10); --neu-hi:rgba(255,255,255,0.92);
+    --sans:"Urbanist",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SFMono-Regular","Cascadia Code",Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#101215; --layer01:#191C21; --layer02:#232830;
+    --border:rgba(255,255,255,0.10); --border-strong:rgba(255,255,255,0.20);
+    --ink:#EDEFF3; --secondary:#9AA2AE; --helper:#98A1AD;
+    --accent:#FF5C28; --accent-dark:#FF7A4D; --accent-soft:rgba(255,92,40,0.20);
+    --success:#4CC29A; --warning:#FFB25C; --error:#F07862; --info:#8FB4CE;
+    --hover:rgba(255,255,255,0.06);
+    --neu-lo:rgba(0,0,0,0.45); --neu-hi:rgba(255,255,255,0.04);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#101215; --layer01:#191C21; --layer02:#232830;
+    --border:rgba(255,255,255,0.10); --border-strong:rgba(255,255,255,0.20);
+    --ink:#EDEFF3; --secondary:#9AA2AE; --helper:#98A1AD;
+    --accent:#FF5C28; --accent-dark:#FF7A4D; --accent-soft:rgba(255,92,40,0.20);
+    --success:#4CC29A; --warning:#FFB25C; --error:#F07862; --info:#8FB4CE;
+    --hover:rgba(255,255,255,0.06);
+    --neu-lo:rgba(0,0,0,0.45); --neu-hi:rgba(255,255,255,0.04);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:clamp(20px,4vw,52px) clamp(16px,4vw,36px) 96px}
+  a{color:var(--info)}
+  code{font-family:var(--mono);font-size:.85em;background:color-mix(in srgb,var(--ink) 7%,transparent);padding:1px 5px;color:var(--ink)}
+
+  header.mast{border-bottom:1px solid var(--border-strong);padding-bottom:26px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px}
+  .mark{width:34px;height:34px;background:var(--accent);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1rem}
+  h1{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em;line-height:1.05}
+  .eyebrow{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:800}
+  .lede{color:var(--secondary);max-width:64ch;margin-top:6px;font-size:.95rem}
+  .theme-toggle{border:1px solid var(--border-strong);background:var(--layer01);color:var(--ink);font:600 .8rem var(--sans);padding:7px 13px;cursor:pointer;border-radius:4px}
+
+  section{margin-top:52px}
+  h2{font-size:1.35rem;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+  .sub{color:var(--helper);font-size:.86rem;margin-bottom:18px;max-width:68ch}
+  h3{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--helper);font-weight:800;margin:22px 0 12px}
+
+  .card{background:var(--layer01);border:1px solid var(--border);padding:22px 24px}
+  .grid{display:grid;gap:14px}
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .sw{border:1px solid var(--border);background:var(--layer01);overflow:hidden}
+  .sw .chip{height:56px}
+  .sw .meta{padding:8px 10px}
+  .sw .name{font-weight:700;font-size:.8rem}
+  .sw .hex{font-family:var(--mono);font-size:.72rem;color:var(--helper)}
+
+  .rowwrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .specimen{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+
+  /* LAYERS */
+  .layers{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+  .lay{padding:22px 20px;min-height:120px;display:flex;flex-direction:column;justify-content:space-between}
+  .lay .k{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--helper);font-weight:800}
+  .lay .t{font-weight:700;margin-top:6px}
+  .lay .d{font-size:.8rem;color:var(--secondary);margin-top:4px}
+  .flat{background:var(--layer01);border:1px solid var(--border)}
+  .soft{background:var(--layer01);box-shadow:6px 6px 14px var(--neu-lo), -6px -6px 14px var(--neu-hi)}
+  .glassbg{background:linear-gradient(135deg,#FF4F18 0%,#3B5568 100%);padding:16px;border:1px solid var(--border)}
+  .glass{background:rgba(255,255,255,0.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.42);border-top-color:rgba(255,255,255,0.66);box-shadow:inset 0 1px 0 rgba(255,255,255,0.5),0 10px 28px rgba(20,21,23,0.18);color:#fff}
+  .glass .k,.glass .d{color:rgba(255,255,255,0.82)}
+
+  /* BUTTONS */
+  .btn{font:600 .84rem var(--sans);padding:8px 16px;border-radius:4px;border:1px solid transparent;cursor:pointer}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-dark)}
+  .btn-outline{background:transparent;border-color:var(--border-strong);color:var(--ink)}
+  .btn-text{background:transparent;color:var(--info)}
+  .btn-danger{background:transparent;border-color:color-mix(in srgb,var(--error) 55%,transparent);color:var(--error)}
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* STATUS DOT */
+  .sd{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;font-size:.8rem}
+  .sd .dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+
+  /* ORB (shape encodes severity) */
+  .orb{width:26px;height:26px;display:inline-flex}
+  .orb svg{width:100%;height:100%}
+  .orblabel{display:inline-flex;flex-direction:column;align-items:center;gap:6px;font-size:.7rem;color:var(--secondary)}
+
+  /* INPUT well (recessed soft) */
+  .well{background:var(--layer01);border:1px solid var(--border);box-shadow:inset 2px 2px 6px var(--neu-lo), inset -2px -2px 6px var(--neu-hi);padding:9px 12px;min-width:220px;color:var(--helper);font-size:.85rem}
+
+  /* DOCK */
+  .dock{display:inline-flex;gap:6px;padding:7px 8px;border-radius:9999px;background:rgba(255,255,255,0.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.42);box-shadow:0 10px 28px rgba(20,21,23,0.16)}
+  .dock .db{border-radius:9999px;padding:8px 15px;font:600 .8rem var(--sans);border:1px solid transparent;cursor:pointer}
+  .dock-zone{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--helper);text-align:center;margin-top:6px}
+
+  /* FOOTER taskbar */
+  .taskbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,0.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border);padding:8px 14px}
+  .taskbar .tb{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);background:var(--layer01);border-radius:4px}
+
+  /* BADGE / TAB alert */
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;padding:2px 9px;border:1px solid var(--border-strong);color:var(--secondary)}
+  .tabstrip{display:flex;gap:0;border-bottom:1px solid var(--border)}
+  .tab{padding:9px 16px;font-size:.85rem;color:var(--secondary);border-top:3px solid transparent;cursor:pointer}
+  .tab.active{color:var(--ink);border-top-color:var(--accent);font-weight:700}
+
+  /* AVATAR */
+  .av{width:34px;height:34px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.8rem}
+
+  /* type specimens */
+  .type-row{display:flex;align-items:baseline;gap:20px;padding:10px 0;border-bottom:1px solid var(--border)}
+  .type-row .n{flex:0 0 130px;font-family:var(--mono);font-size:.72rem;color:var(--helper)}
+  /* spacing bars */
+  .space-row{display:flex;align-items:center;gap:14px;padding:5px 0}
+  .space-row .n{flex:0 0 120px;font-family:var(--mono);font-size:.74rem;color:var(--helper)}
+  .space-row .bar{height:14px;background:var(--accent-soft);border-left:2px solid var(--accent)}
+  /* radius specimens */
+  .radrow{display:flex;gap:18px;flex-wrap:wrap}
+  .radbox{width:74px;height:56px;background:var(--accent-soft);border:1px solid var(--accent);display:flex;align-items:flex-end;justify-content:center;font-size:.66rem;color:var(--ink);padding-bottom:5px}
+
+  .toc{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-size:.85rem}
+  .toc a{color:var(--secondary);text-decoration:none;font-weight:600}
+  .toc a:hover{color:var(--accent)}
+  footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--border-strong);font-size:.8rem;color:var(--helper)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <p class="eyebrow">HCW-UI-Kit · @hcw/ui-kit</p>
+      <div class="brand" style="margin-top:8px"><span class="mark">H</span><h1>Design system styleguide</h1></div>
+      <p class="lede">Foundations, layers, components and resources for the Human Centric Works design system. <strong>Depth encodes importance</strong> — flat (info) · soft (objects) · glass (action). Token values mirror <code>src/tokens.ts</code>; the live interactive gallery is AORMS-Studio's <code>/design-system</code> route.</p>
+      <nav class="toc">
+        <a href="#foundations">Foundations</a><a href="#layers">Layers</a><a href="#components">Components</a><a href="#elements">Elements</a><a href="#resources">Resources</a>
+      </nav>
+    </div>
+    <button class="theme-toggle" id="tt" aria-label="Toggle theme">◑ Theme</button>
+  </header>
+
+  <!-- FOUNDATIONS -->
+  <section id="foundations">
+    <h2>Foundations — the styling guide</h2>
+    <p class="sub">The numeric + colour ladders every component is built from. Raw values live only in <code>tokens.ts</code>.</p>
+
+    <h3>Brand palette (light scheme)</h3>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#F2F4F7"></div><div class="meta"><div class="name">Fog Gray</div><div class="hex">background · #F2F4F7</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--border)"></div><div class="meta"><div class="name">Pure White</div><div class="hex">layer01 · #FFFFFF</div></div></div>
+      <div class="sw"><div class="chip" style="background:#E7EAF0"></div><div class="meta"><div class="name">Quiet Fog</div><div class="hex">layer02 · #E7EAF0</div></div></div>
+      <div class="sw"><div class="chip" style="background:#141517"></div><div class="meta"><div class="name">Coal Black</div><div class="hex">ink · #141517</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FF4F18"></div><div class="meta"><div class="name">Radiant Orange</div><div class="hex">accent · #FF4F18</div></div></div>
+      <div class="sw"><div class="chip" style="background:#DB3E0F"></div><div class="meta"><div class="name">Deep Orange</div><div class="hex">accent hover · #DB3E0F</div></div></div>
+      <div class="sw"><div class="chip" style="background:#5b616b"></div><div class="meta"><div class="name">Slate</div><div class="hex">secondary · #5b616b</div></div></div>
+      <div class="sw"><div class="chip" style="background:#667085"></div><div class="meta"><div class="name">Helper Slate</div><div class="hex">helper · #667085 (AA)</div></div></div>
+    </div>
+
+    <h3>Semantic support</h3>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#1B7F5A"></div><div class="meta"><div class="name">Success</div><div class="hex">#1B7F5A</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FF9932"></div><div class="meta"><div class="name">Warning</div><div class="hex">saffron · #FF9932</div></div></div>
+      <div class="sw"><div class="chip" style="background:#C8442E"></div><div class="meta"><div class="name">Error</div><div class="hex">#C8442E</div></div></div>
+      <div class="sw"><div class="chip" style="background:#3B5568"></div><div class="meta"><div class="name">Info / links</div><div class="hex">slate · #3B5568</div></div></div>
+    </div>
+
+    <h3>Schemes — light · dark · high-contrast</h3>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <div class="card" style="background:#F2F4F7;color:#141517"><strong>Light</strong> — default. Fog canvas, Coal ink, <span style="color:#FF4F18;font-weight:700">Radiant Orange</span>.</div>
+      <div class="card" style="background:#101215;color:#EDEFF3;border-color:rgba(255,255,255,.12)"><strong>Dark</strong> — Coal canvas, lifted accent <span style="color:#FF5C28;font-weight:700">#FF5C28</span> for AA.</div>
+      <div class="card" style="background:#FFFFFF;color:#000;border:1px solid #000"><strong>High-contrast</strong> — pure grounds, full-strength borders, darkened accent <span style="color:#C93A00;font-weight:700">#C93A00</span>.</div>
+    </div>
+
+    <h3>Type scale — Urbanist</h3>
+    <div class="card">
+      <div class="type-row"><span class="n">kpi · 1.1rem</span><span style="font-size:1.1rem;font-weight:300">1,240 projects</span></div>
+      <div class="type-row"><span class="n">body · 1rem</span><span style="font-size:1rem">Information at rest reads in Coal Black on Fog Gray.</span></div>
+      <div class="type-row"><span class="n">body2 · 0.875rem</span><span style="font-size:.875rem">Secondary body — helper and dense table text.</span></div>
+      <div class="type-row"><span class="n">caption · 0.75rem</span><span style="font-size:.75rem">Caption / label.</span></div>
+      <div class="type-row"><span class="n">micro · 0.65rem</span><span style="font-size:.65rem;letter-spacing:.04em">RAIL TELEMETRY MICRO-LABEL</span></div>
+    </div>
+
+    <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:16px">
+      <div class="card">
+        <h3 style="margin-top:0">Spacing (8px base)</h3>
+        <div class="space-row"><span class="n">xxs · 2</span><span class="bar" style="width:2px"></span></div>
+        <div class="space-row"><span class="n">xs · 4</span><span class="bar" style="width:4px"></span></div>
+        <div class="space-row"><span class="n">sm · 8</span><span class="bar" style="width:8px"></span></div>
+        <div class="space-row"><span class="n">md · 16</span><span class="bar" style="width:16px"></span></div>
+        <div class="space-row"><span class="n">lg · 24</span><span class="bar" style="width:24px"></span></div>
+        <div class="space-row"><span class="n">xl · 32</span><span class="bar" style="width:32px"></span></div>
+        <div class="space-row"><span class="n">xxl · 48</span><span class="bar" style="width:48px"></span></div>
+        <div class="space-row"><span class="n">xxxl · 64</span><span class="bar" style="width:64px"></span></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Radius — square by default</h3>
+        <div class="radrow">
+          <div class="radbox" style="border-radius:0">0 · surfaces</div>
+          <div class="radbox" style="border-radius:4px">4 · buttons</div>
+          <div class="radbox" style="border-radius:8px">8 · dialogs</div>
+          <div class="radbox" style="border-radius:9999px;width:96px">capsule · dock</div>
+        </div>
+        <p class="sub" style="margin:14px 0 0">Surfaces are square (RADIUS 0). Only buttons (4px), dialogs (8px) and the ActionDock (capsule) round.</p>
+        <h3>Motion</h3>
+        <p class="sub" style="margin:0">Durations <code>80 · 130 · 200 · 320ms</code>; standard ease <code>cubic-bezier(.2,0,0,1)</code>. Every transform gated by reduced-motion.</p>
+      </div>
+    </div>
+
+    <h3>Data-viz + status hues</h3>
+    <div class="rowwrap">
+      <span class="sd"><span class="dot" style="background:#0F62FE"></span>blue</span>
+      <span class="sd"><span class="dot" style="background:#1192E8"></span>cyan</span>
+      <span class="sd"><span class="dot" style="background:#24A148"></span>green</span>
+      <span class="sd"><span class="dot" style="background:#8A3FFC"></span>purple</span>
+      <span class="sd"><span class="dot" style="background:#A56EFF"></span>violet</span>
+      <span class="sd"><span class="dot" style="background:#FF832B"></span>orange</span>
+      <span class="sd"><span class="dot" style="background:#525252"></span>gray</span>
+    </div>
+  </section>
+
+  <!-- LAYERS -->
+  <section id="layers">
+    <h2>Layers — depth encodes importance</h2>
+    <p class="sub">Three material languages stack by z-depth. Pick a layer by an element's ROLE, never by taste. Most pixels are flat.</p>
+    <div class="layers">
+      <div class="lay flat"><div><span class="k">Layer 1 · Flat</span><div class="t">Information at rest</div></div><div class="d">Tables, text, surfaces. Fog canvas · white cards · hairlines. ~90% of the UI.</div></div>
+      <div class="lay soft"><div><span class="k">Layer 2 · Soft</span><div class="t">Objects you work within</div></div><div class="d">Dialogs, panels, widgets, recessed text wells. Neumorphic.</div></div>
+      <div class="glassbg"><div class="lay glass"><div><span class="k">Layer 3 · Glass</span><div class="t">The live layer</div></div><div class="d">Button hover, CTAs, the ActionDock, priority alerts.</div></div></div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section id="components">
+    <h2>Components</h2>
+    <p class="sub">The kit primitives (static specimens — real values). Full API: <code>src/index.ts</code> exports.</p>
+
+    <h3>ActionDock — global 3-zone CTAs (destroy · create · commit)</h3>
+    <div class="glassbg"><div style="display:inline-flex;flex-direction:column;align-items:center">
+      <div class="dock">
+        <button class="db" style="background:transparent;border-color:rgba(255,255,255,.5);color:#fff">Delete</button>
+        <button class="db" style="background:var(--accent);color:#fff">Create project</button>
+        <button class="db" style="background:transparent;border-color:rgba(255,255,255,.5);color:#fff">Save</button>
+      </div>
+      <div style="display:flex;gap:64px" ><span class="dock-zone" style="color:#fff">left · destroy</span><span class="dock-zone" style="color:#fff">center · create</span><span class="dock-zone" style="color:#fff">right · commit</span></div>
+    </div></div>
+
+    <h3>GlassRail · Stage · TaskbarFooter — the spatial model</h3>
+    <div class="card" style="padding:0;overflow:hidden">
+      <div style="display:flex;min-height:120px">
+        <div style="flex:0 0 22%;background:var(--layer02);border-right:1px solid var(--border);padding:14px;font-size:.78rem;color:var(--secondary)"><strong style="color:var(--ink)">Rail</strong><br>identity · nav · filters</div>
+        <div style="flex:1;padding:14px;font-size:.78rem;color:var(--secondary)"><strong style="color:var(--ink)">Stage</strong><br>tables · editors (scrolls)</div>
+      </div>
+      <div class="taskbar" style="border-left:0;border-right:0;border-bottom:0"><span class="tb">∑</span><span style="font-size:.75rem;color:var(--helper)">launchers</span><span class="tb">◷</span></div>
+    </div>
+
+    <h3>HealthGlassOrb — shape encodes severity (WCAG 1.4.1)</h3>
+    <div class="specimen">
+      <span class="orblabel"><span class="orb"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="#1B7F5A"/></svg></span>stable</span>
+      <span class="orblabel"><span class="orb"><svg viewBox="0 0 26 26"><polygon points="13,2 24,24 2,24" fill="#FF9932"/></svg></span>watch</span>
+      <span class="orblabel"><span class="orb"><svg viewBox="0 0 26 26"><rect x="3" y="3" width="20" height="20" fill="#C8442E"/></svg></span>critical</span>
+      <span class="orblabel"><span class="orb"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke="#667085" stroke-width="2"/></svg></span>inactive</span>
+    </div>
+
+    <h3>DataState · ConfirmModal · PageBreadcrumb · Toast (patterns)</h3>
+    <div class="rowwrap">
+      <span class="sub" style="margin:0">Breadcrumb:</span>
+      <span style="font-size:.85rem;color:var(--secondary)">Projects <span style="color:var(--helper)">›</span> Meadowbrook <span style="color:var(--helper)">›</span> <span style="color:var(--ink);font-weight:600">Phases</span></span>
+    </div>
+    <div class="rowwrap" style="margin-top:14px">
+      <div class="card" style="padding:12px 16px;min-width:200px"><div style="height:10px;background:var(--hover);width:70%;margin-bottom:8px"></div><div style="height:10px;background:var(--hover);width:45%"></div><div class="sub" style="margin:10px 0 0">DataState — skeleton / empty grammar</div></div>
+    </div>
+  </section>
+
+  <!-- ELEMENTS -->
+  <section id="elements">
+    <h2>Elements</h2>
+    <p class="sub">The atoms — buttons, status, inputs, chips, avatars.</p>
+
+    <h3>Buttons</h3>
+    <div class="specimen">
+      <button class="btn btn-primary">Create project</button>
+      <button class="btn btn-outline">Cancel</button>
+      <button class="btn btn-text">Learn more</button>
+      <button class="btn btn-danger">Delete</button>
+    </div>
+
+    <h3>StatusDot — dot + ink label, never a filled chip</h3>
+    <div class="specimen">
+      <span class="sd"><span class="dot" style="background:#0e6027"></span>Active</span>
+      <span class="sd"><span class="dot" style="background:#161616"></span>Deactivated</span>
+      <span class="sd"><span class="dot" style="background:#a2191f"></span>Revoked</span>
+      <span class="sd"><span class="dot" style="background:#0043ce"></span>Pending</span>
+      <span class="sd"><span class="dot" style="background:#005d5d"></span>In review</span>
+    </div>
+
+    <h3>Text-entry well (recessed soft) · Badge · Avatar</h3>
+    <div class="specimen">
+      <span class="well">Search clients…</span>
+      <span class="badge">◆ 2 pending</span>
+      <span class="av" style="background:#8A3FFC">VB</span>
+      <span class="av" style="background:#1B7F5A">RK</span>
+      <span class="av" style="background:#FF4F18">AM</span>
+    </div>
+
+    <h3>Tabs — active = inset accent rule (not a fill)</h3>
+    <div class="tabstrip">
+      <span class="tab active">Overview</span><span class="tab">Lead</span><span class="tab">Project</span><span class="tab">Financial</span><span class="tab">Team</span>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section id="resources">
+    <h2>Resources</h2>
+    <p class="sub">Assets and how to consume the kit.</p>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      <div class="card">
+        <h3 style="margin-top:0">Brand font</h3>
+        <p style="font-size:.88rem;color:var(--secondary)">Urbanist (OFL) — <code>@fontsource/urbanist</code>, weights 400/500/600/700. Loaded once in the app entry, mirrored in the kit theme.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">The accent</h3>
+        <p style="font-size:.88rem;color:var(--secondary)"><span style="color:var(--accent);font-weight:800">Radiant Orange #FF4F18</span> — the single accent. Fills/CTAs carry white text; links use slate (<code>#3B5568</code>), never the accent.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Install &amp; mount</h3>
+        <p style="font-size:.82rem;color:var(--secondary);margin-bottom:8px">Vendored built copy; consumed via <code>@hcw/ui-kit</code>.</p>
+        <pre style="font-family:var(--mono);font-size:.72rem;color:var(--ink);white-space:pre-wrap;margin:0">import { MuiRoot, ActionDock,
+  Surface, GlassRail } from "@hcw/ui-kit";
+import "@hcw/ui-kit/portal-chrome.scss";</pre>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Docs</h3>
+        <p style="font-size:.86rem;color:var(--secondary)"><a href="esti/HCW-UI-KIT.md">HCW-UI-KIT.md</a> (layers · spatial model) · <a href="esti/HCW-UI-UX-PRINCIPLES.md">UX principles</a> · <a href="hcw-kit/README.md">governance 00–13</a> · <a href="hcw-kit/02-TOKEN-GOVERNANCE.md">token governance</a> · <a href="ai-orchestration-ux-prototype.html">AI-Orchestration UX prototype</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin:0">HCW-UI-Kit styleguide · token values mirror <code>src/tokens.ts</code> (source of truth) · components are static specimens — the live interactive gallery is AORMS-Studio's <code>/design-system</code> route. Depth encodes importance · square surfaces · one accent · Urbanist.</p>
+  </footer>
+</div>
+<script>
+  document.getElementById('tt').addEventListener('click',()=>{
+    const r=document.documentElement;
+    const dark=matchMedia('(prefers-color-scheme:dark)').matches;
+    const cur=r.dataset.theme||(dark?'dark':'light');
+    r.dataset.theme=cur==='dark'?'light':'dark';
+  });
+</script>
+</body>
+</html>

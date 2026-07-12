@@ -16,6 +16,7 @@ Maintained by **Human Centric Works (HCW)**; consumed by the AORMS platform
 
 | Area | Path | What it is |
 | --- | --- | --- |
+| **Styleguide** ✨ | [`docs/styleguide.html`](docs/styleguide.html) | Self-contained **visual styleguide** — foundations (colour · type · spacing · radius · schemes) · layers · components · elements · resources. Open in a browser. |
 | **The kit** | [`src/`](src) · [`package.json`](package.json) | `@hcw/ui-kit` — tokens, MUI theme, and layered primitives (`Surface`, `GlassRail`, `ActionDock`, `HealthGlassOrb`, `TaskbarFooter`, `SectionDock`, `StatusDot`, `DataState`, `ConfirmModal`, `PageBreadcrumb`, `Avatar`, `BrandMark`, `MuiRoot`). |
 | **Design system docs** | [`docs/esti/HCW-UI-KIT.md`](docs/esti/HCW-UI-KIT.md) · [`docs/esti/HCW-UI-UX-PRINCIPLES.md`](docs/esti/HCW-UI-UX-PRINCIPLES.md) | Layers, spatial model, tokens, UX laws, accessibility. |
 | **Governance** | [`docs/hcw-kit/`](docs/hcw-kit) | Constitution, token governance, component quality, templates, MUI mapping, audits + debt register, AI-agent rulebook. |
