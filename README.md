@@ -11,6 +11,13 @@ operating a tool every day, under pressure, while three other things demand thei
 attention. For that person the interface has one job: **reduce cognitive load, and
 never add to it.** Everything below follows from that.
 
+Where the candybar phone **embraced the screen** — dissolving physical keys into
+software on the glass, a *UI-first* revolution — the AI era must **embrace the AI**: not
+a chat box bolted to the interface, but a **UX-first** rethink of the workspace around
+what the AI now does. The chat window is the physical keyboard of this era; we absorb it
+the way the touchscreen absorbed the keyboard. (→
+[Orchestration Lives in the Rail](docs/whitepapers/orchestration-lives-in-the-rail.md).)
+
 This repository is the home of that philosophy and the system that enforces it: the
 **white papers** (the *why*), the shipped kit `@hcw/ui-kit` (the *how*), and the
 governance that keeps it honest. Consumed by the AORMS platform and every future HCW

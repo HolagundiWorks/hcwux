@@ -29,6 +29,34 @@ reach for it. The chat window recedes; supervision takes its place.
 
 ---
 
+## The candybar moment — from embracing the screen to embracing the AI
+
+The mobile phone teaches the pattern. Phones began as *physical* designs — the
+interface was hardware: a numeric keypad, a thumb keyboard, dedicated call and end
+keys. The **candybar touchscreen** changed the premise. It **embraced the screen** —
+dissolving those physical controls into software rendered *on* the glass. The keyboard
+did not vanish; it moved onto the screen, summoned when needed, gone when not. The phone
+stopped being defined by its hardware and started being defined by what the screen could
+become.
+
+That was a **UI-first** revolution: a new surface to arrange. The AI shift is the next
+one — and it is **UX-first**. The temptation is to treat AI as one more UI widget, a
+chat box bolted to the edge, the way an early device might bolt a stylus to a screen.
+That embraces the *widget*, not the *shift*.
+
+To **embrace the AI** the way the candybar embraced the screen is to let it dissolve the
+old controls into the new medium. **The chat window is the physical keyboard of this
+era** — a literal, always-present control from an older paradigm. HCW does to the chat
+window what the touchscreen did to the keyboard: it **absorbs** it. The command summons
+at the bottom bar when needed and recedes when not; the orchestration it drives lives in
+the rail; the content it shapes stays in the stage. We are not *adding* an AI to the
+interface — we are letting the AI reshape what the interface *is*, the way the screen
+reshaped the phone.
+
+The rest of this paper is that absorption, in detail.
+
+---
+
 ## 1. The stage was the whole story
 
 A workspace used to have one job: present the work artifact and let a person edit it.
