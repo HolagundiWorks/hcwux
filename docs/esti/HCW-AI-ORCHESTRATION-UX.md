@@ -49,6 +49,28 @@ mechanism among many.
 This is why Studio Intelligence (`/`, `StudioAbstract.tsx`) is a **dashboard**, not a
 chat window — and it is the reference every AI surface clones.
 
+### The spatial model — content · orchestration · command
+
+ESTI does not add a chat panel to the workspace; it routes AI to the three regions the
+shell already has. **Content in the stage, orchestration in the rail, command at the
+bottom bar** — the same building that served a human author now serves a human
+*supervising* an AI author.
+
+- **Stage — the content.** The work artifact ESTI edits, generates, and improves. Still
+  flat information at rest, even while it updates.
+- **Rail — the orchestration.** The rail was always the telemetry surface; AI
+  orchestration is its highest form. For the **current tab**, it shows what ESTI is
+  orchestrating *right now* — current operation, progress + ETA, what is changing,
+  pending decisions, risk. The supervisor's dashboard: always visible, never scrolled.
+- **Command bar (footer) — the conversation as a command line.** Ask ESTI sits on the
+  bottom bar; you issue an instruction and **only the answer returns** — no transcript
+  accumulates, because the record of what happened lives as rail state and durable
+  artifacts, not as chat to re-read.
+
+You cannot supervise a scroll. The chat window is not improved here — it is
+**decomposed**, its three jobs sent to the three places they belong. Full argument:
+[Orchestration Lives in the Rail](../whitepapers/orchestration-lives-in-the-rail.md).
+
 ---
 
 ## 2. The interface hierarchy — depth = responsibility

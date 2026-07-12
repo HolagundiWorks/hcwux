@@ -76,6 +76,7 @@ The philosophy underneath the system — read these before the tokens.
 | --- | --- |
 | [**Depth Encodes Importance**](docs/whitepapers/depth-encodes-importance.md) | The three material languages — **flat → soft → glass** — as a scale of demand. Why the z-axis carries meaning, why glass is scarce, why the screen stays calm. |
 | [**The Calm Interface**](docs/whitepapers/the-calm-interface.md) | Design for the operator under pressure, not the explorer. Chrome serves the task, one spatial model, disclose the next step, work without a mouse. |
+| [**Orchestration Lives in the Rail**](docs/whitepapers/orchestration-lives-in-the-rail.md) | The core AI move — **content in the stage, orchestration in the rail, command at the bottom bar**. The chat window is the wrong shape for supervising an AI; HCW decomposes it. |
 | [**AI-Orchestration UX**](docs/ai-orchestration-ux-framework.md) | Mission-first, not conversation-first. The human supervises *intent*; the AI manages *execution*. ([prototype](docs/ai-orchestration-ux-prototype.html)) |
 
 Index + governance rationale: [`docs/whitepapers/`](docs/whitepapers) ·
