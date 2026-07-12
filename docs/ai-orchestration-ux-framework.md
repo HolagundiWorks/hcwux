@@ -4,6 +4,8 @@
 
 > **Core Principle** — The interface should adapt to the user's **cognitive role**, not the AI's implementation role.
 
+**Reference implementation:** [`ai-orchestration-ux-prototype.html`](ai-orchestration-ux-prototype.html) — an interactive, self-contained mission-dashboard prototype of this framework (open directly in a browser; light/dark, reduced-motion aware). **HCW / ESTI application:** [`esti/HCW-AI-ORCHESTRATION-UX.md`](esti/HCW-AI-ORCHESTRATION-UX.md) adapts this doctrine to AORMS using HCW kit primitives.
+
 ---
 
 ## 1. Vision
@@ -177,8 +179,8 @@ Inspired by the Engineering Design Freeze and Military Command Intent. These dec
 >
 > | Decision | Value |
 > | --- | --- |
-> | Design System | Carbon |
-> | Architecture | Modular |
+> | Design System | HCW-UI-Kit |
+> | Architecture | pnpm monorepo |
 > | Language | TypeScript |
 > | Database | PostgreSQL |
 > | Security Standard | OWASP |

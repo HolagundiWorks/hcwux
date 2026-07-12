@@ -19,7 +19,7 @@ Maintained by **Human Centric Works (HCW)**; consumed by the AORMS platform
 | **The kit** | [`src/`](src) · [`package.json`](package.json) | `@hcw/ui-kit` — tokens, MUI theme, and layered primitives (`Surface`, `GlassRail`, `ActionDock`, `HealthGlassOrb`, `TaskbarFooter`, `SectionDock`, `StatusDot`, `DataState`, `ConfirmModal`, `PageBreadcrumb`, `Avatar`, `BrandMark`, `MuiRoot`). |
 | **Design system docs** | [`docs/esti/HCW-UI-KIT.md`](docs/esti/HCW-UI-KIT.md) · [`docs/esti/HCW-UI-UX-PRINCIPLES.md`](docs/esti/HCW-UI-UX-PRINCIPLES.md) | Layers, spatial model, tokens, UX laws, accessibility. |
 | **Governance** | [`docs/hcw-kit/`](docs/hcw-kit) | Constitution, token governance, component quality, templates, MUI mapping, audits + debt register, AI-agent rulebook. |
-| **AI-Orchestration UX** | [`docs/ai-orchestration-ux-framework.md`](docs/ai-orchestration-ux-framework.md) · [`docs/esti/HCW-AI-ORCHESTRATION-UX.md`](docs/esti/HCW-AI-ORCHESTRATION-UX.md) | The framework (why) and its HCW/ESTI-native application (how). |
+| **AI-Orchestration UX** | [`framework`](docs/ai-orchestration-ux-framework.md) · [`ESTI doctrine`](docs/esti/HCW-AI-ORCHESTRATION-UX.md) · [`prototype`](docs/ai-orchestration-ux-prototype.html) | The framework (why), its HCW/ESTI-native application (how), and an interactive self-contained mission-dashboard prototype. |
 
 ---
 
@@ -57,6 +57,7 @@ AI surface must answer, in under 30 seconds:
 
 Framework: [`docs/ai-orchestration-ux-framework.md`](docs/ai-orchestration-ux-framework.md).
 HCW/ESTI application: [`docs/esti/HCW-AI-ORCHESTRATION-UX.md`](docs/esti/HCW-AI-ORCHESTRATION-UX.md).
+Interactive prototype: [`docs/ai-orchestration-ux-prototype.html`](docs/ai-orchestration-ux-prototype.html) — open in a browser.
 
 ---
 

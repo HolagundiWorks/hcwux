@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AORMS AI-Orchestration UX — mission dashboard prototype</title>
+<!--
+  Reference implementation of the AI-Orchestration UX framework.
+  Doctrine: docs/esti/HCW-AI-ORCHESTRATION-UX.md · Framework: docs/ai-orchestration-ux-framework.md
+  Codename "Orchestra". Self-contained (open directly in a browser). Its own token set
+  (--orc-*: Inter · indigo · rounded) is a deliberate exploration, distinct from the shipped
+  HCW kit (Urbanist · Radiant Orange · square); the ESTI embedding adapts the *pattern* using
+  HCW primitives. Light + dark + reduced-motion aware.
+-->
+<style>
+/* ==== Orchestra tokens ==== */
+:root{
+  --orc-font-ui:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;
+  --orc-font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --orc-space-1:4px;--orc-space-2:8px;--orc-space-3:12px;--orc-space-4:16px;
+  --orc-space-5:20px;--orc-space-6:24px;--orc-space-8:32px;--orc-space-12:48px;
+  --orc-radius-sm:6px;--orc-radius-md:10px;--orc-radius-lg:14px;--orc-radius-pill:999px;
+  --orc-elevation-1:0 1px 2px rgba(15,23,42,.06);
+  --orc-elevation-2:0 2px 8px rgba(15,23,42,.10);
+  --orc-elevation-3:0 8px 24px rgba(15,23,42,.16);
+  --orc-duration-fast:120ms;--orc-duration-base:200ms;--orc-duration-slow:320ms;
+  --orc-ease-standard:cubic-bezier(.2,0,0,1);
+
+  --orc-bg-canvas:#F6F7F9;--orc-bg-surface:#FFFFFF;--orc-bg-surface-raised:#FFFFFF;
+  --orc-bg-surface-sunken:#EEF0F3;
+  --orc-border:#D9DEE4;--orc-border-strong:#B3BAC4;--orc-border-focus:#4F46E5;
+  --orc-text-primary:#111827;--orc-text-secondary:#4B5563;--orc-text-tertiary:#6B7280;
+  --orc-text-on-accent:#FFFFFF;
+  --orc-mission-accent:#4F46E5;--orc-mission-accent-hover:#4338CA;--orc-mission-subtle:#EEF2FF;
+  --orc-progress-accent:#15803D;--orc-progress-subtle:#ECFDF3;
+  --orc-decision-accent:#B45309;--orc-decision-subtle:#FFF7E8;
+  --orc-risk-high:#B91C1C;--orc-risk-high-subtle:#FEF1F1;
+  --orc-risk-medium:#B45309;--orc-risk-medium-subtle:#FFF7E8;
+  --orc-risk-low:#6B7280;--orc-risk-low-subtle:#EEF0F3;
+  --orc-frozen-accent:#0E7490;--orc-frozen-subtle:#E9F8FB;
+  --orc-info-accent:#1D4ED8;--orc-info-subtle:#EFF4FF;
+}
+[data-theme='dark']{
+  --orc-bg-canvas:#0B1220;--orc-bg-surface:#111827;--orc-bg-surface-raised:#1F2937;
+  --orc-bg-surface-sunken:#0B1220;
+  --orc-border:#2A3444;--orc-border-strong:#4B5563;--orc-border-focus:#818CF8;
+  --orc-text-primary:#F3F4F6;--orc-text-secondary:#B3BAC4;--orc-text-tertiary:#8A93A1;
+  --orc-text-on-accent:#0B1220;
+  --orc-mission-accent:#818CF8;--orc-mission-accent-hover:#A5B4FC;--orc-mission-subtle:#1E2340;
+  --orc-progress-accent:#4ADE80;--orc-progress-subtle:#122B1D;
+  --orc-decision-accent:#FBBF24;--orc-decision-subtle:#2D2411;
+  --orc-risk-high:#F87171;--orc-risk-high-subtle:#2E1616;
+  --orc-risk-medium:#FBBF24;--orc-risk-medium-subtle:#2D2411;
+  --orc-risk-low:#8A93A1;--orc-risk-low-subtle:#1F2937;
+  --orc-frozen-accent:#22D3EE;--orc-frozen-subtle:#0F2A31;
+  --orc-info-accent:#60A5FA;--orc-info-subtle:#16233F;
+  --orc-elevation-1:0 1px 2px rgba(0,0,0,.4);
+  --orc-elevation-2:0 2px 8px rgba(0,0,0,.5);
+  --orc-elevation-3:0 8px 24px rgba(0,0,0,.6);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme='light']){
+    --orc-bg-canvas:#0B1220;--orc-bg-surface:#111827;--orc-bg-surface-raised:#1F2937;
+    --orc-bg-surface-sunken:#0B1220;
+    --orc-border:#2A3444;--orc-border-strong:#4B5563;--orc-border-focus:#818CF8;
+    --orc-text-primary:#F3F4F6;--orc-text-secondary:#B3BAC4;--orc-text-tertiary:#8A93A1;
+    --orc-text-on-accent:#0B1220;
+    --orc-mission-accent:#818CF8;--orc-mission-accent-hover:#A5B4FC;--orc-mission-subtle:#1E2340;
+    --orc-progress-accent:#4ADE80;--orc-progress-subtle:#122B1D;
+    --orc-decision-accent:#FBBF24;--orc-decision-subtle:#2D2411;
+    --orc-risk-high:#F87171;--orc-risk-high-subtle:#2E1616;
+    --orc-risk-medium:#FBBF24;--orc-risk-medium-subtle:#2D2411;
+    --orc-risk-low:#8A93A1;--orc-risk-low-subtle:#1F2937;
+    --orc-frozen-accent:#22D3EE;--orc-frozen-subtle:#0F2A31;
+    --orc-info-accent:#60A5FA;--orc-info-subtle:#16233F;
+    --orc-elevation-1:0 1px 2px rgba(0,0,0,.4);
+    --orc-elevation-2:0 2px 8px rgba(0,0,0,.5);
+    --orc-elevation-3:0 8px 24px rgba(0,0,0,.6);
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  :root{--orc-duration-fast:0ms;--orc-duration-base:0ms;--orc-duration-slow:0ms}
+  .dot-working{animation:none}
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:400 14px/22px var(--orc-font-ui);background:var(--orc-bg-canvas);color:var(--orc-text-primary);font-feature-settings:'cv05';}
+button{font:inherit;cursor:pointer}
+a{color:var(--orc-mission-accent)}
+:focus-visible{outline:2px solid var(--orc-border-focus);outline-offset:2px;border-radius:var(--orc-radius-sm)}
+
+.t-mission{font:650 28px/34px var(--orc-font-ui);letter-spacing:-.01em}
+.t-section{font:600 20px/28px var(--orc-font-ui);letter-spacing:-.005em}
+.t-card{font:600 16px/24px var(--orc-font-ui)}
+.t-label{font:500 13px/18px var(--orc-font-ui)}
+.t-meta{font:400 12px/16px var(--orc-font-ui);color:var(--orc-text-tertiary)}
+.t-overline{font:600 11px/16px var(--orc-font-ui);letter-spacing:.06em;text-transform:uppercase}
+.t-code{font:400 13px/20px var(--orc-font-mono)}
+.num{font-variant-numeric:tabular-nums}
+
+.topbar{position:sticky;top:0;z-index:100;height:56px;display:flex;align-items:center;gap:var(--orc-space-4);padding:0 var(--orc-space-6);background:var(--orc-bg-surface);border-bottom:1px solid var(--orc-border);}
+.topbar .brand{font:600 16px/24px var(--orc-font-ui)}
+.topbar .brand span{color:var(--orc-text-tertiary);font-weight:400}
+.seg{display:flex;border:1px solid var(--orc-border);border-radius:var(--orc-radius-sm);overflow:hidden;margin-left:auto}
+.seg button{padding:5px 12px;border:0;background:var(--orc-bg-surface);color:var(--orc-text-secondary);font:500 13px/18px var(--orc-font-ui);}
+.seg button[aria-pressed='true']{background:var(--orc-mission-subtle);color:var(--orc-mission-accent)}
+.badge-decisions{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:var(--orc-radius-pill);background:var(--orc-decision-subtle);color:var(--orc-decision-accent);font:600 13px/18px var(--orc-font-ui);border:1px solid transparent;}
+.theme-toggle{padding:5px 12px;border-radius:var(--orc-radius-sm);border:1px solid var(--orc-border);background:var(--orc-bg-surface);color:var(--orc-text-secondary);font:500 13px/18px var(--orc-font-ui);}
+
+.wrap{max-width:1280px;margin:0 auto;padding:var(--orc-space-8) var(--orc-space-6) 96px}
+
+.card{background:var(--orc-bg-surface);border:1px solid var(--orc-border);border-radius:var(--orc-radius-md);box-shadow:var(--orc-elevation-1);padding:var(--orc-space-6);}
+.zone-title{display:flex;align-items:baseline;gap:var(--orc-space-3);margin-bottom:var(--orc-space-4)}
+.zone-title .count{color:var(--orc-text-tertiary);font:400 13px/18px var(--orc-font-ui)}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:var(--orc-space-6);align-items:start}
+.grid .main{display:flex;flex-direction:column;gap:var(--orc-space-6);min-width:0}
+.grid .side{position:sticky;top:76px;display:flex;flex-direction:column;gap:var(--orc-space-6)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:var(--orc-space-6)}
+@media (max-width:960px){.grid{grid-template-columns:1fr}.grid .side{position:static;order:-1}.duo{grid-template-columns:1fr}}
+
+.mission-header{margin-bottom:var(--orc-space-8)}
+.mission-header .t-overline{color:var(--orc-text-tertiary);margin-bottom:var(--orc-space-2)}
+.mission-header h1{font:650 28px/34px var(--orc-font-ui);letter-spacing:-.01em;text-wrap:balance}
+.objectives{display:flex;flex-wrap:wrap;gap:var(--orc-space-2);margin-top:var(--orc-space-4)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:var(--orc-radius-pill);border:1px solid var(--orc-border);font:500 13px/18px var(--orc-font-ui);color:var(--orc-text-tertiary);background:var(--orc-bg-surface);}
+.chip.done{color:var(--orc-progress-accent);background:var(--orc-progress-subtle);border-color:transparent}
+.chip.active{color:var(--orc-mission-accent);background:var(--orc-mission-subtle);border-color:transparent}
+.phase{display:flex;align-items:center;gap:var(--orc-space-2);margin-top:var(--orc-space-5);flex-wrap:wrap}
+.phase .node{display:flex;align-items:center;gap:6px;color:var(--orc-text-tertiary);font:400 12px/16px var(--orc-font-ui)}
+.phase .node .p-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--orc-border-strong)}
+.phase .node.past .p-dot{background:var(--orc-progress-accent);border-color:var(--orc-progress-accent)}
+.phase .node.current{color:var(--orc-mission-accent);font:600 13px/18px var(--orc-font-ui)}
+.phase .node.current .p-dot{background:var(--orc-mission-accent);border-color:var(--orc-mission-accent)}
+.phase .link{flex:0 0 24px;height:1.5px;background:var(--orc-border)}
+.phase-meta{margin-top:var(--orc-space-2);color:var(--orc-text-secondary);font:400 13px/18px var(--orc-font-ui)}
+
+.decision{border-left:3px solid var(--orc-decision-accent);background:var(--orc-decision-subtle);border-radius:var(--orc-radius-md);padding:var(--orc-space-5) var(--orc-space-6);box-shadow:var(--orc-elevation-1);}
+.decision + .decision{margin-top:var(--orc-space-3)}
+.decision .head{display:flex;justify-content:space-between;gap:var(--orc-space-4);flex-wrap:wrap}
+.decision .head .t-overline{color:var(--orc-decision-accent)}
+.decision h3{font:600 16px/24px var(--orc-font-ui);margin:var(--orc-space-2) 0 var(--orc-space-4)}
+.option{display:flex;gap:10px;padding:var(--orc-space-3) var(--orc-space-4);border-radius:var(--orc-radius-sm);border:1px solid transparent;color:var(--orc-text-secondary);}
+.option.recommended{background:var(--orc-bg-surface);border-color:var(--orc-border);color:var(--orc-text-primary);margin-bottom:var(--orc-space-2);}
+.option.recommended .t-overline{color:var(--orc-progress-accent)}
+.option .radio{flex:0 0 14px;height:14px;margin-top:3px;border-radius:50%;border:1.5px solid var(--orc-border-strong)}
+.option.recommended .radio{border-color:var(--orc-mission-accent);box-shadow:inset 0 0 0 3.5px var(--orc-mission-accent)}
+.decision .impact{margin:var(--orc-space-4) 0;color:var(--orc-text-secondary);font-size:13px;line-height:20px}
+.decision .impact strong{color:var(--orc-text-primary);font-weight:600}
+.actions{display:flex;gap:var(--orc-space-2);align-items:center;flex-wrap:wrap}
+.btn{padding:8px 16px;border-radius:var(--orc-radius-sm);border:1px solid transparent;font:500 13px/18px var(--orc-font-ui);background:var(--orc-mission-accent);color:var(--orc-text-on-accent);transition:background var(--orc-duration-fast) var(--orc-ease-standard);}
+.btn:hover{background:var(--orc-mission-accent-hover)}
+.btn.ghost{background:transparent;border-color:var(--orc-border-strong);color:var(--orc-text-secondary)}
+.actions .t-meta{margin-left:auto}
+.decision.resolved{display:flex;gap:10px;align-items:center;background:var(--orc-bg-surface);border-left-color:var(--orc-progress-accent);color:var(--orc-text-secondary);padding:var(--orc-space-3) var(--orc-space-6);}
+.queue-empty{display:flex;gap:10px;align-items:center;background:var(--orc-progress-subtle);border-radius:var(--orc-radius-md);padding:var(--orc-space-3) var(--orc-space-6);color:var(--orc-text-secondary);}
+
+.board{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--orc-space-6)}
+@media (max-width:700px){.board{grid-template-columns:1fr}}
+.board .col .t-overline{color:var(--orc-text-tertiary);display:block;margin-bottom:var(--orc-space-3)}
+.task{display:flex;gap:10px;padding:6px 0;color:var(--orc-text-secondary)}
+.task .g{flex:0 0 16px;text-align:center}
+.task.done .g{color:var(--orc-progress-accent)}
+.task.active{color:var(--orc-text-primary)}
+.task.active .g{color:var(--orc-mission-accent)}
+.task.rest .g{color:var(--orc-text-tertiary)}
+.task .sub{display:block;font:400 12px/16px var(--orc-font-ui);color:var(--orc-text-tertiary)}
+.showall{background:none;border:0;color:var(--orc-mission-accent);font:500 13px/18px var(--orc-font-ui);padding:6px 0}
+
+.exec .row{display:flex;align-items:center;gap:var(--orc-space-3);padding:9px 0;border-bottom:1px solid var(--orc-border)}
+.exec .row:last-child{border-bottom:0}
+.exec .k{flex:0 0 92px;font:600 11px/16px var(--orc-font-ui);letter-spacing:.06em;text-transform:uppercase;color:var(--orc-text-tertiary)}
+.exec .v{font:500 14px/20px var(--orc-font-ui)}
+.exec .v.ok{color:var(--orc-progress-accent)}
+.exec .v a{text-decoration:none;font-weight:500}
+.meter{flex:1;height:6px;border-radius:var(--orc-radius-pill);background:var(--orc-bg-surface-sunken);overflow:hidden}
+.meter i{display:block;height:100%;width:64%;background:var(--orc-mission-accent);border-radius:var(--orc-radius-pill)}
+.conf-dots{color:var(--orc-progress-accent);letter-spacing:2px}
+.conf-dots span{color:var(--orc-border-strong)}
+
+.risk{border-radius:var(--orc-radius-sm);padding:var(--orc-space-3) var(--orc-space-4);display:flex;gap:var(--orc-space-3);align-items:flex-start}
+.risk + .risk{margin-top:var(--orc-space-2)}
+.risk .body{min-width:0}
+.risk .why{color:var(--orc-text-secondary);font-size:13px;line-height:20px;margin-top:2px}
+.risk .mit{color:var(--orc-text-tertiary);font-size:12px;line-height:16px;margin-top:4px}
+.rbadge{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;padding:2px 10px;border-radius:var(--orc-radius-pill);font:600 11px/16px var(--orc-font-ui);letter-spacing:.06em;}
+.rbadge.high{color:var(--orc-risk-high);background:var(--orc-risk-high-subtle)}
+.rbadge.med{color:var(--orc-risk-medium);background:var(--orc-risk-medium-subtle)}
+.rbadge.low{color:var(--orc-risk-low);background:var(--orc-risk-low-subtle)}
+.risk.high{background:var(--orc-risk-high-subtle)}
+.risk .t-card{font-size:14px;line-height:20px}
+
+.activity .state{display:flex;align-items:center;gap:8px;margin-bottom:var(--orc-space-4);font:500 13px/18px var(--orc-font-ui)}
+.dot-working{width:8px;height:8px;border-radius:50%;background:var(--orc-mission-accent);animation:breathe 3s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.35}}
+.activity .frow{display:flex;gap:var(--orc-space-4);padding:6px 0}
+.activity .frow .k{flex:0 0 92px;color:var(--orc-text-tertiary);font:500 13px/18px var(--orc-font-ui)}
+.disclosure{background:none;border:0;color:var(--orc-mission-accent);font:500 13px/18px var(--orc-font-ui);padding:var(--orc-space-3) 0 0}
+
+.frozen-head{display:flex;align-items:center;gap:8px;background:var(--orc-frozen-subtle);color:var(--orc-frozen-accent);border-radius:var(--orc-radius-sm);padding:6px var(--orc-space-4);font:600 11px/16px var(--orc-font-ui);letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--orc-space-2);}
+.frow2{display:flex;align-items:baseline;gap:var(--orc-space-3);padding:8px var(--orc-space-2);border-bottom:1px solid var(--orc-border)}
+.frow2:last-of-type{border-bottom:0}
+.frow2 .lock{color:var(--orc-frozen-accent)}
+.frow2 .k{flex:0 0 128px;color:var(--orc-text-secondary);font:500 13px/18px var(--orc-font-ui)}
+.frow2 .v{font:600 14px/20px var(--orc-font-ui)}
+.frow2 .t-meta{margin-left:auto}
+
+.art-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--orc-space-4)}
+.artifact{background:var(--orc-bg-surface);border:1px solid var(--orc-border);border-radius:var(--orc-radius-md);padding:var(--orc-space-4);box-shadow:var(--orc-elevation-1);transition:box-shadow var(--orc-duration-fast) var(--orc-ease-standard);}
+.artifact:hover{box-shadow:var(--orc-elevation-2)}
+.artifact .type{display:flex;justify-content:space-between;margin-bottom:var(--orc-space-2)}
+.artifact .type .t-overline{color:var(--orc-info-accent)}
+.artifact h4{font:600 14px/20px var(--orc-font-ui);margin-bottom:4px}
+.artifact p{color:var(--orc-text-secondary);font-size:13px;line-height:19px}
+.artifact .foot{display:flex;gap:8px;align-items:center;margin-top:var(--orc-space-3);padding-top:var(--orc-space-3);border-top:1px solid var(--orc-border)}
+.fresh{color:var(--orc-progress-accent);font:500 12px/16px var(--orc-font-ui)}
+.fresh.stale{color:var(--orc-risk-medium)}
+
+.statusbar{position:fixed;left:0;right:0;bottom:0;z-index:100;height:36px;display:flex;align-items:center;gap:var(--orc-space-6);padding:0 var(--orc-space-6);background:var(--orc-bg-surface);border-top:1px solid var(--orc-border);font:400 12px/16px var(--orc-font-ui);color:var(--orc-text-secondary);}
+.statusbar b{font-weight:600;color:var(--orc-text-primary)}
+.statusbar .right{margin-left:auto;display:flex;align-items:center;gap:8px}
+
+.sg{margin-top:var(--orc-space-12);padding-top:var(--orc-space-8);border-top:1px solid var(--orc-border)}
+.sg h2{font:600 20px/28px var(--orc-font-ui);margin-bottom:var(--orc-space-2)}
+.sg .lede{color:var(--orc-text-secondary);max-width:65ch;margin-bottom:var(--orc-space-6)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--orc-space-3)}
+.swatch{border:1px solid var(--orc-border);border-radius:var(--orc-radius-sm);overflow:hidden;background:var(--orc-bg-surface)}
+.swatch .fill{height:44px;display:flex;align-items:center;padding:0 10px;font:600 11px/16px var(--orc-font-ui);letter-spacing:.06em;text-transform:uppercase}
+.swatch .info{padding:8px 10px;font:400 12px/16px var(--orc-font-mono);color:var(--orc-text-tertiary)}
+.typerow{display:flex;align-items:baseline;gap:var(--orc-space-6);padding:var(--orc-space-3) 0;border-bottom:1px solid var(--orc-border)}
+.typerow .name{flex:0 0 110px;font:400 12px/16px var(--orc-font-mono);color:var(--orc-text-tertiary)}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">AORMS <span>· AI-Orchestration UX prototype</span></div>
+  <div class="seg" role="group" aria-label="Reporting level">
+    <button aria-pressed="false">Exec</button>
+    <button aria-pressed="true">Orchestrator</button>
+    <button aria-pressed="false">Engineering</button>
+  </div>
+  <span class="badge-decisions" title="Pending decisions">◆ 2</span>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">Theme</button>
+</header>
+
+<main class="wrap">
+  <section class="mission-header" aria-label="Mission">
+    <div class="t-overline">Human Centric Works / Mission</div>
+    <h1>Build Repository Cleanup Framework</h1>
+    <div class="objectives">
+      <span class="chip done">✓ Remove legacy code</span>
+      <span class="chip done">✓ Archive deprecated docs</span>
+      <span class="chip active">● Update references</span>
+      <span class="chip">○ Validate links</span>
+      <span class="chip">○ Release-ready repository</span>
+    </div>
+    <div class="phase" aria-label="Phase: Implementation, 64 percent">
+      <span class="node past"><span class="p-dot"></span>Discovery</span><span class="link"></span>
+      <span class="node past"><span class="p-dot"></span>Architecture</span><span class="link"></span>
+      <span class="node current"><span class="p-dot"></span>Implementation</span><span class="link"></span>
+      <span class="node"><span class="p-dot"></span>Validation</span><span class="link"></span>
+      <span class="node"><span class="p-dot"></span>Documentation</span><span class="link"></span>
+      <span class="node"><span class="p-dot"></span>Review</span>
+    </div>
+    <div class="phase-meta num">64% complete · Est. completion 2:40 PM</div>
+  </section>
+
+  <div class="grid">
+    <div class="main">
+      <section aria-label="Pending decisions">
+        <div class="zone-title"><h2 class="t-section">◆ Decisions</h2><span class="count">2 waiting</span></div>
+        <article class="decision" role="group" aria-label="Choose documentation structure">
+          <div class="head">
+            <span class="t-overline">◆ Decision required</span>
+            <span class="t-meta">Impact: repository-wide · ~1 min</span>
+          </div>
+          <h3>Choose documentation structure</h3>
+          <div class="option recommended">
+            <span class="radio" aria-hidden="true"></span>
+            <div>
+              <span class="t-overline">Recommended</span>
+              <div><strong>Architecture-first</strong> — groups docs by system design; best for long-term maintenance.</div>
+            </div>
+          </div>
+          <div class="option"><span class="radio" aria-hidden="true"></span><div>Feature-first — faster onboarding, more duplication.</div></div>
+          <div class="option"><span class="radio" aria-hidden="true"></span><div>Flat — simplest, degrades at scale.</div></div>
+          <p class="impact"><strong>Why this matters:</strong> affects every documentation task downstream; hard to reverse after Validation.</p>
+          <div class="actions">
+            <button class="btn">Approve recommendation</button>
+            <button class="btn ghost">Choose different</button>
+            <button class="btn ghost">Defer ▾</button>
+            <span class="t-meta">Waiting since 2:31 PM</span>
+          </div>
+        </article>
+        <article class="decision resolved">
+          <span style="color:var(--orc-progress-accent)">✓</span>
+          <span>Archive strategy: <strong>move to /archive</strong> · you · 1:58 PM</span>
+          <span class="t-meta" style="margin-left:auto">Decision log →</span>
+        </article>
+      </section>
+
+      <section class="card" aria-label="Progress">
+        <div class="zone-title" style="margin-bottom:var(--orc-space-3)">
+          <h2 class="t-section">Progress</h2>
+          <span class="count num">12 done · 1 active · 4 left</span>
+        </div>
+        <div class="board">
+          <div class="col">
+            <span class="t-overline">Completed (12)</span>
+            <div class="task done"><span class="g">✓</span><span>Repository scanned</span></div>
+            <div class="task done"><span class="g">✓</span><span>Dead code identified</span></div>
+            <div class="task done"><span class="g">✓</span><span>Legacy docs archived</span></div>
+            <button class="showall">Show all 12</button>
+          </div>
+          <div class="col">
+            <span class="t-overline">In progress (1)</span>
+            <div class="task active"><span class="g">●</span><span>Documentation update<span class="sub num">3 of 7 files</span></span></div>
+          </div>
+          <div class="col">
+            <span class="t-overline">Remaining (4)</span>
+            <div class="task rest"><span class="g">○</span><span>Link validation</span></div>
+            <div class="task rest"><span class="g">○</span><span>Cross-reference audit</span></div>
+            <div class="task rest"><span class="g">○</span><span>Changelog</span></div>
+            <div class="task rest"><span class="g">○</span><span>Final review</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="duo">
+        <section class="card" aria-label="Risks">
+          <div class="zone-title" style="margin-bottom:var(--orc-space-3)">
+            <h2 class="t-section">Risks</h2><span class="count">1 high · 1 med · 1 low</span>
+          </div>
+          <div class="risk high">
+            <span class="rbadge high">▲ High</span>
+            <div class="body">
+              <div class="t-card">Authentication inconsistency</div>
+              <p class="why">Two auth flows diverged; may block release.</p>
+              <p class="mit">Mitigation: unify during Validation · detail →</p>
+            </div>
+          </div>
+          <div class="risk"><span class="rbadge med">▲ Med</span><div class="body"><div class="t-card">Duplicate documentation</div></div></div>
+          <div class="risk"><span class="rbadge low">▲ Low</span><div class="body"><div class="t-card">Minor formatting differences</div></div></div>
+        </section>
+
+        <section class="card activity" aria-label="AI activity">
+          <div class="zone-title" style="margin-bottom:var(--orc-space-2)"><h2 class="t-section">AI Activity</h2></div>
+          <div class="state"><span class="dot-working" aria-hidden="true"></span> Working</div>
+          <div class="frow"><span class="k">Currently</span><span>Updating documentation</span></div>
+          <div class="frow"><span class="k">Expected</span><span class="num">~2 minutes</span></div>
+          <div class="frow"><span class="k">Next</span><span>Validate cross-references</span></div>
+          <button class="disclosure" aria-expanded="false">▸ Step log (Level 1)</button>
+        </section>
+      </div>
+
+      <section class="card" aria-label="Frozen decisions">
+        <div class="frozen-head">❄ Frozen decisions — changes require approval</div>
+        <div class="frow2"><span class="lock">❄</span><span class="k">Design system</span><span class="v">HCW-UI-Kit</span><span class="t-meta">frozen 05 Jul · you</span></div>
+        <div class="frow2"><span class="lock">❄</span><span class="k">Architecture</span><span class="v">pnpm monorepo</span><span class="t-meta">frozen 05 Jul · you</span></div>
+        <div class="frow2"><span class="lock">❄</span><span class="k">Language</span><span class="v">TypeScript</span><span class="t-meta">frozen 06 Jul · AI ✓ you</span></div>
+        <div class="frow2"><span class="lock">❄</span><span class="k">Database</span><span class="v">PostgreSQL (Drizzle)</span><span class="t-meta">frozen 06 Jul · you</span></div>
+        <div class="frow2"><span class="lock">❄</span><span class="k">Security standard</span><span class="v">OWASP</span><span class="t-meta">frozen 06 Jul · you</span></div>
+      </section>
+
+      <section aria-label="Recent artifacts">
+        <div class="zone-title"><h2 class="t-section">Recent artifacts</h2><span class="count">8 total</span></div>
+        <div class="art-row">
+          <article class="artifact">
+            <div class="type"><span class="t-overline">Specification</span><span class="t-meta">v3</span></div>
+            <h4>Documentation Architecture</h4>
+            <p>Structure, ownership and naming rules for all repository docs.</p>
+            <div class="foot"><span class="fresh">✓ current</span><span class="t-meta">AI · reviewed by you · 12m ago</span></div>
+          </article>
+          <article class="artifact">
+            <div class="type"><span class="t-overline">Audit</span><span class="t-meta">v1</span></div>
+            <h4>Dead Code Report</h4>
+            <p>214 unused symbols across 31 files, with removal plan.</p>
+            <div class="foot"><span class="fresh">✓ current</span><span class="t-meta">AI · 2h ago</span></div>
+          </article>
+          <article class="artifact">
+            <div class="type"><span class="t-overline">Decision log</span><span class="t-meta">v7</span></div>
+            <h4>Mission Decision Log</h4>
+            <p>Every judgment call: question, options, choice, rationale.</p>
+            <div class="foot"><span class="fresh stale">▲ may be outdated</span><span class="t-meta">1 pending</span></div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <aside class="side">
+      <section class="card exec" aria-label="Executive summary">
+        <div class="zone-title" style="margin-bottom:var(--orc-space-2)"><h2 class="t-section">Executive summary</h2></div>
+        <div class="row"><span class="k">Status</span><span class="v ok">On track ✓</span></div>
+        <div class="row"><span class="k">Progress</span><span class="v num">64%</span><span class="meter" aria-hidden="true"><i></i></span></div>
+        <div class="row"><span class="k">Decisions</span><span class="v" style="color:var(--orc-decision-accent)">◆ 2 waiting</span><a href="#" style="margin-left:auto">→</a></div>
+        <div class="row"><span class="k">Top risk</span><span class="v" style="color:var(--orc-risk-high)">▲ Auth inconsistency</span><a href="#" style="margin-left:auto">→</a></div>
+        <div class="row"><span class="k">Next</span><span class="v">Validation · <span class="num">~2:40 PM</span></span></div>
+        <div class="row"><span class="k">Confidence</span><span class="v">High <span class="conf-dots">●●●<span>○</span></span></span></div>
+      </section>
+      <section class="card" aria-label="Empty decision queue example">
+        <div class="t-overline" style="color:var(--orc-text-tertiary);margin-bottom:var(--orc-space-3)">The calm state</div>
+        <div class="queue-empty">
+          <span style="color:var(--orc-progress-accent)">✓</span>
+          <span>No decisions waiting. AI is clear to proceed. Next check-in: end of Validation.</span>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <section class="sg" aria-label="Color roles">
+    <h2>Semantic color roles</h2>
+    <p class="lede">Seven meanings, each with an accent and a subtle variant. Components ask for meaning, never hue.</p>
+    <div class="swatches">
+      <div class="swatch"><div class="fill" style="background:var(--orc-mission-subtle);color:var(--orc-mission-accent)">Mission</div><div class="info">--orc-mission-*</div></div>
+      <div class="swatch"><div class="fill" style="background:var(--orc-progress-subtle);color:var(--orc-progress-accent)">Progress</div><div class="info">--orc-progress-*</div></div>
+      <div class="swatch"><div class="fill" style="background:var(--orc-decision-subtle);color:var(--orc-decision-accent)">Decision</div><div class="info">--orc-decision-*</div></div>
+      <div class="swatch"><div class="fill" style="background:var(--orc-risk-high-subtle);color:var(--orc-risk-high)">Risk · High</div><div class="info">--orc-risk-high*</div></div>
+      <div class="swatch"><div class="fill" style="background:var(--orc-risk-medium-subtle);color:var(--orc-risk-medium)">Risk · Med</div><div class="info">--orc-risk-medium*</div></div>
+      <div class="swatch"><div class="fill" style="background:var(--orc-risk-low-subtle);color:var(--orc-risk-low)">Risk · Low</div><div class="info">--orc-risk-low*</div></div>
+      <div class="swatch"><div class="fill" style="background:var(--orc-frozen-subtle);color:var(--orc-frozen-accent)">Frozen</div><div class="info">--orc-frozen-*</div></div>
+      <div class="swatch"><div class="fill" style="background:var(--orc-info-subtle);color:var(--orc-info-accent)">Info</div><div class="info">--orc-info-*</div></div>
+    </div>
+  </section>
+
+  <section class="sg" aria-label="Type roles">
+    <h2>Type roles</h2>
+    <p class="lede">Eight roles, mapped one-to-one to the information hierarchy. Altitude is expressed typographically — no ad-hoc sizes.</p>
+    <div class="typerow"><span class="name">mission</span><span class="t-mission">Build Repository Cleanup Framework</span></div>
+    <div class="typerow"><span class="name">section</span><span class="t-section">Pending decisions</span></div>
+    <div class="typerow"><span class="name">card-title</span><span class="t-card">Choose documentation structure</span></div>
+    <div class="typerow"><span class="name">body</span><span>Affects every documentation task downstream; hard to reverse after Validation.</span></div>
+    <div class="typerow"><span class="name">label</span><span class="t-label">Approve recommendation</span></div>
+    <div class="typerow"><span class="name">meta</span><span class="t-meta">Updated 12m ago · v3 · reviewed by you</span></div>
+    <div class="typerow"><span class="name">overline</span><span class="t-overline" style="color:var(--orc-decision-accent)">◆ Decision required</span></div>
+    <div class="typerow"><span class="name">code</span><span class="t-code">git mv docs/legacy archive/ — Level 1 only</span></div>
+  </section>
+</main>
+
+<footer class="statusbar">
+  <span>Phase: <b>Implementation</b></span>
+  <span><span class="dot-working" style="display:inline-block;vertical-align:1px" aria-hidden="true"></span> Updating documentation</span>
+  <span class="right num">Next milestone: Validation · est. 2:40 PM</span>
+</footer>
+
+<script>
+  const root = document.documentElement;
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+    const current = root.dataset.theme || (dark ? 'dark' : 'light');
+    root.dataset.theme = current === 'dark' ? 'light' : 'dark';
+  });
+</script>
+</body>
+</html>
