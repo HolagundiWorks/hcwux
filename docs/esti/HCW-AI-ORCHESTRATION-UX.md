@@ -273,16 +273,24 @@ Nothing more. This is the L3 view (§3) and the answer to the four questions (§
 
 ## 8. How this maps onto today's AORMS surfaces
 
-Doctrine, grounded in what ships. (Embedding is staged — this doc lands first; ESTI
-and Ask ESTI adopt it next.)
+Doctrine, grounded in what ships. **Embedding is under way** (esti `main`, 2026-07) —
+the command bar and rail orchestration are implemented; see the note below the table.
 
-| Surface | File / route | Orchestration role | Current vs target |
+| Surface | File / route | Orchestration role | Status |
 |---|---|---|---|
-| **Studio Intelligence** | `StudioAbstract.tsx` · `/` | The mission dashboard — L2 default | Already dashboard-first (KPI cards + tables + AI-recommendation rail). Target: add explicit mission line, phase strip, decision queue, risk board. |
-| **Ask ESTI** | AI chat surface | Chat = **transport**, not workspace | Ensure outputs land as artifacts + decision cards, not just transcript. |
+| **Ask ESTI** | `AiAgentCommand.tsx` (bottom-bar command) | The command line — answer + hidden session memory | ✅ **Implemented**: decomposed to answer-first; transcript hidden as on-demand session history (session-scoped); publishes activity to the rail. |
+| **Rail orchestration** | `EstiOrchestrationStatus.tsx` → `RailLayout` | The rail's live window — mission + operation | ✅ **Implemented**: glass panel, mission then live operation; calm when idle; on every standard `RailLayout` screen. |
+| **AI Studio** | `AiStudio.tsx` (PRO-gated) | Draft generation | ✅ **Feeds the rail**: draft generation publishes activity. Target: options + confidence + freeze-on-accept. |
+| **Studio Intelligence** | `StudioAbstract.tsx` · `/` | The mission dashboard — L2 default | Dashboard-first already. Target: adopt the rail orchestration panel in its bespoke shell; explicit phase strip, decision queue, risk board. |
 | **ESTI Pulse** | activity/insight feed | §4.5 activity feed | "Currently working on / next", no code. |
-| **AI Studio** | plan+rank pillar (PRO-gated) | Design/Transition mode surface | Options + recommendation + confidence; freeze on accept. |
-| **Overview AI rail** | `StudioAbstract` Overview sidebar | L3 Executive Summary in miniature | Recommendation over Office Log — extend toward the §7 one-screen contract. |
+
+**Shipped so far** (esti `main`): a shared `esti-activity` signal + `EstiOrchestrationStatus`
+(rail, glass — mission + live operation, calm when idle) wired into `RailLayout` so
+*orchestration lives in the rail* on every standard screen; `AiAgentCommand` decomposed
+to the command-bar model; `AiStudio` publishes activity. **Next**: adopt the rail panel
+in `StudioAbstract`'s bespoke shell, and a multi-step AI backend to fill progress /
+decision-queue / risk (the rail shows a live operation today; richer state when the
+backend supports it).
 
 **Reuse, don't invent.** Every block in §4 already has a kit primitive
 ([HCW-UI-KIT.md](HCW-UI-KIT.md)): `StatusDot`, `HealthGlassOrb`, `DataState`,
