@@ -138,6 +138,7 @@ browser. The live interactive gallery is AORMS-Studio's `/design-system` route.
 | [`docs/whitepapers/`](docs/whitepapers) | The philosophy (above). |
 | [`docs/esti/`](docs/esti) · [`docs/hcw-kit/`](docs/hcw-kit) | Foundations, UX principles, governance 00–13 (Constitution, tokens, component quality, templates, MUI mapping, audits, AI-agent rulebook). |
 | [`docs/styleguide.html`](docs/styleguide.html) · [`docs/ai-orchestration-ux-prototype.html`](docs/ai-orchestration-ux-prototype.html) | Visual styleguide · AI-orchestration prototype. |
+| [`docs/design-system/`](docs/design-system) · [`tokens/orchestra.*`](tokens) · [`styleguide/`](styleguide) | **Orchestra** — the AI-orchestration design language (own `--orc-*` tokens · component docs · styleguide) implementing the framework. A design exploration, distinct from the shipped HCW-UI-Kit. |
 
 ### Consuming the kit
 
