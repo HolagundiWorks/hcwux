@@ -12,7 +12,10 @@
 
 ## Abstract
 
-The name is the thesis: **Human Centric Works** designs interfaces around the human's
+The name is the thesis — and the emphasis falls on the second word. We are **Human
+Centric _Works_**, not Human Centric _Design_. HCD is a school of *design*; **HCW is
+design that _works_** — judged by whether it does its job under pressure, not by how it
+photographs. Aesthetics serve function. We design interfaces around the human's
 **cognitive state**, not the software's feature list. Our user is not exploring — they
 are a professional operating a tool they use every day, against a deadline, while
 three other things demand their attention. For that person, the interface has one job:

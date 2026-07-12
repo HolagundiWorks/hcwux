@@ -54,6 +54,9 @@ Full detail: `docs/ADOPTING-THE-KIT.md`.
 
 ## Non-negotiables
 
+- **Human Centric _Works_, not Design (HCD).** The kit is judged by whether the design
+  *works* under pressure — functional, legible, operational — not by aesthetics.
+  Aesthetics serve function; when taste and UX law conflict, **UX law wins.**
 - **Never commit `dist/`** — it is built output.
 - **Thesis: depth encodes importance** — flat (info) · soft (objects) · glass
   (action). Square surfaces (`RADIUS` 0); only buttons/dialogs/dock rounded. **One**

@@ -5,6 +5,13 @@
 > materials are a language, and that language teaches the user, every second, what
 > matters.
 
+> ### Human Centric *Works* — not Human Centric *Design*.
+> The name is the thesis. HCD is a school of *design*; **HCW is design that _works_.** We
+> are not here to make interfaces that look human-centred in a portfolio — we are here to
+> make the *work* **work** for the human doing it, under pressure. **Aesthetics serve
+> function.** A design earns its place by doing its job, not by how it photographs. This
+> is a UI/UX discipline built on **UX-first principles**, not a styling exercise.
+
 **Human Centric Works** designs interfaces around the human's **cognitive state**, not
 the software's feature list. Our user is not exploring — they are a professional
 operating a tool every day, under pressure, while three other things demand their
