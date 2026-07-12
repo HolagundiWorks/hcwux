@@ -59,13 +59,17 @@ bottom bar** — the same building that served a human author now serves a human
 - **Stage — the content.** The work artifact ESTI edits, generates, and improves. Still
   flat information at rest, even while it updates.
 - **Rail — the orchestration.** The rail was always the telemetry surface; AI
-  orchestration is its highest form. For the **current tab**, it shows what ESTI is
-  orchestrating *right now* — current operation, progress + ETA, what is changing,
-  pending decisions, risk. The supervisor's dashboard: always visible, never scrolled.
+  orchestration is its highest form. For the **current tab** it first frames the work —
+  the **mission and its ≤5 objectives** — then shows what ESTI is orchestrating against
+  that frame: current operation, progress + ETA, what is changing, pending decisions,
+  risk. **Without the mission/objectives a live operation cannot be tracked and
+  orchestration fails** — progress needs a destination. The supervisor's dashboard:
+  always visible, never scrolled.
 - **Command bar (footer) — the conversation as a command line.** Ask ESTI sits on the
-  bottom bar; you issue an instruction and **only the answer returns** — no transcript
-  accumulates, because the record of what happened lives as rail state and durable
-  artifacts, not as chat to re-read.
+  bottom bar; you issue an instruction and the **answer returns**. The chat **history is
+  kept but hidden** — stored as **session-scoped memory**, one tap away when required,
+  never a column always present. Calm by default, recoverable on demand: structured and
+  low-noise, not a transcript to re-read.
 
 You cannot supervise a scroll. The chat window is not improved here — it is
 **decomposed**, its three jobs sent to the three places they belong. Full argument:

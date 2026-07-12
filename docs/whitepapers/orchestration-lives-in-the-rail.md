@@ -23,9 +23,9 @@ HCW's answer follows from a UX-first principle rather than a chat metaphor: **se
 the content, the orchestration, and the command into their three natural homes.** The
 stage holds the content. The **rail holds the orchestration** — it was always the
 telemetry surface, and AI orchestration is simply the richest telemetry there is. The
-**command bar holds the conversation, compressed to a command line** — you issue an
-instruction, and only the answer returns. The chat window dissolves; supervision takes
-its place.
+**command bar holds the conversation as a command line** — you issue an instruction,
+the answer returns, and the history is kept as session-scoped memory, hidden until you
+reach for it. The chat window recedes; supervision takes its place.
 
 ---
 
@@ -75,30 +75,36 @@ three regions the building already has:
 ```
 ┌─ RAIL ───────────┐  ┌─ STAGE ──────────────────────────────┐
 │  ORCHESTRATION    │  │  THE CONTENT                          │
-│  what the AI is    │  │  the artifact being edited /          │
-│  doing to THIS     │  │  generated / improved by the AI       │
-│  tab, live:        │  │  (still the work; now co-authored)    │
-│  · current step    │  │                                       │
-│  · progress · ETA  │  │                                       │
-│  · what's changing │  │                                       │
-│  · decisions/risk  │  │                                       │
-│  · telemetry       │  │                                       │
+│  (this tab, live) │  │  the artifact being edited /          │
+│  · MISSION +      │  │  generated / improved by the AI       │
+│    OBJECTIVES     │  │  (still the work; now co-authored)    │
+│  · current step   │  │                                       │
+│  · progress · ETA │  │                                       │
+│  · what's changing│  │                                       │
+│  · decisions/risk │  │                                       │
+│  · telemetry      │  │                                       │
 └──────────────────┘  └──────────────────────────────────────┘
-├─ COMMAND BAR ─ issue a command · only the AI's ANSWER returns ─┤
+├─ COMMAND BAR ─ command · answer returns · history kept (hidden, on demand) ─┤
 ```
 
 - **Stage = the content.** Unchanged in role — it is still the work artifact. What
   changed is that the AI now edits it. The stage stays flat: information at rest that
   you read and compare, even as it updates.
 - **Rail = the orchestration.** The rail's job was always telemetry; AI orchestration
-  is its highest form. It shows, for the **current tab**, *what the AI is orchestrating
-  right now* — the running operation, progress and ETA, what is being changed, pending
-  decisions, risk. It is the supervisor's dashboard, always visible, never scrolled.
+  is its highest form. For the **current tab** it first frames the work — the
+  **mission and its ≤5 objectives** — and then shows what the AI is orchestrating
+  *against that frame* right now: the running operation, progress and ETA, what is
+  being changed, pending decisions, risk. The mission/objectives are not optional
+  garnish: **without them a live operation cannot be tracked** — progress has nothing
+  to be progress *toward* — and orchestration collapses into motion with no
+  destination. The supervisor's dashboard: always visible, never scrolled.
 - **Command bar = the conversation, as a command line.** The AI command sits on the
-  **bottom bar**. You issue an instruction; **only the AI's answer returns there.** No
-  transcript accumulates — the conversation is compressed to a single command-and-reply
-  line, because the *history of what happened* lives as orchestration state (rail) and
-  as durable artifacts, not as chat to re-read.
+  **bottom bar**. You issue an instruction; the AI's **answer returns there.** The
+  conversation **history is kept — but hidden**: the bar shows the latest exchange, and
+  the full chat is one tap away *when required*, never a column always in your face.
+  What is kept is **stored as memory, scoped to the current session**, so context is
+  recoverable without accumulating noise. Calm by default; the history is there the
+  moment you reach for it.
 
 The chat window has not been improved. It has been **decomposed** — its three jobs sent
 to the three places they belong.
@@ -124,6 +130,11 @@ the rest of HCW-UI:
 For the active tab, the rail carries the supervisor's view — the same anatomy as the
 mission dashboard, sized to a rail:
 
+- **Mission & objectives:** the one sentence and ≤5 objectives that frame everything
+  below — the destination the live operation moves toward. **Everything else depends on
+  this:** without the mission and its objectives there is nothing for progress to be
+  progress *toward*, the live operation cannot be tracked, and orchestration fails. It
+  is why the rest can be *measured*, not merely watched.
 - **Currently:** the operation in flight ("Restructuring section 3 of 7"), with progress
   and an honest ETA.
 - **Changing:** what in the stage is being touched, so the human can watch the content
@@ -144,9 +155,10 @@ to the bottom command bar makes three things true:
 1. **The workspace stays a workspace.** No column of chat competes with the content.
 2. **The present is always visible.** State lives on a glanceable surface (the rail),
    not at the bottom of a scroll.
-3. **Answers, not transcripts.** You ask; the answer returns in place; the *record* of
-   what happened persists as orchestration state and artifacts — durable, addressable,
-   not something to scroll back through.
+3. **Answers by default, history on demand.** You ask; the answer returns in place. The
+   conversation is *kept* — as session-scoped memory, hidden until you reach for it —
+   not discarded, and not left piling up in your face. The lasting record of what
+   happened persists as orchestration state (rail) and durable artifacts.
 
 ---
 
