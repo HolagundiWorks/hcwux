@@ -4,6 +4,29 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 0.5.3 — 2026-07-21
+
+### Removed
+- **Orchestra design exploration** — deleted the parallel indigo/Inter visual
+  language (`tokens/orchestra.*`, `styleguide/`, `docs/design-system/`,
+  `docs/ai-orchestration-ux-prototype.html`). AI-orchestration doctrine remains
+  (`docs/ai-orchestration-ux-framework.md` · `docs/esti/HCW-AI-ORCHESTRATION-UX.md`);
+  product UI uses `@hcw/ui-kit` only (Radiant Orange · Urbanist).
+
+### Fixed
+- **Scheme-aware accent helpers** — `hexToRgba`, `underlineAccent`,
+  `glassAccentWash`, `focusRingFor`, `ddFlatFor`, `liquidGlassButtonFor` derive
+  from the active scheme accent instead of baking light `#FF4F18` into underlines,
+  washes, focus rings, Select hover, DataGrid selection hover, and liquid-glass
+  glow. Theme + dark/HC recipes + chrome-sx consume them; `portal-chrome.scss`
+  exposes `--hcw-accent` / `--hcw-accent-glow` (mirrors light `colors.accent`).
+- **`docs/styleguide.html` high-contrast theme** — CSS + theme toggle now cycle
+  light · dark · highContrast (`#C93A00` accent), matching `SCHEMES.highContrast`.
+
+### Docs
+- Clarified accent rule: fills/CTAs **and** active chrome glyph tints; body links
+  stay slate. Noted `DATA_VIZ.orange` is a chart series hue, not the brand accent.
+
 ## 0.5.2 — 2026-07-12
 
 ### Added

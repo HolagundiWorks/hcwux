@@ -29,13 +29,12 @@ import {
   GLASS_BLUR,
   GLASS_SHADOW,
   BTN_LIFT,
-  UNDERLINE_ORANGE,
-  UNDERLINE_RED,
-  GLASS_ORANGE_30,
+  underlineAccent,
+  glassAccentWash,
+  ddFlatFor,
+  focusRingFor,
   NEU_INPUT_RADIUS,
-  DD_FLAT,
   REDUCE_MOTION,
-  FOCUS_RING,
   TAB_ALERT_WIDTH,
   SPACING_UNIT,
   BREAKPOINTS,
@@ -155,7 +154,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
             const isError = ownerState.color === "error";
             const isCta = ownerState.variant === "contained" && !isError;
             const ink = isError ? CDS.supportError : isCta ? CDS.accent : CDS.ink;
-            const underline = isError ? UNDERLINE_RED : UNDERLINE_ORANGE;
+            const underline = underlineAccent(isError ? CDS.supportError : CDS.accent);
             return {
               borderRadius: BTN_RADIUS,
               fontWeight: isCta ? 700 : 600,
@@ -181,7 +180,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
               // glass slab as hover AND shows the accent focus ring, so keyboard
               // users see what's actionable (mouse-only :hover left them blind).
               "&:focus-visible": {
-                ...FOCUS_RING,
+                ...focusRingFor(CDS.accent),
                 background: R.GLASS_SURFACE.background,
                 backdropFilter: R.GLASS_SURFACE.backdropFilter,
                 WebkitBackdropFilter: R.GLASS_SURFACE.WebkitBackdropFilter,
@@ -285,7 +284,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
               backgroundColor: "transparent",
               boxShadow: `inset 0 ${TAB_ALERT_WIDTH}px 0 0 ${CDS.accent}`,
             },
-            "&.Mui-focusVisible": FOCUS_RING,
+            "&.Mui-focusVisible": focusRingFor(CDS.accent),
           },
         },
       },
@@ -319,7 +318,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
             "&.Mui-focused": { boxShadow: R.NEU_INSET_FOCUS },
             "&.Mui-error": { boxShadow: R.NEU_INSET_ERROR },
             "&.Mui-disabled": { boxShadow: R.NEU_INSET, opacity: 0.6 },
-            "&:has(.MuiSelect-select)": { ...DD_FLAT },
+            "&:has(.MuiSelect-select)": { ...ddFlatFor(CDS) },
           },
         },
       },
@@ -334,7 +333,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
             "&:hover": { backgroundColor: R.NEU_FILL },
             "&.Mui-focused": { backgroundColor: R.NEU_FILL, boxShadow: R.NEU_INSET_FOCUS },
             "&.Mui-error": { boxShadow: R.NEU_INSET_ERROR },
-            "&:has(.MuiSelect-select)": { ...DD_FLAT },
+            "&:has(.MuiSelect-select)": { ...ddFlatFor(CDS) },
           },
         },
       },
@@ -344,8 +343,8 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
             borderRadius: BTN_RADIUS,
             "&.Mui-selected": {
               color: CDS.accent,
-              backgroundColor: GLASS_ORANGE_30,
-              "&:hover": { backgroundColor: GLASS_ORANGE_30 },
+              backgroundColor: glassAccentWash(CDS.accent, 0.3),
+              "&:hover": { backgroundColor: glassAccentWash(CDS.accent, 0.3) },
             },
           },
         },
@@ -358,7 +357,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
           root: {
             color: CDS.textSecondary,
             "&.Mui-checked": { color: CDS.accent },
-            "&.Mui-focusVisible": FOCUS_RING,
+            "&.Mui-focusVisible": focusRingFor(CDS.accent),
           },
         },
       },
@@ -367,7 +366,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
           root: {
             color: CDS.textSecondary,
             "&.Mui-checked": { color: CDS.accent },
-            "&.Mui-focusVisible": FOCUS_RING,
+            "&.Mui-focusVisible": focusRingFor(CDS.accent),
           },
         },
       },
@@ -376,7 +375,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
           switchBase: {
             "&.Mui-checked": { color: CDS.onAccent },
             "&.Mui-checked + .MuiSwitch-track": { backgroundColor: CDS.accent, opacity: 1 },
-            "&.Mui-focusVisible": FOCUS_RING,
+            "&.Mui-focusVisible": focusRingFor(CDS.accent),
           },
           track: { backgroundColor: CDS.textSecondary, opacity: OPACITY.muted },
         },
@@ -422,7 +421,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
               color: CDS.onAccent,
               "&:hover": { backgroundColor: CDS.accentDark },
             },
-            "&.Mui-focusVisible": FOCUS_RING,
+            "&.Mui-focusVisible": focusRingFor(CDS.accent),
           },
         },
       },
@@ -448,7 +447,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
               color: CDS.onAccent,
               "&:hover, &:focus": { backgroundColor: CDS.accentDark },
             },
-            "&.Mui-focusVisible": FOCUS_RING,
+            "&.Mui-focusVisible": focusRingFor(CDS.accent),
           },
           today: { border: `1px solid ${CDS.accent}` },
         },
@@ -498,7 +497,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
             "&:hover": { backgroundColor: CDS.hoverSoft },
             "&.Mui-selected": {
               backgroundColor: CDS.accentSoft,
-              "&:hover": { backgroundColor: "rgba(255,79,24,0.20)" },
+              "&:hover": { backgroundColor: glassAccentWash(CDS.accent, 0.2) },
             },
           },
         },

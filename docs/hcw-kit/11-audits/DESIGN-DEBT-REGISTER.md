@@ -2,7 +2,7 @@
 
 **The single queue of known design debt.** Every audit deposits here; every fix
 withdraws. Agents: update this file in the same change that alters a fact
-(Rulebook §14). Ordered by severity × reach. **Updated:** 2026-07-12.
+(Rulebook §14). Ordered by severity × reach. **Updated:** 2026-07-21.
 
 ## Open
 
@@ -28,6 +28,7 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-21 · **Orchestra dropped** — removed the parallel indigo/Inter exploration (`tokens/orchestra.*`, `styleguide/`, `docs/design-system/`, indigo mission-dashboard prototype). Single visual language: `@hcw/ui-kit` (Radiant Orange · Urbanist). Accent helpers made scheme-aware; styleguide gained high-contrast theme CSS.
 - 2026-07-12 · **Actionable-gap sweep:** D18 closed (3 raw-`fontSize` → `TYPE_SCALE.kpi`/`.body2`; typecheck clean) · **Wizard template T9** documented in [05-TEMPLATES.md](../05-TEMPLATES.md) from `AccountHub.tsx` (catalog now T1–T9) · **perf bundle budget** added to hcwux CI (`scripts/size-budget.mjs`, 40 KB gzip ceiling; current ~29 KB) · ZonalCompliance SVG palette assessed → sanctioned (canvas/SVG exception; no regressioning recolor).
 - 2026-07-12 · **D11 closed** — `Clients.tsx` `TagChip` fork (Carbon `--cds-tag-*` Chip) → kit `StatusDot`; both dialogs (New client · Create client login) gained `aria-labelledby` (WCAG 4.1.2). The last agent-actionable debt item — the Open queue is now empty.
 - 2026-07-12 · **D3s closed** — owner signed off the dark & high-contrast schemes (accepted as shipped; the marketing-page "chrome stays light" label-cascade caveat is documented and accepted). The last human-gated theme item.
