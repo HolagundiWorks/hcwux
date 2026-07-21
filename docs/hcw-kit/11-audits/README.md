@@ -1,6 +1,6 @@
 # HCW Kit & AORMS — audit index
 
-**Updated:** 2026-07-12 · **Living queue:** [DESIGN-DEBT-REGISTER.md](DESIGN-DEBT-REGISTER.md) — **Open queue empty** (D18 closed; actionable gaps swept: wizard T9 · bundle budget · breakpoint audit) · Maturity **83/100** · Compliance **92/100** · Canonical kit repo: **github.com/HolagundiWorks/hcwux**
+**Updated:** 2026-07-21 · **Living queue:** [DESIGN-DEBT-REGISTER.md](DESIGN-DEBT-REGISTER.md) — framework F1–F5 closed in 1.3.0 · Case studies: [case-studies/](case-studies/) · Canonical kit repo: **github.com/HolagundiWorks/hcwux**
 
 All audits are repo-resident markdown — no external canvas URLs. Re-run surface
 audits after major feature waves; update the debt register in the same PR as fixes.

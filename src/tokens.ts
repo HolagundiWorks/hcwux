@@ -246,33 +246,39 @@ export const DENSITY = {
 /** Theme density mode — comfortable (default productive) or compact (dense tables). */
 export type DensityName = "comfortable" | "compact";
 
+/** COGA presentation mode — default (AA) or calm (larger targets + type bump). */
+export type CogaMode = "default" | "calm";
+
 /**
  * Resolved control metrics for a density mode. `createAormsTheme({ density })`
  * and list/table chrome consume these — do not invent px heights at call sites.
+ * Pass `coga: "calm"` to raise interactive floors to {@link COGA.calmTargetMinPx}.
  */
-export function densityFor(mode: DensityName = "comfortable") {
+export function densityFor(mode: DensityName = "comfortable", coga: CogaMode = "default") {
   const compact = mode === "compact";
+  const floor = coga === "calm" ? COGA.calmTargetMinPx : 0;
+  const lift = (n: number) => Math.max(n, floor);
   return {
     mode,
     /** Generic control / tab height. */
-    control: compact ? 32 : DENSITY.control,
+    control: lift(compact ? 32 : DENSITY.control),
     /** Contained/text button min-height. */
-    button: compact ? 32 : 36,
+    button: lift(compact ? 32 : 36),
     /** Text field / outlined input min-height. */
-    input: compact ? 32 : DENSITY.control,
+    input: lift(compact ? 32 : DENSITY.control),
     /** List item / menu item min-height. */
-    listItem: compact ? 32 : DENSITY.control,
-    tab: compact ? 32 : DENSITY.control,
-    menuItem: compact ? 32 : DENSITY.control,
+    listItem: lift(compact ? 32 : DENSITY.control),
+    tab: lift(compact ? 32 : DENSITY.control),
+    menuItem: lift(compact ? 32 : DENSITY.control),
     /** Table cell vertical padding (`theme.spacing` units). */
     tableCellPy: compact ? 0.5 : 1,
-    chip: compact ? 22 : 28,
-    dataGridRow: compact ? 36 : 48,
+    chip: compact && coga !== "calm" ? 22 : coga === "calm" ? 32 : 28,
+    dataGridRow: lift(compact ? 36 : 48),
     /**
      * In-content IconButton size. Persistent chrome (taskbar/ribbon) still uses
-     * {@link DENSITY.touchTarget} via `chromeIconSx`.
+     * {@link DENSITY.touchTarget} via `chromeIconSx` (calm → calmTargetMinPx).
      */
-    iconButton: compact ? 32 : DENSITY.controlCompact,
+    iconButton: lift(compact ? 32 : DENSITY.controlCompact),
   } as const;
 }
 
@@ -390,6 +396,7 @@ export const INTERRUPTION = {
 /**
  * Cognitive accessibility extras (W3C COGA) beyond WCAG 2.2 AA.
  * `calm` mode: larger targets, one type step up, reduced secondary chrome.
+ * Wire via `KitRoot({ coga: "calm" })` / `createHcwTheme({ coga: "calm" })`.
  */
 export const COGA = {
   targetMinPx: 44,
@@ -451,6 +458,50 @@ export const TYPE_SCALE = {
   heading: "1.75rem",
   display: "2.625rem",
 } as const;
+
+const TYPE_LADDER = [
+  "micro",
+  "caption",
+  "label",
+  "body2",
+  "body",
+  "kpi",
+  "subtitle",
+  "heading",
+  "display",
+] as const;
+
+/**
+ * Resolved COGA metrics. Calm raises interactive floors and bumps type one step
+ * on the {@link TYPE_SCALE} ladder.
+ */
+export function cogaFor(mode: CogaMode = "default") {
+  const calm = mode === "calm";
+  const bump = (key: (typeof TYPE_LADDER)[number]) => {
+    if (!calm) return TYPE_SCALE[key];
+    const i = TYPE_LADDER.indexOf(key);
+    const nextIdx = Math.min(i + COGA.calmTypeStep, TYPE_LADDER.length - 1);
+    const next = TYPE_LADDER[nextIdx] ?? key;
+    return TYPE_SCALE[next];
+  };
+  return {
+    mode,
+    targetMinPx: calm ? COGA.calmTargetMinPx : COGA.targetMinPx,
+    type: {
+      micro: bump("micro"),
+      caption: bump("caption"),
+      label: bump("label"),
+      body2: bump("body2"),
+      body: bump("body"),
+      kpi: bump("kpi"),
+      subtitle: bump("subtitle"),
+      heading: bump("heading"),
+      display: bump("display"),
+    },
+  } as const;
+}
+
+export type CogaMetrics = ReturnType<typeof cogaFor>;
 
 /** Motion tokens — durations (ms) + easings. `fast`/`base` match the 130–200ms
  *  used across the theme. Always gate transforms behind {@link REDUCE_MOTION}. */

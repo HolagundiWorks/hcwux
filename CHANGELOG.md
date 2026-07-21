@@ -4,6 +4,26 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 1.3.0 — 2026-07-21
+
+### Added
+- **Orchestration primitives (F1)** — `MissionHeader` · `ObjectiveList` · `PhaseStrip` ·
+  `ConfidenceBand` · `DecisionCard` / `DecisionQueue` · `FrozenDecisionRow` /
+  `FreezeTable`; template **T10** in `05-TEMPLATES.md`.
+- **`KpiStrip`** + **`enforceCapacity` / `assertCapacity`** (F2) — Cowan caps on KPI
+  strips; ActionDock trims to `CAPACITY.dockVisibleActions` with warn.
+- **`KitRoot({ coga })` / `createHcwTheme({ coga })`** (F3) — calm mode raises
+  targets and bumps type one step; `data-hcw-coga`; `cogaFor` / `densityFor(..., coga)`.
+- **`logUxEvent` / `setUxEventSink`** (F4) — sink-agnostic KPI instrument; dock
+  `DockAction.track` / `.outcome` couples `ux.dock` + `publishOutcome`.
+- **Case studies (F5)** — `docs/hcw-kit/11-audits/case-studies/` (interrupt · dock ·
+  mission orientation).
+
+### Changed
+- Framework §10 / debt register: F1–F5 closed.
+- Catalog, styleguide, KPI instrument docs updated.
+- Gzip size budget **40 → 50 KB** (new orchestration + telemetry surface).
+
 ## 1.2.0 — 2026-07-21
 
 ### Added

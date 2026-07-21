@@ -235,9 +235,11 @@ Mounts theme + date localisation once at the portal root.
 | `children` | node | required |
 | `scheme` | `light` · `dark` · `highContrast` | `light` |
 | `density` | `comfortable` · `compact` | `comfortable` |
-| `theme` | full theme override | — (wins over scheme/density) |
+| `coga` | `default` · `calm` | `default` |
+| `theme` | full theme override | — (wins over scheme/density/coga) |
 
-Theme factory: `createHcwTheme({ scheme?, density? })` · singleton `hcwTheme`.
+Theme factory: `createHcwTheme({ scheme?, density?, coga? })` · singleton `hcwTheme`.  
+Calm: larger interactive floors (`COGA.calmTargetMinPx`) + one type step; sets `data-hcw-coga`.
 
 ### Surface
 
@@ -279,8 +281,43 @@ Class: `hcw-surface`. Always square.
 | `tone` | `default` · `primary` · `danger` | no |
 | `disabled` | bool | no |
 | `iconOnly` | bool | no |
+| `outcome` | `{ status; label; detail? }` | no — `publishOutcome` after click |
+| `track` | bool | no — emit `ux.dock` (default true when `outcome` set) |
 
-**Zone law:** left = destroy/exit · center = create · right = commit. Hide dock while a create/edit dialog owns commit (`publish []`).
+**Zone law:** left = destroy/exit · center = create · right = commit. Hide dock while a create/edit dialog owns commit (`publish []`).  
+**Capacity:** > `CAPACITY.dockVisibleActions` → trim (prefer primary/danger) + `ux.capacity_warn`.
+
+### KpiStrip
+
+| Attribute | Type / values | Default |
+| --- | --- | --- |
+| `items` | `{ id; label; value; onClick? }[]` | required — capped at `CAPACITY.kpiStrip` |
+| `aria-label` | string | `"Key measures"` |
+
+### Orchestration (T10)
+
+| Export | Job |
+| --- | --- |
+| `MissionHeader` | One-sentence mission + optional status |
+| `ObjectiveList` | Objectives ≤ `CAPACITY.railObjectives` |
+| `PhaseStrip` | Phase · progress (0–1) · eta |
+| `ConfidenceBand` | `low` · `medium` · `high` (word band, not lone %) |
+| `DecisionCard` / `DecisionQueue` | Pending decisions; ≤3 alternatives |
+| `FrozenDecisionRow` / `FreezeTable` | Locked decisions |
+
+### AwarenessStrip · ActionOutcomeBanner
+
+| Export | Attributes |
+| --- | --- |
+| `AwarenessStrip` | `state` · `meaning` · `next` · `loops[]` · `judgment` |
+| `publishOutcome` / banner | closes evaluation gulf after dock commits |
+
+### Telemetry
+
+| Export | Job |
+| --- | --- |
+| `setUxEventSink` / `logUxEvent` | Product analytics sink |
+| `enforceCapacity` / `assertCapacity` | Cap + `ux.capacity_warn` |
 
 ### SectionDock
 
@@ -404,7 +441,7 @@ Separator pictogram: `›`.
 | **Wayfinding** | PageBreadcrumb on deep screens |
 | **Chart series** | `withChartSeriesColors` / `chartPalette` + markers |
 | **Page CTAs** | ActionDock only |
-| **Templates** | T1–T9 in [05-TEMPLATES.md](05-TEMPLATES.md) |
+| **Templates** | T1–T10 in [05-TEMPLATES.md](05-TEMPLATES.md) |
 
 ---
 

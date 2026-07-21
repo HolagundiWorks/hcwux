@@ -192,12 +192,12 @@ Detail: [HCW-UX-KPI-INSTRUMENT.md](esti/HCW-UX-KPI-INSTRUMENT.md).
 | --- | --- | --- |
 | 1 | Problem better than existing? | Yes — cognitive-role chrome + mission-first AI vs chat/DS-only |
 | 2 | Every component necessary? | Mostly; enforce remaining CAPACITY/COGA flags |
-| 3 | Short intro success? | Yes for chrome; process §3 + framework §3; AI anatomy still finishing primitives |
+| 3 | Short intro success? | Yes — framework §3 + process §3 + T10 primitives |
 | 4 | Consistent across teams? | Designed for yes; enforce via R1–R10 + process gates |
-| 5 | Impact measurable? | KPIs defined; process Evaluate samples them; instrument rolling out |
+| 5 | Impact measurable? | KPIs + `logUxEvent` + case studies published |
 | 6 | Integrates workflows? | Yes with eng; overlay for CPM/BIM |
 | 7 | Scales? | Yes for screens; programmes via overlay |
-| 8 | Evidence / cases? | Theory strong; publish case studies next |
+| 8 | Evidence / cases? | [case-studies/](hcw-kit/11-audits/case-studies/) (interrupt · dock · mission) |
 | 9 | One diagram? | Yes (§2) |
 | 10 | Adoption motive? | Reduces inventiveness tax **and** improves decision speed |
 
@@ -220,12 +220,16 @@ Detail: [HCW-UX-KPI-INSTRUMENT.md](esti/HCW-UX-KPI-INSTRUMENT.md).
 
 ---
 
-## 10. Open framework gaps (honest)
+## 10. Framework gaps
 
-Tracked in [DESIGN-DEBT-REGISTER.md](hcw-kit/11-audits/DESIGN-DEBT-REGISTER.md):
+**Closed in 1.3.0** (see [DESIGN-DEBT-REGISTER.md](hcw-kit/11-audits/DESIGN-DEBT-REGISTER.md) Retired):
 
-- F1 Orchestration primitives (Mission, Decision, Freeze, Confidence, Phase)
-- F2 CAPACITY enforcement beyond toast/loops
-- F3 COGA calm mode on KitRoot
-- F4 KPI telemetry plumbing in consumers
-- F5 Published validation case studies
+| ID | Was | Closed by |
+| --- | --- | --- |
+| F1 | Orchestration under-primitivized | `MissionHeader` · `ObjectiveList` · `PhaseStrip` · `DecisionQueue` · `FreezeTable` · `ConfidenceBand` + **T10** |
+| F2 | CAPACITY partial | `enforceCapacity` · ActionDock trim · `KpiStrip` |
+| F3 | COGA unused | `KitRoot({ coga })` / `createHcwTheme({ coga })` |
+| F4 | KPI telemetry unwired | `logUxEvent` / `setUxEventSink` + dock `outcome`/`track` |
+| F5 | No case studies | [11-audits/case-studies/](hcw-kit/11-audits/case-studies/) |
+
+New gaps: file as D- or F-items on the debt register — do not leave §10 stale.

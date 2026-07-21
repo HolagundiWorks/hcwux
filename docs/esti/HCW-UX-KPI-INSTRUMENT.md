@@ -41,17 +41,25 @@ Ambient progress must **not** emit `ux.interrupt`.
 
 ---
 
-## 3. Kit hooks (already shipped)
+## 3. Kit hooks (shipped)
 
 | Hook | Use for KPIs |
 | --- | --- |
 | `pushToast` / ToastHost trim | Interrupt + error assertive |
-| `publishOutcome` | `ux.outcome` |
-| `AwarenessStrip` loops | Capacity open-loops |
+| `publishOutcome` | Emits `ux.outcome` |
+| `AwarenessStrip` loops | Capacity open-loops (`enforceCapacity`) |
 | `ConfirmModal` kind | Slip vs mistake tagging |
 | `CAPACITY` / `INTERRUPTION` tokens | Caps for `capacity_warn` |
+| **`logUxEvent` / `setUxEventSink`** | Product attaches analytics sink |
+| **`DockAction.track` / `.outcome`** | `ux.dock` + auto `publishOutcome` on click |
+| **`KpiStrip` / ActionDock trim** | `ux.capacity_warn` on overrun |
+| **DecisionQueue focus** | `ux.decision` pending |
 
-**Still needed (framework gap F4):** shared `logUxEvent()` helper in kit or app analytics module; dock auto-publish outcome on RIGHT success.
+Consumer apps still choose the sink implementation (Segment, custom, etc.).
+
+## 3b. Validation evidence
+
+Before/after write-ups: [case-studies/](../hcw-kit/11-audits/case-studies/).
 
 ---
 
