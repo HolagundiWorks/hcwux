@@ -50,7 +50,8 @@ panels, Coal-Black ink, with **Radiant Orange** the single signature accent.
   rules, and **active/hover chrome glyph tints** (taskbar, docks) may use the
   accent. Long body text and links stay ink/slate — never orange.
 - **No hard-coded hex outside the token files.** Everywhere else references the
-  theme (`color="primary"`, `sx`, `--cds-*`, the `--esti-*` vars).
+  theme (`color="primary"`, `sx`, kit tokens, the `--esti-*` vars). App
+  `--cds-*` is frozen compat only — never add new call sites.
 - **One accent.** Do not introduce a second brand hue; use the status family for
   state, the neutral scale for everything else. `DATA_VIZ.orange` is a chart
   series hue, not the brand accent.
@@ -174,9 +175,9 @@ Autopilot rollout: [AORMS-UI-AUTOPILOT-ROADMAP.md](AORMS-UI-AUTOPILOT-ROADMAP.md
 | **`frontend/src/styles.scss`** | Font var, structural helpers, `.esti-brand` mask classes. Colourless except the brand var. | enforced |
 | **`frontend/src/landing.scss`** | Landing editorial `--lp-*` tokens — warm accent = Radiant Orange. | exempt |
 
-Everything else references these — no raw hex, no rounded corners. (The automated
-`check-carbon.mjs`/`carbon-policy.test.ts` guard was removed with `@carbon/react`,
-2026-07; this is enforced by code review now.)
+Everything else references these — no raw hex, no rounded corners. Carbon React
+is gone; density/organisation live in `@hcw/ui-kit` (`LAYOUT` · `DENSITY`).
+Enforced by code review + kit mapping ([10-MUI-MAPPING.md](../hcw-kit/10-MUI-MAPPING.md)).
 
 ---
 

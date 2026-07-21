@@ -116,6 +116,45 @@ export const DATA_VIZ = {
   gray: "#525252",
 } as const;
 
+/**
+ * Ordered categorical series for charts (MUI X / canvas). Prefer this over
+ * `Object.values(DATA_VIZ)` so series order stays stable across builds.
+ * Borrowed from Carbon's categorical sequencing discipline — not Carbon hues
+ * as a brand language (those blues are viz-only; CTAs stay Radiant Orange).
+ */
+export const DATA_VIZ_CATEGORICAL = [
+  DATA_VIZ.blue,
+  DATA_VIZ.cyan,
+  DATA_VIZ.green,
+  DATA_VIZ.orange,
+  DATA_VIZ.purple,
+  DATA_VIZ.violet,
+  DATA_VIZ.gray,
+] as const;
+
+/** First `n` chart series colours, cycling the categorical ladder. */
+export function chartSeriesColors(n: number): string[] {
+  if (n <= 0) return [];
+  const out: string[] = [];
+  for (let i = 0; i < n; i++) {
+    out.push(DATA_VIZ_CATEGORICAL[i % DATA_VIZ_CATEGORICAL.length]!);
+  }
+  return out;
+}
+
+/**
+ * Enterprise density targets (Carbon productive inspiration) — WCAG touch
+ * targets and compact chrome heights. Visual language stays HCW.
+ */
+export const DENSITY = {
+  /** Minimum interactive target (WCAG 2.5.5 / persistent chrome). */
+  touchTarget: 44,
+  /** Compact control (taskbar chips, dense toolbars). */
+  controlCompact: 38,
+  /** Default control / tab row height. */
+  control: 40,
+} as const;
+
 /** Status hues for StatusDot/StatusTag — canonical kit-owned values (supersede the
  *  frozen `--cds-tag-*` compat layer for new code). */
 export const STATUS_COLORS: Record<string, string> = {
@@ -637,6 +676,9 @@ export const tokens = {
   SPACING,
   SPACING_UNIT,
   LAYOUT,
+  DENSITY,
+  DATA_VIZ,
+  DATA_VIZ_CATEGORICAL,
   BREAKPOINTS,
   Z_INDEX,
   OPACITY,

@@ -1,8 +1,7 @@
 /**
  * AORMS Material UI theme — the single source of colour + shape for every MUI
  * portal. Built entirely from the shared design tokens (`tokens.ts`) so the look
- * is identical everywhere it is mounted. (The Carbon landing surface never mounts
- * these components.)
+ * is identical everywhere it is mounted.
  *
  * The HCW-UI-Kit layer rules, encoded here so screens inherit them and never
  * re-specify them inline (full spec: docs/esti/HCW-UI-KIT.md):
@@ -12,6 +11,10 @@
  *     within.
  *  3. Layer 3 GLASS (glassmorphism) — the live layer: BUTTON HOVER takes the
  *     glass slab, and priority alerts (error/warning) read as tinted glass.
+ *
+ * MUI is the rendering engine; Carbon contributes **density/organisation
+ * discipline only** (see `LAYOUT` · `SPACING` · `DENSITY`) — never IBM Plex,
+ * indigo, or 16-col Grid.
  */
 import { createTheme, type Theme } from "@mui/material/styles";
 // Theme augmentation so `components.MuiDataGrid` / `MuiPickersDay` (MUI X) are
@@ -33,6 +36,7 @@ import {
   glassAccentWash,
   ddFlatFor,
   focusRingFor,
+  hexToRgba,
   NEU_INPUT_RADIUS,
   REDUCE_MOTION,
   TAB_ALERT_WIDTH,
@@ -41,6 +45,7 @@ import {
   Z_INDEX,
   OPACITY,
   TYPE_SCALE,
+  DENSITY,
 } from "./tokens.js";
 
 /** Build the AORMS MUI theme. Exposed as a factory so a portal can layer small
@@ -243,26 +248,54 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
         defaultProps: { underline: "hover" },
         styleOverrides: { root: { color: CDS.supportInfo } },
       },
-      // Priority notifications (Layer 3) — error/warning alerts read as TINTED
-      // GLASS so they visibly float above the calm flat canvas; info/success stay
-      // quiet (Layer 1).
+      // Priority notifications (Layer 3) — error/warning *standard* alerts read as
+      // TINTED GLASS so they float above the calm flat canvas; info/success stay
+      // quiet (Layer 1). *Filled* (ToastHost) uses solid support fills so transient
+      // feedback stays high-contrast and scheme-aware.
       MuiAlert: {
         styleOverrides: {
           root: ({ ownerState }) => {
-            if (ownerState.variant && ownerState.variant !== "standard") return {};
-            if (ownerState.severity === "error")
+            const sev = ownerState.severity;
+            if (ownerState.variant === "filled") {
+              const fill =
+                sev === "error"
+                  ? CDS.supportError
+                  : sev === "warning"
+                    ? CDS.supportWarning
+                    : sev === "success"
+                      ? CDS.supportSuccess
+                      : CDS.supportInfo;
+              // Saffron warning needs dark ink for AA; other support fills take on-color.
+              const ink = sev === "warning" ? CDS.ink : CDS.textOnColor;
               return {
-                ...R.GLASS_SURFACE,
-                background: "rgba(200, 68, 46, 0.10)",
-                border: "1px solid rgba(200, 68, 46, 0.25)",
+                borderRadius: 0,
+                backgroundColor: fill,
+                color: ink,
+                border: `1px solid ${hexToRgba(fill, 0.35)}`,
               };
-            if (ownerState.severity === "warning")
+            }
+            if (ownerState.variant && ownerState.variant !== "standard") return {};
+            if (sev === "error")
               return {
                 ...R.GLASS_SURFACE,
-                background: "rgba(255, 153, 50, 0.12)",
-                border: "1px solid rgba(255, 153, 50, 0.30)",
+                background: hexToRgba(CDS.supportError, 0.1),
+                border: `1px solid ${hexToRgba(CDS.supportError, 0.25)}`,
+              };
+            if (sev === "warning")
+              return {
+                ...R.GLASS_SURFACE,
+                background: hexToRgba(CDS.supportWarning, 0.12),
+                border: `1px solid ${hexToRgba(CDS.supportWarning, 0.3)}`,
               };
             return {};
+          },
+        },
+      },
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: BTN_RADIUS,
+            "&.Mui-focusVisible": focusRingFor(CDS.accent),
           },
         },
       },
@@ -275,7 +308,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
       MuiTabs: {
         styleOverrides: {
           root: {
-            minHeight: 40,
+            minHeight: DENSITY.control,
             "&.MuiTabs-vertical .MuiTab-root": {
               alignItems: "flex-start",
               justifyContent: "flex-start",
@@ -293,7 +326,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
           root: {
             textTransform: "none",
             borderRadius: 0,
-            minHeight: 40,
+            minHeight: DENSITY.control,
             minWidth: 0,
             px: 1.5,
             py: 1,
@@ -480,6 +513,32 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
           today: { border: `1px solid ${CDS.accent}` },
         },
       },
+      // DatePicker popup shell — flat pop + hairline (inherits input theming on the field).
+      MuiPickerPopper: {
+        styleOverrides: {
+          paper: {
+            ...R.FLAT_POP,
+            borderRadius: 0,
+            backgroundColor: CDS.layer01,
+            border: `1px solid ${CDS.borderSubtle}`,
+          },
+        },
+      },
+      MuiDateCalendar: {
+        styleOverrides: {
+          root: {
+            backgroundColor: CDS.layer01,
+            color: CDS.textPrimary,
+            maxHeight: "none",
+          },
+        },
+      },
+      MuiPickersCalendarHeader: {
+        styleOverrides: {
+          root: { color: CDS.textPrimary, paddingLeft: SPACING_UNIT, paddingRight: SPACING_UNIT },
+          label: { fontWeight: 600, fontSize: TYPE_SCALE.body2 },
+        },
+      },
       MuiTableCell: {
         styleOverrides: {
           root: { borderColor: "rgba(20, 21, 23, 0.08)" },
@@ -496,9 +555,10 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
         styleOverrides: {
           tooltip: {
             borderRadius: 0,
-            backgroundColor: "#141517",
-            color: "#FFFFFF",
-            border: "1px solid rgba(20, 21, 23, 0.20)",
+            backgroundColor: CDS.ink,
+            color: CDS.textOnColor,
+            border: `1px solid ${CDS.borderStrong}`,
+            fontSize: TYPE_SCALE.micro,
           },
         },
       },

@@ -10,11 +10,16 @@ current via the MUI Specialist role).
 ⬜ **neutral** (layout/typography plumbing; sanctioned direct use) ·
 🟥 **restricted** (use the HCW pattern instead) · 🟨 **gap** (not yet governed).
 
+**Carbon marriage:** we borrow Carbon's **enterprise density / organisation**
+(`LAYOUT`, `SPACING`, `DENSITY`, type ladder) and reject Carbon React, IBM Plex,
+indigo, and 16-column Grid. App `--cds-*` is a frozen consumer compat layer —
+never extended in the kit.
+
 ## Actions
 | MUI | Treatment | HCW form |
 | --- | --- | --- |
 | Button | 🟩 themed | flat → glass-hover CTA; danger via `color="error"`; page-level CTAs go to **ActionDock** (`useScreenActions`), never inline |
-| IconButton | 🟩 themed | ≥44px in persistent chrome (`chromeIconSx`) |
+| IconButton | 🟩 themed | focus ring + `BUTTON_RADIUS`; persistent chrome ≥44px via `chromeIconSx` (`DENSITY.touchTarget`) |
 | ToggleButton/Group | 🟩 themed | selected = accent wash |
 | Fab / SpeedDial | 🟥 restricted | use ActionDock — no floating action buttons |
 
@@ -26,16 +31,16 @@ current via the MUI Specialist role).
 | Drawer | 🟩 themed | solid pop fill + hairline |
 | AppBar | 🟩 themed | ribbon chrome (`AppRibbon` app shell) |
 | Divider | ⬜ neutral | hairline via theme divider colour |
-| Box / Stack / Grid / Container | ⬜ neutral | layout plumbing; spacing via theme grid only |
+| Box / Stack / Grid / Container | ⬜ neutral | layout plumbing; **12-col** via `LAYOUT.columns` / `layoutSx.grid` — not Carbon 16-col |
 
 ## Inputs
 | MUI | Treatment | HCW form |
 | --- | --- | --- |
-| TextField / OutlinedInput / FilledInput | 🟩 themed | neumorphic recessed wells (`NEU_INSET` recipes) |
+| TextField / OutlinedInput / FilledInput | 🟩 themed | neumorphic recessed wells (`NEU_INSET` recipes); default `size="small"` |
 | Select / Autocomplete / MenuItem | 🟩 themed | DD_FLAT rest → button-like hover |
-| Checkbox / Radio / Switch / Slider | 🟩 themed (0.1.0) | accent-active, FOCUS_RING |
-| InputAdornment / FormControlLabel / FormControl | ⬜ neutral | — |
-| DatePicker (X) | 🟨 gap | inherits input theming; calendar popup unaudited |
+| Checkbox / Radio / Switch / Slider | 🟩 themed | accent-active, FOCUS_RING |
+| InputAdornment / FormControlLabel / FormControl | ⬜ neutral | search recipe: `TextField` + `InputAdornment position="start"` (Search icon); no separate Search primitive |
+| DatePicker (X) | 🟩 themed | field inherits inputs; popup `MuiPickerPopper` / `MuiDateCalendar` / `MuiPickerDay` / header — flat pop, accent selected day |
 
 ## Data display
 | MUI | Treatment | HCW form |
@@ -45,28 +50,28 @@ current via the MUI Specialist role).
 | Chip | 🟩 themed (square) | **status is never a filled Chip** → 🟦 `StatusDot`/app `StatusTag` |
 | Avatar | 🟥 restricted | 🟦 kit `Avatar` (injected colour) / app `StaffAvatar` |
 | Badge | 🟩 themed | accent primary |
-| Tooltip | 🟩 themed | ink slab, square |
+| Tooltip | 🟩 themed | ink slab (`colors.ink`), square, token border |
 | Typography | ⬜ neutral | variants only; micro-type via `TYPE_SCALE` |
-| List family | 🟩 themed | selected = layer02 wash |
-| Charts (X) | 🟨 gap | last app-level canonical outside governance |
+| List family | 🟩 themed | selected = layer02 wash (`MuiListItemButton`) |
+| Charts (X) | 🟩 governed | series colours from `DATA_VIZ_CATEGORICAL` / `chartSeriesColors(n)` — never raw hex; not for CTAs |
 
 ## Feedback
 | MUI | Treatment | HCW form |
 | --- | --- | --- |
-| Alert / AlertTitle | 🟩 themed | error/warning = tinted glass (Layer 3); info/success quiet |
+| Alert / AlertTitle | 🟩 themed | standard error/warning = tinted glass (Layer 3); **filled** = solid support fills (ToastHost); info/success quiet when standard |
 | Snackbar | 🟥 restricted | 🟦 kit `ToastHost` + `pushToast` |
 | Dialog family | 🟩 themed (NEU_POP) | confirm-destroy via 🟦 `ConfirmModal`; must carry `aria-labelledby` |
-| CircularProgress / LinearProgress / Skeleton | 🟩 themed (0.1.0) | loading grammar via 🟦 `DataState` |
+| CircularProgress / LinearProgress / Skeleton | 🟩 themed | loading grammar via 🟦 `DataState` |
 | Backdrop / Modal (raw) | 🟥 restricted | Dialog only |
 
 ## Navigation
 | MUI | Treatment | HCW form |
 | --- | --- | --- |
-| Tabs / Tab | 🟩 themed | transparent + inset top alert line |
+| Tabs / Tab | 🟩 themed | transparent + inset top alert line; height `DENSITY.control` |
 | Menu / Popover | 🟩 themed (FLAT_POP) | keyboard contract per AppRibbon pattern |
 | Breadcrumbs | 🟥 restricted | 🟦 kit `PageBreadcrumb` (linkComponent injection) |
 | Link | 🟩 themed | slate, never accent |
-| Pagination / Stepper | 🟨 gap | unthemed; govern before first heavy use |
+| Pagination / Stepper | 🟩 themed | PaginationItem accent-selected; StepIcon active/completed + connector hairline |
 
 ## HCW-only primitives (no MUI counterpart)
 `Surface` · `GlassRail` · `ActionDock`/`useScreenActions` · `SectionDock` ·

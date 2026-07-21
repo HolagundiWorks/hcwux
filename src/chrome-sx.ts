@@ -5,9 +5,11 @@
  */
 import type { SxProps, Theme } from "@mui/material/styles";
 import {
+  BUTTON_RADIUS,
   DOCK_PILL_RADIUS,
   colors,
   DOCK_BUTTON_LIFT,
+  DENSITY,
   FOCUS_RING,
   LIQUID_GLASS_BUTTON,
   MARKETING_DOCK_RADIUS,
@@ -17,6 +19,21 @@ import {
   TYPE_SCALE,
   hexToRgba,
 } from "./tokens.js";
+
+/**
+ * Persistent-chrome IconButton (≥44px touch target) — taskbar, ribbon, rail
+ * utilities. Use for always-visible glyph controls; dense in-content icons may
+ * stay `size="small"` with an explicit ≥24px hit area.
+ */
+export const chromeIconSx = {
+  width: DENSITY.touchTarget,
+  height: DENSITY.touchTarget,
+  borderRadius: BUTTON_RADIUS,
+  color: colors.ink,
+  "&:hover": { color: colors.accent, backgroundColor: colors.hoverSoft },
+  "&:focus-visible": { ...FOCUS_RING, color: colors.accent },
+  [REDUCE_MOTION]: { transition: "none" },
+} satisfies SxProps<Theme>;
 
 /** ActionDock button — flat pill at rest, liquid-glass capsule on hover/focus. */
 export function actionDockButtonSx(

@@ -5,11 +5,13 @@
  *   triangle = caution (watch / friction)
  *   square   = critical
  *
+ * Flat fills use kit `colors.support*` / `textHelper` (never `--cds-*`).
  * Glass styling uses CSS class `hcw-health-glass-orb` (+ state modifier).
  * Host apps may map these to existing `.esti-zone-glass-orb*` rules until
  * glass.scss is fully shrunk (see HCW-UI-KIT.md).
  */
 import type { CSSProperties } from "react";
+import { colors } from "./tokens.js";
 
 export type HealthZoneState = "stable" | "watch" | "friction" | "critical" | "inactive";
 
@@ -17,14 +19,11 @@ const GLYPH: Record<
   HealthZoneState,
   { shape: "circle" | "triangle" | "square"; fill: string }
 > = {
-  stable: { shape: "circle", fill: "var(--cds-support-success, #198038)" },
-  watch: { shape: "triangle", fill: "var(--cds-support-warning, #f1c21b)" },
-  friction: {
-    shape: "triangle",
-    fill: "var(--cds-support-warning-minor, var(--cds-support-warning, #f1c21b))",
-  },
-  critical: { shape: "square", fill: "var(--cds-support-error, #da1e28)" },
-  inactive: { shape: "circle", fill: "var(--cds-text-disabled, #a8a8a8)" },
+  stable: { shape: "circle", fill: colors.supportSuccess },
+  watch: { shape: "triangle", fill: colors.supportWarning },
+  friction: { shape: "triangle", fill: colors.supportWarning },
+  critical: { shape: "square", fill: colors.supportError },
+  inactive: { shape: "circle", fill: colors.textHelper },
 };
 
 function FlatShape({

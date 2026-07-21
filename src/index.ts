@@ -32,6 +32,7 @@ export {
   sectionDockChipSx,
   liquidGlassSpecimenSx,
   layoutSx,
+  chromeIconSx,
 } from "./chrome-sx.js";
 export { createAormsTheme, aormsTheme } from "./theme.js";
 export { MuiRoot } from "./MuiRoot.js";

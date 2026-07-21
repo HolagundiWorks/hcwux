@@ -28,6 +28,7 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-21 · **MUI ↔ Carbon marriage gap closure (0.7.0)** — `HealthGlassOrb` off `--cds-*`; Tooltip/Alert-filled/DatePicker popup tokenised; `DENSITY` + `chromeIconSx`; `DATA_VIZ_CATEGORICAL` / `chartSeriesColors`; mapping Pagination/Stepper/Charts/DatePicker → 🟩; narrative docs de-Carbon-strangler.
 - 2026-07-21 · **Layout / hierarchy gap closure (0.6.0)** — Carbon density borrowed into HCW tokens only: `LAYOUT` + `layoutSx`, spacing `compact`/`section`, extended `TYPE_SCALE` wired through theme; 12-col grid contract documented (explicitly not Carbon 16-col / Plex / indigo).
 - 2026-07-21 · **Orchestra dropped** — removed the parallel indigo/Inter exploration (`tokens/orchestra.*`, `styleguide/`, `docs/design-system/`, indigo mission-dashboard prototype). Single visual language: `@hcw/ui-kit` (Radiant Orange · Urbanist). Accent helpers made scheme-aware; styleguide gained high-contrast theme CSS.
 - 2026-07-12 · **Actionable-gap sweep:** D18 closed (3 raw-`fontSize` → `TYPE_SCALE.kpi`/`.body2`; typecheck clean) · **Wizard template T9** documented in [05-TEMPLATES.md](../05-TEMPLATES.md) from `AccountHub.tsx` (catalog now T1–T9) · **perf bundle budget** added to hcwux CI (`scripts/size-budget.mjs`, 40 KB gzip ceiling; current ~29 KB) · ZonalCompliance SVG palette assessed → sanctioned (canvas/SVG exception; no regressioning recolor).

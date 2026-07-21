@@ -8,8 +8,8 @@ visual values (Constitution II). **Adopted:** 2026-07-11.
 | Tier | Examples | Mutability |
 | --- | --- | --- |
 | **Global** | raw ladders: `SPACING`, `LAYOUT`, `BREAKPOINTS`, `Z_INDEX`, `OPACITY`, `MOTION`, `TYPE_SCALE`, `RADIUS`/`BUTTON_RADIUS`/`DIALOG_RADIUS`, base hues | **Immutable** — values change only by Constitution-level decision |
-| **Semantic** | `colors`/`SCHEMES` roles (`accent`, `textHelper`, `borderSubtle`…), `ELEVATION`, `STATUS_COLORS`, recipe sets (`recipesFor`) | Extend freely; **meanings never silently change** |
-| **Component** | recipe constants a primitive consumes (`ACTION_DOCK_TRAY`, `SECTION_DOCK_CHIP_GLASS`, `layoutSx.*`) | Owned by the component's definition; changed with it |
+| **Semantic** | `colors`/`SCHEMES` roles (`accent`, `textHelper`, `borderSubtle`…), `ELEVATION`, `STATUS_COLORS`, `DATA_VIZ` / `DATA_VIZ_CATEGORICAL`, `DENSITY`, recipe sets (`recipesFor`) | Extend freely; **meanings never silently change** |
+| **Component** | recipe constants a primitive consumes (`ACTION_DOCK_TRAY`, `SECTION_DOCK_CHIP_GLASS`, `layoutSx.*`, `chromeIconSx`) | Owned by the component's definition; changed with it |
 
 ## Rules
 
@@ -44,6 +44,8 @@ clear type ladder, shell gutters) and **reject** Carbon's visual language
 | **Grid** | **12 columns** via MUI `Grid` or `layoutSx.grid` (CSS grid). Never Carbon `Grid`/`Column`. | `LAYOUT.columns`, `LAYOUT.gutter` |
 | **Organisation** | Rail · Stage · Taskbar · Dock. Kit portals use fixed `LAYOUT.railWidth`; fluid workspace may use `railFraction`/`stageFraction` (20/80). | `LAYOUT.*`, `layoutSx.rail` / `.stage` / `.page` |
 | **Hierarchy** | Depth encodes importance (`ELEVATION` / layers). Type sizes only from `TYPE_SCALE` (wired into theme typography). Spacing only from `SPACING` (+ `compact`/`section`). | `TYPE_SCALE`, `SPACING`, `ELEVATION` |
+| **Density** | Productive touch/control heights (44 / 38 / 40). Persistent chrome icons use `chromeIconSx`. | `DENSITY`, `chromeIconSx` |
+| **Charts** | Ordered categorical series; never brand accent as a default series hue. | `DATA_VIZ_CATEGORICAL`, `chartSeriesColors(n)` |
 
 Call sites must not invent rem font sizes, shell widths, or gutters. Extend the
 ladder in `tokens.ts` first.

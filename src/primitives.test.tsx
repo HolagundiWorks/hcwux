@@ -18,6 +18,7 @@ import {
 import { SectionDock } from "./SectionDock.js";
 import { TaskbarButton, TaskbarFooter } from "./TaskbarFooter.js";
 import { GlassRail } from "./GlassRail.js";
+import { colors } from "./tokens.js";
 
 // jsdom has no IntersectionObserver (SectionDock's scroll-spy uses one).
 beforeAll(() => {
@@ -99,6 +100,13 @@ describe("HealthGlassOrb — shape encodes severity (WCAG 1.4.1)", () => {
   it("an explicit title overrides the derived label", () => {
     render(<HealthGlassOrb state="watch" title="Financial zone" />);
     expect(screen.getByRole("img").getAttribute("aria-label")).toBe("Financial zone");
+  });
+
+  it("flat fills use kit support tokens, not --cds-* vars", () => {
+    const { container } = render(<HealthGlassOrb state="critical" variant="flat" />);
+    const shape = container.querySelector("rect");
+    expect(shape?.getAttribute("fill")).toBe(colors.supportError);
+    expect(shape?.getAttribute("fill") ?? "").not.toContain("--cds-");
   });
 });
 

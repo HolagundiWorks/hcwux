@@ -2,6 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   BUTTON_RADIUS,
   DARK_RECIPES,
+  DATA_VIZ,
+  DATA_VIZ_CATEGORICAL,
+  DENSITY,
   DIALOG_RADIUS,
   ELEVATION,
   HIGH_CONTRAST_RECIPES,
@@ -12,6 +15,7 @@ import {
   SPACING,
   STATUS_COLORS,
   TYPE_SCALE,
+  chartSeriesColors,
   colors,
   glassAccentWash,
   hexToRgba,
@@ -20,7 +24,7 @@ import {
   tokens,
   underlineAccent,
 } from "./tokens.js";
-import { layoutSx } from "./chrome-sx.js";
+import { chromeIconSx, layoutSx } from "./chrome-sx.js";
 
 describe("colour schemes", () => {
   it("every scheme carries every semantic role of the light scheme", () => {
@@ -67,8 +71,29 @@ describe("layout · spacing · type hierarchy (Carbon-inspired organisation)", (
   it("token bundle and layoutSx recipes stay in sync with LAYOUT", () => {
     expect(tokens.LAYOUT).toBe(LAYOUT);
     expect(tokens.TYPE_SCALE).toBe(TYPE_SCALE);
+    expect(tokens.DENSITY).toBe(DENSITY);
     expect(layoutSx.grid.gridTemplateColumns).toContain(String(LAYOUT.columns));
     expect(layoutSx.rail.width).toEqual({ xs: "100%", md: LAYOUT.railWidth });
+  });
+
+  it("DENSITY exposes productive touch/control targets", () => {
+    expect(DENSITY.touchTarget).toBe(44);
+    expect(DENSITY.controlCompact).toBe(38);
+    expect(DENSITY.control).toBe(40);
+    expect(chromeIconSx.width).toBe(DENSITY.touchTarget);
+    expect(chromeIconSx.height).toBe(DENSITY.touchTarget);
+  });
+
+  it("chartSeriesColors cycles the ordered categorical ladder", () => {
+    expect(DATA_VIZ_CATEGORICAL[0]).toBe(DATA_VIZ.blue);
+    expect(chartSeriesColors(0)).toEqual([]);
+    expect(chartSeriesColors(3)).toEqual([
+      DATA_VIZ.blue,
+      DATA_VIZ.cyan,
+      DATA_VIZ.green,
+    ]);
+    expect(chartSeriesColors(8)).toHaveLength(8);
+    expect(chartSeriesColors(8)[7]).toBe(DATA_VIZ.blue);
   });
 });
 

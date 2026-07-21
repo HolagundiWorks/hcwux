@@ -4,6 +4,35 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 0.7.0 — 2026-07-21
+
+### Added
+- **`DENSITY` tokens** — productive touch/control heights (`touchTarget` 44,
+  `controlCompact` 38, `control` 40). Tabs wire to `DENSITY.control`.
+- **`chromeIconSx`** — ≥44px IconButton recipe for persistent chrome (taskbar,
+  ribbon, rail utilities).
+- **`DATA_VIZ_CATEGORICAL` + `chartSeriesColors(n)`** — ordered chart series
+  ladder so MUI X charts stop inventing hex / unordered `Object.values`.
+
+### Fixed
+- **`HealthGlassOrb`** — flat fills use `colors.support*` / `textHelper` (no
+  `--cds-*` CSS vars or Carbon fallback hexes).
+- **Tooltip** — `colors.ink` / `textOnColor` / `borderStrong` (no raw `#141517`).
+- **Alert `variant="filled"`** — scheme-aware solid support fills (ToastHost);
+  standard error/warning glass washes use `hexToRgba` on scheme support colours.
+- **DatePicker popup** — `MuiPickerPopper` / `MuiDateCalendar` /
+  `MuiPickersCalendarHeader` themed to flat pop + accent day (with existing
+  `MuiPickerDay`).
+- **`MuiIconButton`** — focus-ring + `BUTTON_RADIUS`.
+
+### Docs
+- **10-MUI-MAPPING.md** — Pagination/Stepper/DatePicker/Charts → 🟩; IconButton
+  documents real `chromeIconSx`; search/List/Toggle recipes noted; Carbon marriage
+  preamble.
+- **MATERIAL-UI-DIRECTION** + branding — post-migration marriage contract (density
+  only; frozen app `--cds-*`; Urbanist; `chartSeriesColors`).
+- Token governance + design-debt register updated for density/charts/chrome.
+
 ## 0.6.0 — 2026-07-21
 
 ### Added

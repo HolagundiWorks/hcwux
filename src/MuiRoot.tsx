@@ -3,8 +3,9 @@
  *
  * Wrap a portal's tree in this once and every MUI surface inherits the brand
  * (colour, shape, surfaces, type). It supplies the theme *context* only and
- * injects no page-level background, so surfaces still on Carbon are untouched and
- * a mixed Carbon/MUI shell keeps working (strangler-friendly).
+ * injects no page-level background, so host-app CSS (including any frozen
+ * `--cds-*` compatibility block) can still style non-MUI surfaces without
+ * fighting ThemeProvider.
  *
  * `StyledEngineProvider injectFirst` puts MUI/emotion styles at the top of <head>
  * so app CSS still wins on the cascade. `LocalizationProvider` (dayjs) is mounted
