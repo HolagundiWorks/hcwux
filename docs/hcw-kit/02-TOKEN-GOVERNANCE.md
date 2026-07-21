@@ -7,7 +7,7 @@ visual values (Constitution II). **Adopted:** 2026-07-11.
 
 | Tier | Examples | Mutability |
 | --- | --- | --- |
-| **Global** | raw ladders: `SPACING`, `LAYOUT`, `BREAKPOINTS`, `Z_INDEX`, `OPACITY`, `MOTION`, `TYPE_SCALE`, `RADIUS`/`BUTTON_RADIUS`/`DIALOG_RADIUS`, base hues | **Immutable** — values change only by Constitution-level decision |
+| **Global** | raw ladders: `SPACING`, `LAYOUT`, `CAPACITY`, `INTERRUPTION`, `COGA`, `TRUST`, `BREAKPOINTS`, `Z_INDEX`, `OPACITY`, `MOTION`, `TYPE_SCALE`, `RADIUS`/`BUTTON_RADIUS`/`DIALOG_RADIUS`, base hues | **Immutable** — values change only by Constitution-level decision |
 | **Semantic** | `colors`/`SCHEMES` roles (`accent`, `textHelper`, `borderSubtle`…), `ELEVATION`, `STATUS_COLORS`, recipe sets (`recipesFor`) | Extend freely; **meanings never silently change** |
 | **Component** | recipe constants a primitive consumes (`ACTION_DOCK_TRAY`, `SECTION_DOCK_CHIP_GLASS`, `layoutSx.*`) | Owned by the component's definition; changed with it |
 
@@ -47,6 +47,19 @@ clear type ladder, shell gutters) and **reject** Carbon's visual language
 
 Call sites must not invent rem font sizes, shell widths, or gutters. Extend the
 ladder in `tokens.ts` first.
+
+## Cognitive contracts (psychology → tokens)
+
+| Research | Token / primitive | Rule |
+| --- | --- | --- |
+| Cowan ~4±1 WM | `CAPACITY` | Do not exceed caps without disclosure |
+| Interruption cost | `INTERRUPTION` + `ToastHost` | Max concurrent toasts; prefer drop ambient over errors |
+| Situation awareness | `AwarenessStrip` | state · meaning · next; idle = null |
+| Error taxonomy | `ConfirmModal` kind/reason · toast undo | Slips undoable; mistakes explained |
+| Evaluation gulf | `publishOutcome` / `ActionOutcomeBanner` | Every commit leaves a visible outcome |
+| Preattentive | `STATUS_SHAPE` / `StatusDot.shape` | Never colour-only urgency |
+| Contiguity | `layoutSx.formField` · `DataState` | Label/control/helper (or empty+CTA) co-located |
+| Trust / COGA | `TRUST` · `COGA` | Judgment interrupts; calm targets ≥48px |
 
 ## Change protocol
 

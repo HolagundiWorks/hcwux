@@ -4,6 +4,23 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 0.7.0 — 2026-07-21
+
+### Added
+- **Cognitive contracts from UX research** — tokens `CAPACITY` (Cowan WM caps),
+  `INTERRUPTION` (Bailey/Iqbal toast budget), `COGA` (calm targets), `TRUST`
+  (Lee & See AI trust copy), `STATUS_SHAPE` (Treisman/Ware preattentive shapes).
+- **`AwarenessStrip`** — Endsley SA ladder (state · meaning · next) + Zeigarnik
+  open-loops list capped by `CAPACITY.openLoops`.
+- **`publishOutcome` / `ActionOutcomeBanner`** — closes Norman’s gulf of
+  evaluation after dock commits.
+- **`ConfirmModal`** — `kind: "slip" | "mistake"` + `reason` band (Reason taxonomy).
+- **`ToastHost`** — enforces `INTERRUPTION.maxConcurrentToasts`, prefers dropping
+  non-errors, assertive live region on errors, optional `onUndo` for slips.
+- **`StatusDot.shape`** · **`layoutSx.formField`** · **`DataState`** empty cluster
+  (Mayer contiguity).
+- Docs: UX principles research table + token-governance cognitive contracts.
+
 ## 0.6.0 — 2026-07-21
 
 ### Added

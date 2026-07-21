@@ -197,6 +197,69 @@ export const LAYOUT = {
   dockClearance: SPACING.md,
 } as const;
 
+/**
+ * Working-memory capacity caps (Cowan ~4±1 chunks — tighter than Miller 7±2).
+ * UI surfaces must not exceed these without progressive disclosure. Audits and
+ * primitives (`ToastHost`, `AwarenessStrip`, dock) enforce where possible.
+ */
+export const CAPACITY = {
+  workingMemoryChunks: 4,
+  railObjectives: 5,
+  dockVisibleActions: 5,
+  kpiStrip: 4,
+  trustChips: 4,
+  openLoops: 3,
+  toastStack: 2,
+  /** Endsley SA lines: state · meaning · next. */
+  awarenessLines: 3,
+} as const;
+
+/**
+ * Interruption budget (Bailey / Iqbal notification-cost research).
+ * Glass/alerts are scarce; toasts never flood. Error toasts may assert; ambient
+ * motion is capped at one “needs you” signal.
+ */
+export const INTERRUPTION = {
+  maxConcurrentToasts: CAPACITY.toastStack,
+  dedupeMs: 4000,
+  defaultTtlMs: 6000,
+  errorTtlMs: 8000,
+  maxAmbientMotion: 1,
+} as const;
+
+/**
+ * Cognitive accessibility extras (W3C COGA) beyond WCAG 2.2 AA.
+ * `calm` mode: larger targets, one type step up, reduced secondary chrome.
+ */
+export const COGA = {
+  targetMinPx: 44,
+  calmTargetMinPx: 48,
+  /** Bump dense type one step when calm mode is on (caption→label, etc.). */
+  calmTypeStep: 1,
+} as const;
+
+/**
+ * AI trust calibration (Lee & See) — ESTI / orchestration copy grammar.
+ * Overconfident success theatre is banned; judgment is the only interrupt cue.
+ */
+export const TRUST = {
+  assumptionChipLabel: "Assumption",
+  judgmentNeedsLabel: "Needs your judgment",
+  /** Confidence is shown as a band/word, never a false-precision percent alone. */
+  preferConfidenceBand: true,
+} as const;
+
+/**
+ * Preattentive status shapes (Treisman / Ware) — colour alone is never enough
+ * for urgency (WCAG 1.4.1). Pair with {@link StatusDot} `shape` or HealthGlassOrb.
+ */
+export const STATUS_SHAPE = {
+  ok: "circle",
+  watch: "triangle",
+  critical: "square",
+  inactive: "circle",
+} as const;
+
 /** Z-index ladder — one stack order for every floating surface, mirroring MUI's
  *  ladder so themed MUI overlays and HCW chrome (rail · dock · footer) never fight. */
 export const Z_INDEX = {
@@ -637,6 +700,11 @@ export const tokens = {
   SPACING,
   SPACING_UNIT,
   LAYOUT,
+  CAPACITY,
+  INTERRUPTION,
+  COGA,
+  TRUST,
+  STATUS_SHAPE,
   BREAKPOINTS,
   Z_INDEX,
   OPACITY,
