@@ -17,6 +17,7 @@ import {
   TYPE_SCALE,
   chartSeriesColors,
   colors,
+  densityFor,
   glassAccentWash,
   hexToRgba,
   liquidGlassButtonFor,
@@ -82,6 +83,16 @@ describe("layout · spacing · type hierarchy (Carbon-inspired organisation)", (
     expect(DENSITY.control).toBe(40);
     expect(chromeIconSx.width).toBe(DENSITY.touchTarget);
     expect(chromeIconSx.height).toBe(DENSITY.touchTarget);
+  });
+
+  it("densityFor resolves comfortable vs compact metrics", () => {
+    const comfy = densityFor("comfortable");
+    const compact = densityFor("compact");
+    expect(comfy.control).toBe(DENSITY.control);
+    expect(compact.control).toBeLessThan(comfy.control);
+    expect(compact.dataGridRow).toBeLessThan(comfy.dataGridRow);
+    expect(compact.input).toBe(32);
+    expect(comfy.iconButton).toBe(DENSITY.controlCompact);
   });
 
   it("chartSeriesColors cycles the ordered categorical ladder", () => {

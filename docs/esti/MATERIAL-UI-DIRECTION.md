@@ -71,7 +71,7 @@ A **TabSplit** inside the Stage repeats the pattern for a single tab (20% meta +
 |---|---|---|
 | Theme | `src/theme/muiTheme.ts` (re-export shim of `@hcw/ui-kit`) | Light palette, layered flat/neu/glass component overrides, Urbanist |
 | Provider | `src/theme/MuiRoot.tsx` | `StyledEngineProvider injectFirst` + `ThemeProvider`, mounted in `main.tsx` around `<App>`; no global `CssBaseline` (would repaint landing) |
-| Density / layout | `@hcw/ui-kit` `LAYOUT` · `SPACING` · `DENSITY` · `layoutSx` | Carbon-inspired organisation; 12-col MUI grid |
+| Density / layout | `@hcw/ui-kit` `LAYOUT` · `SPACING` · `DENSITY` · `densityFor` · `layoutSx` | Carbon-inspired organisation; 12-col MUI grid; `MuiRoot({ density })` |
 
 The Carbon→MUI migration is complete; there is no automated visual-policy guard
 in CI (removed with `@carbon/react`) — code review is the check now.

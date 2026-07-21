@@ -24,7 +24,9 @@ import type {} from "@mui/x-date-pickers/themeAugmentation";
 import {
   SCHEMES,
   type SchemeName,
+  type DensityName,
   recipesFor,
+  densityFor,
   MOTION,
   RADIUS as GLASS_RADIUS,
   BUTTON_RADIUS as BTN_RADIUS,
@@ -45,7 +47,6 @@ import {
   Z_INDEX,
   OPACITY,
   TYPE_SCALE,
-  DENSITY,
 } from "./tokens.js";
 
 /** Build the AORMS MUI theme. Exposed as a factory so a portal can layer small
@@ -54,11 +55,18 @@ import {
  *  `scheme` selects the semantic colour scheme (default `"light"` — the shipped
  *  brand). `"dark"` / `"highContrast"` are palette-complete SCAFFOLDS: the
  *  neumorphic/glass recipes remain light-tuned until they gain scheme variants,
- *  so treat non-light schemes as preview-grade (see tokens.ts § Colour schemes). */
-export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
+ *  so treat non-light schemes as preview-grade (see tokens.ts § Colour schemes).
+ *
+ *  `density` selects comfortable (default) or compact control heights — Carbon
+ *  productive density discipline without Carbon visual language. */
+export function createAormsTheme(options?: {
+  scheme?: SchemeName;
+  density?: DensityName;
+}): Theme {
   const CDS = SCHEMES[options?.scheme ?? "light"];
   // Scheme-matched surface recipes (neu/glass materials) — see tokens.ts.
   const R = recipesFor(options?.scheme ?? "light");
+  const dens = densityFor(options?.density ?? "comfortable");
   return createTheme({
     shape: { borderRadius: GLASS_RADIUS },
     // Scale tokens drive the theme (parity with MUI defaults → no layout shift):
@@ -190,6 +198,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
             const underline = underlineAccent(isError ? CDS.supportError : CDS.accent);
             return {
               borderRadius: BTN_RADIUS,
+              minHeight: dens.button,
               fontWeight: isCta ? 700 : 600,
               textTransform: "capitalize" as const,
               color: ink,
@@ -295,20 +304,22 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
         styleOverrides: {
           root: {
             borderRadius: BTN_RADIUS,
+            width: dens.iconButton,
+            height: dens.iconButton,
             "&.Mui-focusVisible": focusRingFor(CDS.accent),
           },
         },
       },
       MuiChip: {
         styleOverrides: {
-          root: { borderRadius: 0 },
+          root: { borderRadius: 0, height: dens.chip },
           colorPrimary: { backgroundColor: CDS.accent, color: CDS.onAccent },
         },
       },
       MuiTabs: {
         styleOverrides: {
           root: {
-            minHeight: DENSITY.control,
+            minHeight: dens.tab,
             "&.MuiTabs-vertical .MuiTab-root": {
               alignItems: "flex-start",
               justifyContent: "flex-start",
@@ -326,7 +337,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
           root: {
             textTransform: "none",
             borderRadius: 0,
-            minHeight: DENSITY.control,
+            minHeight: dens.tab,
             minWidth: 0,
             px: 1.5,
             py: 1,
@@ -349,16 +360,45 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
           },
         },
       },
+      MuiListSubheader: {
+        styleOverrides: {
+          root: {
+            backgroundColor: "transparent",
+            color: CDS.textSecondary,
+            fontSize: TYPE_SCALE.micro,
+            fontWeight: 600,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            lineHeight: 1.4,
+            py: 1,
+          },
+        },
+      },
       MuiListItemButton: {
         styleOverrides: {
           root: {
+            minHeight: dens.listItem,
+            borderRadius: 0,
             "&.Mui-selected": { backgroundColor: CDS.layer02, "&:hover": { backgroundColor: CDS.layer02 } },
+            "&.Mui-focusVisible": focusRingFor(CDS.accent),
           },
+        },
+      },
+      MuiListItemIcon: {
+        styleOverrides: {
+          root: { minWidth: dens.iconButton, color: CDS.textSecondary },
+        },
+      },
+      MuiListItemText: {
+        styleOverrides: {
+          primary: { fontSize: TYPE_SCALE.body2, fontWeight: 500 },
+          secondary: { fontSize: TYPE_SCALE.caption, color: CDS.textHelper },
         },
       },
       MuiMenuItem: {
         styleOverrides: {
           root: {
+            minHeight: dens.menuItem,
             "&.Mui-selected": { backgroundColor: CDS.layer02, "&:hover": { backgroundColor: CDS.layer02 } },
           },
         },
@@ -371,6 +411,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
         styleOverrides: {
           root: {
             borderRadius: NEU_INPUT_RADIUS,
+            minHeight: dens.input,
             backgroundColor: R.NEU_FILL,
             boxShadow: R.NEU_INSET,
             "& .MuiOutlinedInput-notchedOutline": { border: "none" },
@@ -381,12 +422,14 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
             "&.Mui-disabled": { boxShadow: R.NEU_INSET, opacity: 0.6 },
             "&:has(.MuiSelect-select)": { ...ddFlatFor(CDS) },
           },
+          input: { py: dens.mode === "compact" ? 0.75 : 1 },
         },
       },
       MuiFilledInput: {
         styleOverrides: {
           root: {
             borderRadius: NEU_INPUT_RADIUS,
+            minHeight: dens.input,
             backgroundColor: R.NEU_FILL,
             boxShadow: R.NEU_INSET,
             "&:before": { display: "none" },
@@ -402,6 +445,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
         styleOverrides: {
           root: {
             borderRadius: BTN_RADIUS,
+            minHeight: dens.button,
             "&.Mui-selected": {
               color: CDS.accent,
               backgroundColor: glassAccentWash(CDS.accent, 0.3),
@@ -541,7 +585,10 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
       },
       MuiTableCell: {
         styleOverrides: {
-          root: { borderColor: "rgba(20, 21, 23, 0.08)" },
+          root: {
+            borderColor: "rgba(20, 21, 23, 0.08)",
+            py: dens.tableCellPy,
+          },
           head: {
             textTransform: "uppercase",
             letterSpacing: "0.08em",
@@ -569,8 +616,14 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
             backgroundColor: "transparent",
             border: 0,
             "--DataGrid-rowBorderColor": "rgba(20,21,23,0.07)",
+            "--DataGrid-rowHeight": `${dens.dataGridRow}px`,
+            "--DataGrid-headerHeight": `${dens.dataGridRow}px`,
           },
-          columnHeaders: { backgroundColor: "transparent" },
+          columnHeaders: {
+            backgroundColor: "transparent",
+            minHeight: dens.dataGridRow,
+            maxHeight: dens.dataGridRow,
+          },
           columnHeader: { backgroundColor: "transparent" },
           columnHeaderTitle: {
             textTransform: "uppercase",
@@ -582,6 +635,8 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
           cell: { borderColor: "rgba(20,21,23,0.07)" },
           footerContainer: { borderColor: "rgba(20,21,23,0.08)" },
           row: {
+            minHeight: dens.dataGridRow,
+            maxHeight: dens.dataGridRow,
             "&:hover": { backgroundColor: CDS.hoverSoft },
             "&.Mui-selected": {
               backgroundColor: CDS.accentSoft,

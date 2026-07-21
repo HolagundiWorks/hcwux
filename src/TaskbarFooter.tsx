@@ -13,7 +13,7 @@
  */
 import { Box, IconButton, Tooltip, type BoxProps } from "@mui/material";
 import { useEffect, useState, type ReactNode } from "react";
-import { colors, NEU_RAISED, REDUCE_MOTION, FOCUS_RING, LAYOUT, TYPE_SCALE } from "./tokens.js";
+import { colors, NEU_RAISED, REDUCE_MOTION, FOCUS_RING, LAYOUT, TYPE_SCALE, DENSITY } from "./tokens.js";
 
 export const TASKBAR_HEIGHT = LAYOUT.taskbarHeight;
 
@@ -54,8 +54,8 @@ export function TaskbarButton({
         sx={{
           ...NEU_RAISED,
           color: active ? colors.accent : colors.ink,
-          width: 38,
-          height: 38,
+          width: DENSITY.controlCompact,
+          height: DENSITY.controlCompact,
           transition: "transform 120ms ease, color 120ms ease",
           "&:hover": { transform: "translateY(-2px)", color: colors.accent },
           // Keyboard parity: focus tints to the accent and shows the focus ring.
@@ -98,7 +98,7 @@ export function TaskbarFooter({
         alignItems: "center",
         gap: 1.5,
         px: 1.5,
-        backgroundColor: "#ffffff",
+        backgroundColor: colors.layer01,
         borderTop: `1px solid ${colors.borderSubtle}`,
         ...sx,
       }}

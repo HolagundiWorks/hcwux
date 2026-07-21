@@ -232,15 +232,53 @@ export function chartAreaFill(stroke: string, alpha = 0.16): string {
 /**
  * Enterprise density targets (Carbon productive inspiration) — WCAG touch
  * targets and compact chrome heights. Visual language stays HCW.
+ *
+ * Prefer {@link densityFor} when wiring theme/control heights; use
+ * {@link chromeIconSx} for persistent-chrome 44px icons regardless of mode.
  */
 export const DENSITY = {
   /** Minimum interactive target (WCAG 2.5.5 / persistent chrome). */
   touchTarget: 44,
-  /** Compact control (taskbar chips, dense toolbars). */
+  /** Compact control (taskbar chips, dense toolbars, `density="compact"`). */
   controlCompact: 38,
-  /** Default control / tab row height. */
+  /** Default / comfortable control · tab row height. */
   control: 40,
 } as const;
+
+/** Theme density mode — comfortable (default productive) or compact (dense tables). */
+export type DensityName = "comfortable" | "compact";
+
+/**
+ * Resolved control metrics for a density mode. `createAormsTheme({ density })`
+ * and list/table chrome consume these — do not invent px heights at call sites.
+ */
+export function densityFor(mode: DensityName = "comfortable") {
+  const compact = mode === "compact";
+  return {
+    mode,
+    /** Generic control / tab height. */
+    control: compact ? 32 : DENSITY.control,
+    /** Contained/text button min-height. */
+    button: compact ? 32 : 36,
+    /** Text field / outlined input min-height. */
+    input: compact ? 32 : DENSITY.control,
+    /** List item / menu item min-height. */
+    listItem: compact ? 32 : DENSITY.control,
+    tab: compact ? 32 : DENSITY.control,
+    menuItem: compact ? 32 : DENSITY.control,
+    /** Table cell vertical padding (`theme.spacing` units). */
+    tableCellPy: compact ? 0.5 : 1,
+    chip: compact ? 22 : 28,
+    dataGridRow: compact ? 36 : 48,
+    /**
+     * In-content IconButton size. Persistent chrome (taskbar/ribbon) still uses
+     * {@link DENSITY.touchTarget} via `chromeIconSx`.
+     */
+    iconButton: compact ? 32 : DENSITY.controlCompact,
+  } as const;
+}
+
+export type DensityMetrics = ReturnType<typeof densityFor>;
 
 /** Status hues for StatusDot/StatusTag — canonical kit-owned values (supersede the
  *  frozen `--cds-tag-*` compat layer for new code). */

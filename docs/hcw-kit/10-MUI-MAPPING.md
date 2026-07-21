@@ -19,7 +19,7 @@ never extended in the kit.
 | MUI | Treatment | HCW form |
 | --- | --- | --- |
 | Button | 🟩 themed | flat → glass-hover CTA; danger via `color="error"`; page-level CTAs go to **ActionDock** (`useScreenActions`), never inline |
-| IconButton | 🟩 themed | focus ring + `BUTTON_RADIUS`; persistent chrome ≥44px via `chromeIconSx` (`DENSITY.touchTarget`) |
+| IconButton | 🟩 themed | density-sized in-content; persistent chrome ≥44px via `chromeIconSx` (`DENSITY.touchTarget`) |
 | ToggleButton/Group | 🟩 themed | selected = accent wash |
 | Fab / SpeedDial | 🟥 restricted | use ActionDock — no floating action buttons |
 
@@ -39,7 +39,7 @@ never extended in the kit.
 | TextField / OutlinedInput / FilledInput | 🟩 themed | neumorphic recessed wells (`NEU_INSET` recipes); default `size="small"` |
 | Select / Autocomplete / MenuItem | 🟩 themed | DD_FLAT rest → button-like hover |
 | Checkbox / Radio / Switch / Slider | 🟩 themed | accent-active, FOCUS_RING |
-| InputAdornment / FormControlLabel / FormControl | ⬜ neutral | search recipe: `TextField` + `InputAdornment position="start"` (Search icon); no separate Search primitive |
+| InputAdornment / FormControlLabel / FormControl | ⬜ neutral | search: `TextField` + `sx={searchFieldSx}` + start adornment; toolbar: `sx={layoutSx.listToolbar}` |
 | DatePicker (X) | 🟩 themed | field inherits inputs; popup `MuiPickerPopper` / `MuiDateCalendar` / `MuiPickerDay` / header — flat pop, accent selected day |
 
 ## Data display
@@ -52,7 +52,7 @@ never extended in the kit.
 | Badge | 🟩 themed | accent primary |
 | Tooltip | 🟩 themed | ink slab (`colors.ink`), square, token border |
 | Typography | ⬜ neutral | variants only; micro-type via `TYPE_SCALE` |
-| List family | 🟩 themed | selected = layer02 wash (`MuiListItemButton`) |
+| List family | 🟩 themed | selected = layer02; Subheader micro-uppercase; densified via `density`; toolbar `layoutSx.listToolbar` |
 | Charts (X) | 🟩 governed | `chartPalette` / `withChartSeriesColors` + `chartRootSx`; categorical · sequential · diverging · semantic; markers via `CHART_MARKERS` (not colour alone); never brand accent as default series |
 
 ## Feedback
@@ -67,7 +67,7 @@ never extended in the kit.
 ## Navigation
 | MUI | Treatment | HCW form |
 | --- | --- | --- |
-| Tabs / Tab | 🟩 themed | transparent + inset top alert line; height `DENSITY.control` |
+| Tabs / Tab | 🟩 themed | transparent + inset top alert line; height from `densityFor(...).tab` |
 | Menu / Popover | 🟩 themed (FLAT_POP) | keyboard contract per AppRibbon pattern |
 | Breadcrumbs | 🟥 restricted | 🟦 kit `PageBreadcrumb` (linkComponent injection) |
 | Link | 🟩 themed | slate, never accent |

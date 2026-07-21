@@ -4,6 +4,22 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 0.9.0 — 2026-07-21
+
+### Added
+- **Density mode** — `DensityName` (`comfortable` | `compact`) + `densityFor()`;
+  `createAormsTheme({ density })` and `MuiRoot({ density })` wire Button, IconButton,
+  Tab, Chip, List/MenuItem, inputs, TableCell, and DataGrid row heights.
+- **List / search recipes** — `layoutSx.listToolbar` + `searchFieldSx`; themed
+  `MuiListSubheader` / `ListItemIcon` / `ListItemText`; T2 template updated.
+
+### Fixed
+- **TaskbarFooter** — `colors.layer01` instead of raw `#ffffff`; TaskbarButton
+  uses `DENSITY.controlCompact`.
+
+### Docs
+- Token governance density contract; MUI mapping list/search/density notes.
+
 ## 0.8.0 — 2026-07-21
 
 ### Added

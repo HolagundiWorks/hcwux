@@ -12,29 +12,36 @@
  * here so MUI X Date Pickers work anywhere with no per-screen setup.
  *
  * Pass a `theme` to layer portal-specific overrides on top of the brand defaults.
+ * `scheme` + `density` feed `createAormsTheme` when `theme` is omitted.
  */
 import { StyledEngineProvider, ThemeProvider, type Theme } from "@mui/material/styles";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useMemo, type ReactNode } from "react";
 import { aormsTheme, createAormsTheme } from "./theme.js";
-import type { SchemeName } from "./tokens.js";
+import type { DensityName, SchemeName } from "./tokens.js";
 
 export function MuiRoot({
   children,
   theme,
   scheme,
+  density,
 }: {
   children: ReactNode;
-  /** Full theme override — wins over `scheme`. */
+  /** Full theme override — wins over `scheme` / `density`. */
   theme?: Theme;
   /** Colour scheme (light default; dark/highContrast are preview-grade). */
   scheme?: SchemeName;
+  /** Control density — comfortable (default) or compact. */
+  density?: DensityName;
 }) {
-  const resolved = useMemo(
-    () => theme ?? (scheme && scheme !== "light" ? createAormsTheme({ scheme }) : aormsTheme),
-    [theme, scheme],
-  );
+  const resolved = useMemo(() => {
+    if (theme) return theme;
+    const s = scheme ?? "light";
+    const d = density ?? "comfortable";
+    if (s === "light" && d === "comfortable") return aormsTheme;
+    return createAormsTheme({ scheme: s, density: d });
+  }, [theme, scheme, density]);
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={resolved}>

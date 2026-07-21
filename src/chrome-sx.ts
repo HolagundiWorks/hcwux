@@ -155,4 +155,26 @@ export const layoutSx = {
   page: {
     px: `${LAYOUT.margin}px`,
   } satisfies SxProps<Theme>,
+  /**
+   * List / register toolbar — search + filters row (T2 template). Pair with
+   * {@link searchFieldSx} on the TextField.
+   */
+  listToolbar: {
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "center",
+    gap: 1,
+    mb: 1.5,
+    width: "100%",
+  } satisfies SxProps<Theme>,
 } as const;
+
+/**
+ * Search field recipe — neumorphic TextField with start adornment slot.
+ * Usage: `<TextField placeholder="Search…" sx={searchFieldSx} slotProps={{ input: { startAdornment: … } }} />`
+ */
+export const searchFieldSx = {
+  minWidth: { xs: "100%", sm: 220 },
+  maxWidth: 360,
+  flex: { xs: "1 1 100%", sm: "0 1 360px" },
+} satisfies SxProps<Theme>;

@@ -28,6 +28,7 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-21 · **Density mode + list/search recipes (0.9.0)** — `densityFor` / `MuiRoot({ density })`; Button·Input·List·Table·DataGrid·Chip wired; `searchFieldSx` + `layoutSx.listToolbar`; TaskbarFooter off raw `#ffffff`.
 - 2026-07-21 · **Data-viz enhancement (0.8.0)** — sequential / diverging / semantic palettes; `chartPalette` · `chartChromeFor` · `chartRootSx` · `withChartSeriesColors` · `CHART_MARKERS`; styleguide specimen.
 - 2026-07-21 · **MUI ↔ Carbon marriage gap closure (0.7.0)** — `HealthGlassOrb` off `--cds-*`; Tooltip/Alert-filled/DatePicker popup tokenised; `DENSITY` + `chromeIconSx`; `DATA_VIZ_CATEGORICAL` / `chartSeriesColors`; mapping Pagination/Stepper/Charts/DatePicker → 🟩; narrative docs de-Carbon-strangler.
 - 2026-07-21 · **Layout / hierarchy gap closure (0.6.0)** — Carbon density borrowed into HCW tokens only: `LAYOUT` + `layoutSx`, spacing `compact`/`section`, extended `TYPE_SCALE` wired through theme; 12-col grid contract documented (explicitly not Carbon 16-col / Plex / indigo).
