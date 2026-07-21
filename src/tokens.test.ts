@@ -95,6 +95,12 @@ describe("layout · spacing · type hierarchy (Carbon-inspired organisation)", (
     expect(chartSeriesColors(8)).toHaveLength(8);
     expect(chartSeriesColors(8)[7]).toBe(DATA_VIZ.blue);
   });
+
+  it("token bundle exposes viz ramps", () => {
+    expect(tokens.DATA_VIZ_SEQUENTIAL).toBeDefined();
+    expect(tokens.DATA_VIZ_DIVERGING).toBeDefined();
+    expect(tokens.DATA_VIZ_SEMANTIC.neutral).toBe(DATA_VIZ.gray);
+  });
 });
 
 describe("accent helpers (scheme-aware)", () => {

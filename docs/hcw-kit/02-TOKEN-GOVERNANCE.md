@@ -45,7 +45,7 @@ clear type ladder, shell gutters) and **reject** Carbon's visual language
 | **Organisation** | Rail · Stage · Taskbar · Dock. Kit portals use fixed `LAYOUT.railWidth`; fluid workspace may use `railFraction`/`stageFraction` (20/80). | `LAYOUT.*`, `layoutSx.rail` / `.stage` / `.page` |
 | **Hierarchy** | Depth encodes importance (`ELEVATION` / layers). Type sizes only from `TYPE_SCALE` (wired into theme typography). Spacing only from `SPACING` (+ `compact`/`section`). | `TYPE_SCALE`, `SPACING`, `ELEVATION` |
 | **Density** | Productive touch/control heights (44 / 38 / 40). Persistent chrome icons use `chromeIconSx`. | `DENSITY`, `chromeIconSx` |
-| **Charts** | Ordered categorical series; never brand accent as a default series hue. | `DATA_VIZ_CATEGORICAL`, `chartSeriesColors(n)` |
+| **Charts** | Ordered palettes (categorical · sequential · diverging · semantic); chrome via `chartChromeFor` / `chartRootSx`; markers for WCAG 1.4.1; never brand accent as a default series hue. | `DATA_VIZ_*`, `chartPalette`, `withChartSeriesColors`, `CHART_MARKERS` |
 
 Call sites must not invent rem font sizes, shell widths, or gutters. Extend the
 ladder in `tokens.ts` first.

@@ -34,6 +34,16 @@ export {
   layoutSx,
   chromeIconSx,
 } from "./chrome-sx.js";
+export {
+  CHART_MARKERS,
+  CHART_CHROME,
+  chartChromeFor,
+  chartMarkerAt,
+  chartRootSx,
+  withChartSeriesColors,
+} from "./charts.js";
+export type { ChartMarker, ChartSeriesInput } from "./charts.js";
+export type { ChartPaletteKind } from "./tokens.js";
 export { createAormsTheme, aormsTheme } from "./theme.js";
 export { MuiRoot } from "./MuiRoot.js";
 export { BrandMark } from "./BrandMark.js";

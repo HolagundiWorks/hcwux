@@ -53,7 +53,7 @@ never extended in the kit.
 | Tooltip | 🟩 themed | ink slab (`colors.ink`), square, token border |
 | Typography | ⬜ neutral | variants only; micro-type via `TYPE_SCALE` |
 | List family | 🟩 themed | selected = layer02 wash (`MuiListItemButton`) |
-| Charts (X) | 🟩 governed | series colours from `DATA_VIZ_CATEGORICAL` / `chartSeriesColors(n)` — never raw hex; not for CTAs |
+| Charts (X) | 🟩 governed | `chartPalette` / `withChartSeriesColors` + `chartRootSx`; categorical · sequential · diverging · semantic; markers via `CHART_MARKERS` (not colour alone); never brand accent as default series |
 
 ## Feedback
 | MUI | Treatment | HCW form |

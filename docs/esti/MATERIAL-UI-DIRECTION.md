@@ -146,8 +146,11 @@ popper to match HCW flat language.
   Community edition (MIT) is enough. Render status columns with `renderCell` → our
   `StatusTag`/`StatusDot`.
 - **Charts → `@mui/x-charts`.** `LineChart`/`BarChart`/`PieChart` with `series` +
-  `xAxis`. Colour series from `chartSeriesColors(n)` / `DATA_VIZ_CATEGORICAL`,
-  never hex and never brand accent as a series default.
+  `xAxis`. Colour via `withChartSeriesColors(series)` or `chartPalette(kind, n)`;
+  apply `sx={chartRootSx()}` for axis/grid/legend/tooltip chrome. Use sequential
+  for heatmaps, diverging for polarity, `DATA_VIZ_SEMANTIC` for KPI deltas.
+  Pair multi-series lines with `chartMarkerAt` / `markers: true`. Never hex and
+  never brand accent as a series default.
 - **Dates → `DatePicker`.** `value`/`onChange` are dayjs objects; format with
   `dayjs`. Replaces `TextInput type="date"`.
 

@@ -195,6 +195,28 @@
       <div class="sw"><div class="chip" style="background:#3B5568"></div><div class="meta"><div class="name">Info / links</div><div class="hex">slate · #3B5568</div></div></div>
     </div>
 
+    <h3>Data visualisation — categorical · sequential · diverging</h3>
+    <p class="sub" style="margin:0 0 10px">Viz hues are <strong>not</strong> the brand accent. Use <code>chartPalette(kind, n)</code> / <code>withChartSeriesColors</code>; pair with <code>CHART_MARKERS</code> so series aren’t colour-only (WCAG 1.4.1). Chrome: <code>chartChromeFor</code> · <code>chartRootSx</code>.</p>
+    <p class="sub" style="margin:0 0 6px"><strong>Categorical</strong> — multi-series (line / bar / pie)</p>
+    <div class="swatches" style="margin-bottom:12px">
+      <div class="sw"><div class="chip" style="background:#0F62FE"></div><div class="meta"><div class="name">blue</div><div class="hex">#0F62FE</div></div></div>
+      <div class="sw"><div class="chip" style="background:#1192E8"></div><div class="meta"><div class="name">cyan</div><div class="hex">#1192E8</div></div></div>
+      <div class="sw"><div class="chip" style="background:#24A148"></div><div class="meta"><div class="name">green</div><div class="hex">#24A148</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FF832B"></div><div class="meta"><div class="name">orange (series)</div><div class="hex">#FF832B · not CTA</div></div></div>
+      <div class="sw"><div class="chip" style="background:#8A3FFC"></div><div class="meta"><div class="name">purple</div><div class="hex">#8A3FFC</div></div></div>
+      <div class="sw"><div class="chip" style="background:#A56EFF"></div><div class="meta"><div class="name">violet</div><div class="hex">#A56EFF</div></div></div>
+      <div class="sw"><div class="chip" style="background:#525252"></div><div class="meta"><div class="name">gray</div><div class="hex">#525252</div></div></div>
+    </div>
+    <p class="sub" style="margin:0 0 6px"><strong>Sequential</strong> — intensity / heatmap</p>
+    <div style="display:flex;height:28px;border:1px solid var(--border);margin-bottom:12px;overflow:hidden">
+      <div style="flex:1;background:#D0E2FF"></div><div style="flex:1;background:#A6C8FF"></div><div style="flex:1;background:#78A9FF"></div><div style="flex:1;background:#4589FF"></div><div style="flex:1;background:#0F62FE"></div><div style="flex:1;background:#0043CE"></div><div style="flex:1;background:#002D9C"></div>
+    </div>
+    <p class="sub" style="margin:0 0 6px"><strong>Diverging</strong> — polarity / delta</p>
+    <div style="display:flex;height:28px;border:1px solid var(--border);margin-bottom:8px;overflow:hidden">
+      <div style="flex:1;background:#A2191F"></div><div style="flex:1;background:#FA4D56"></div><div style="flex:1;background:#FFB3B8"></div><div style="flex:1;background:#525252"></div><div style="flex:1;background:#A7F0BA"></div><div style="flex:1;background:#24A148"></div><div style="flex:1;background:#0E6027"></div>
+    </div>
+    <p class="sub" style="margin:0">Semantic KPI polarity: <code>DATA_VIZ_SEMANTIC</code> (positive · negative · caution · neutral · info).</p>
+
     <h3>Schemes — light · dark · high-contrast</h3>
     <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
       <div class="card" style="background:#F2F4F7;color:#141517"><strong>Light</strong> — default. Fog canvas, Coal ink, <span style="color:#FF4F18;font-weight:700">Radiant Orange</span>.</div>

@@ -132,6 +132,65 @@ export const DATA_VIZ_CATEGORICAL = [
   DATA_VIZ.gray,
 ] as const;
 
+/**
+ * Sequential intensity ramp (single-hue) — heatmaps, choropleths, continuous
+ * magnitudes. Low → high. Never use brand accent as the ramp.
+ */
+export const DATA_VIZ_SEQUENTIAL = [
+  "#D0E2FF",
+  "#A6C8FF",
+  "#78A9FF",
+  "#4589FF",
+  DATA_VIZ.blue,
+  "#0043CE",
+  "#002D9C",
+] as const;
+
+/**
+ * Diverging ramp — polarity / delta charts (negative ← neutral → positive).
+ * Ends align with support error/success; mid is categorical gray. Not CTAs.
+ */
+export const DATA_VIZ_DIVERGING = [
+  "#A2191F",
+  "#FA4D56",
+  "#FFB3B8",
+  DATA_VIZ.gray,
+  "#A7F0BA",
+  DATA_VIZ.green,
+  "#0E6027",
+] as const;
+
+/**
+ * Semantic roles for KPI deltas, sparkline polarity, and alert series — map
+ * meaning first, then colour (pair with {@link CHART_MARKERS} for WCAG 1.4.1).
+ */
+export const DATA_VIZ_SEMANTIC = {
+  positive: colors.supportSuccess,
+  negative: colors.supportError,
+  caution: colors.supportWarning,
+  neutral: DATA_VIZ.gray,
+  info: colors.supportInfo,
+} as const;
+
+export type ChartPaletteKind = "categorical" | "sequential" | "diverging";
+
+/** Evenly sample a closed ramp into `n` colours (n=1 → mid step). */
+export function sampleColorRamp(ramp: readonly string[], n: number): string[] {
+  if (n <= 0) return [];
+  if (n === 1) return [ramp[Math.floor(ramp.length / 2)]!];
+  if (n >= ramp.length) {
+    const out: string[] = [];
+    for (let i = 0; i < n; i++) out.push(ramp[i % ramp.length]!);
+    return out;
+  }
+  const out: string[] = [];
+  for (let i = 0; i < n; i++) {
+    const t = i / (n - 1);
+    out.push(ramp[Math.round(t * (ramp.length - 1))]!);
+  }
+  return out;
+}
+
 /** First `n` chart series colours, cycling the categorical ladder. */
 export function chartSeriesColors(n: number): string[] {
   if (n <= 0) return [];
@@ -140,6 +199,34 @@ export function chartSeriesColors(n: number): string[] {
     out.push(DATA_VIZ_CATEGORICAL[i % DATA_VIZ_CATEGORICAL.length]!);
   }
   return out;
+}
+
+/** Categorical colour at index (stable, wraps). */
+export function chartColorAt(index: number): string {
+  const i = ((index % DATA_VIZ_CATEGORICAL.length) + DATA_VIZ_CATEGORICAL.length) % DATA_VIZ_CATEGORICAL.length;
+  return DATA_VIZ_CATEGORICAL[i]!;
+}
+
+/** Sequential intensity colours for `n` bins. */
+export function sequentialColors(n: number): string[] {
+  return sampleColorRamp(DATA_VIZ_SEQUENTIAL, n);
+}
+
+/** Diverging polarity colours for `n` bins (odd n keeps a true mid). */
+export function divergingColors(n: number): string[] {
+  return sampleColorRamp(DATA_VIZ_DIVERGING, n);
+}
+
+/** Palette picker — categorical cycles; sequential/diverging sample their ramps. */
+export function chartPalette(kind: ChartPaletteKind, n: number): string[] {
+  if (kind === "categorical") return chartSeriesColors(n);
+  if (kind === "sequential") return sequentialColors(n);
+  return divergingColors(n);
+}
+
+/** Area / band fill from a series stroke — translucent, scheme-safe via hex. */
+export function chartAreaFill(stroke: string, alpha = 0.16): string {
+  return hexToRgba(stroke, alpha);
 }
 
 /**
@@ -679,6 +766,9 @@ export const tokens = {
   DENSITY,
   DATA_VIZ,
   DATA_VIZ_CATEGORICAL,
+  DATA_VIZ_SEQUENTIAL,
+  DATA_VIZ_DIVERGING,
+  DATA_VIZ_SEMANTIC,
   BREAKPOINTS,
   Z_INDEX,
   OPACITY,

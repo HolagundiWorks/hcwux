@@ -4,6 +4,22 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 0.8.0 — 2026-07-21
+
+### Added
+- **Sequential · diverging · semantic viz scales** — `DATA_VIZ_SEQUENTIAL`,
+  `DATA_VIZ_DIVERGING`, `DATA_VIZ_SEMANTIC` plus `sequentialColors` /
+  `divergingColors` / `chartPalette(kind, n)` / `chartColorAt` / `chartAreaFill`.
+- **`src/charts.ts` grammar** — `CHART_MARKERS` · `chartMarkerAt`,
+  `chartChromeFor` / `CHART_CHROME`, `chartRootSx` (MUI X axis/grid/legend/tooltip
+  selectors), `withChartSeriesColors` (optional markers). No `@mui/x-charts`
+  kit dependency — consumers wire values into chart props.
+- Styleguide foundations specimen for the three ramps + semantic roles.
+
+### Docs
+- Mapping, token governance, MATERIAL-UI-DIRECTION — full chart contract
+  (palette kinds, chrome, WCAG marker pairing).
+
 ## 0.7.0 — 2026-07-21
 
 ### Added
