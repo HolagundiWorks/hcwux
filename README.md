@@ -95,7 +95,8 @@ The philosophy underneath the system — read these before the tokens.
 | [**From the Report to the Model**](docs/whitepapers/from-report-to-model.md) | The spatial turn — from **flat reports to data modelled on the thing itself**. The DOS→GUI leap for information; why calm chrome lets the model speak. |
 
 Index + governance rationale: [`docs/whitepapers/`](docs/whitepapers) ·
-[`HCW-DESIGN-PLAYBOOK.md`](docs/HCW-DESIGN-PLAYBOOK.md).
+[`HCW-DESIGN-PLAYBOOK.md`](docs/HCW-DESIGN-PLAYBOOK.md) ·
+**UX framework + process:** [`docs/HCW-UX.md`](docs/HCW-UX.md).
 
 ---
 

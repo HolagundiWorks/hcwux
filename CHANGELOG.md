@@ -4,6 +4,20 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 1.2.0 — 2026-07-21
+
+### Added
+- **HCW UX Process** — `docs/HCW-UX-PROCESS.md`: Plan → Design → Build → Evaluate →
+  Improve with RACI, exit gates, cadence, deliverables, and minimal path.
+- **HCW UX index** — `docs/HCW-UX.md`: ships **both** framework (model) and process
+  (how teams run). Neither replaces the other.
+
+### Changed
+- Framework charter (`HCW-UX-FRAMEWORK.md`) pairs explicitly with the process;
+  lifecycle phases point at process gates.
+- Playbook, kit README, CLAUDE.md, principles map, AI/construction/KPI parents
+  all route through `HCW-UX.md`.
+
 ## 1.1.0 — 2026-07-21
 
 ### Added

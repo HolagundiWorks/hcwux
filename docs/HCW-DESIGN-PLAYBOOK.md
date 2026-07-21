@@ -7,9 +7,10 @@ each current and future HCW product — AORMS-Studio, AORMS-Consultancy, and wha
 comes after — must follow. It changes rarely and deliberately; implementations
 (`@hcw/ui-kit`, app code, docs) evolve constantly *underneath* it.
 
-> **Framework charter (purpose · scope · KPIs · diagram):**  
-> **[HCW-UX-FRAMEWORK.md](HCW-UX-FRAMEWORK.md)** — use that when evaluating HCW as a
-> *UX framework* (not only a design system). Construction specialization:
+> **HCW UX = framework + process:**  
+> **[HCW-UX.md](HCW-UX.md)** (index) · **[HCW-UX-FRAMEWORK.md](HCW-UX-FRAMEWORK.md)**
+> (model: purpose · principles · KPIs) · **[HCW-UX-PROCESS.md](HCW-UX-PROCESS.md)**
+> (Plan → Design → Build → Evaluate → Improve). Construction specialization:
 > [esti/HCW-CONSTRUCTION-UX-OVERLAY.md](esti/HCW-CONSTRUCTION-UX-OVERLAY.md).
 
 > **Why this document exists:** an agent (human or AI) should be able to reason about

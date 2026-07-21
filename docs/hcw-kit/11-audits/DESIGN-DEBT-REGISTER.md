@@ -16,6 +16,8 @@ withdraws. Agents: update this file in the same change that alters a fact
 | **F4** | KPI instrument defined; telemetry not wired in kit/app | P1 | `logUxEvent` + dock outcome coupling — [HCW-UX-KPI-INSTRUMENT.md](../../esti/HCW-UX-KPI-INSTRUMENT.md) |
 | **F5** | No published validation case studies | P2 | 2–3 before/after KPI write-ups |
 
+*Process pairing (1.2.0):* `HCW-UX-PROCESS.md` + `HCW-UX.md` close the “framework-only” gap; F1–F5 remain product/kit gaps.
+
 ### Roadmap-class (not defect)
 
 - **RTL / i18n** (ex-D15) — product feature programme.
@@ -40,6 +42,7 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-21 · **UX process + framework pairing (1.2.0)** — `HCW-UX.md` index; `HCW-UX-PROCESS.md` (Plan→Improve, RACI, gates); framework charter no longer “framework-only”.
 - 2026-07-21 · **UX Framework Charter (1.1.0)** — `HCW-UX-FRAMEWORK.md` (purpose·scope·lifecycle·KPIs·diagram); construction overlay + KPI instrument; open F1–F5 framework gaps (honest vs “Open: none”).
 - 2026-07-21 · **HCW Catalog 1.0.0** — internalised every element/component/pattern/pictogram/icon with attributes (`14-HCW-CATALOG.md`); `PICTOGRAM`/`ICON` contracts; `KitRoot`/`createHcwTheme` aliases; retired external-system mapping framing.
 - 2026-07-21 · **UX psychology pack** — Cowan capacity caps, interruption budget, AwarenessStrip (Endsley), ActionOutcome (Norman), ConfirmModal slip/mistake (Reason), StatusDot shapes (Treisman/Ware), form/empty contiguity (Mayer), TRUST/COGA tokens.

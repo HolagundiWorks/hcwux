@@ -1,7 +1,7 @@
 # HCW UX — KPI instrument
 
 **Status:** Measurement companion to the framework · **Adopted:** 2026-07-21  
-**Parent:** [HCW-UX-FRAMEWORK.md](../HCW-UX-FRAMEWORK.md)
+**Parent:** [HCW-UX.md](../HCW-UX.md) · framework KPIs in [HCW-UX-FRAMEWORK.md](../HCW-UX-FRAMEWORK.md) · process Evaluate/Improve in [HCW-UX-PROCESS.md](../HCW-UX-PROCESS.md)
 
 Defines **what to measure**, **how to log**, and **how to review**. Consumer apps implement emitters; the kit provides contracts (toast budget, outcomes, capacity). Without this instrument the framework is doctrine-only.
 
