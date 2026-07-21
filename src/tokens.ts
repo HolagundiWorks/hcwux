@@ -364,17 +364,22 @@ export const GLASS_SURFACE = {
  * Layer 3 variant — **liquid glass** for ActionDock buttons on hover/focus.
  * Crystal-clear frosted pill: gradient wash, high saturate blur, specular inset edges.
  * Flat pill at rest; liquid-glass capsule on hover/focus (`DOCK_PILL_RADIUS`).
+ * Accent glow tracks the scheme accent (not a baked light-scheme hex).
  */
-export const LIQUID_GLASS_BUTTON = {
-  background:
-    "linear-gradient(165deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.42) 100%)",
-  backdropFilter: "blur(36px) saturate(2.25) brightness(1.14)",
-  WebkitBackdropFilter: "blur(36px) saturate(2.25) brightness(1.14)",
-  border: "1px solid rgba(255, 255, 255, 0.72)",
-  borderRadius: DOCK_PILL_RADIUS,
-  boxShadow:
-    "0 12px 36px rgba(20, 21, 23, 0.11), 0 2px 10px rgba(255, 79, 24, 0.07), inset 0 1.5px 0 rgba(255, 255, 255, 0.92), inset 0 -1px 0 rgba(255, 255, 255, 0.28)",
-} as const;
+export function liquidGlassButtonFor(accent: string = colors.accent) {
+  return {
+    background:
+      "linear-gradient(165deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.42) 100%)",
+    backdropFilter: "blur(36px) saturate(2.25) brightness(1.14)",
+    WebkitBackdropFilter: "blur(36px) saturate(2.25) brightness(1.14)",
+    border: "1px solid rgba(255, 255, 255, 0.72)",
+    borderRadius: DOCK_PILL_RADIUS,
+    boxShadow:
+      `0 12px 36px rgba(20, 21, 23, 0.11), 0 2px 10px ${hexToRgba(accent, 0.07)}, inset 0 1.5px 0 rgba(255, 255, 255, 0.92), inset 0 -1px 0 rgba(255, 255, 255, 0.28)`,
+  } as const;
+}
+/** Light-scheme default — prefer `liquidGlassButtonFor(scheme.accent)` when scheme-aware. */
+export const LIQUID_GLASS_BUTTON = liquidGlassButtonFor(colors.accent);
 
 /** ActionDock button hover/focus lift. */
 export const DOCK_BUTTON_LIFT = "translateY(-3px)";

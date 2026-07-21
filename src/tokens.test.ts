@@ -13,6 +13,7 @@ import {
   colors,
   glassAccentWash,
   hexToRgba,
+  liquidGlassButtonFor,
   recipesFor,
   underlineAccent,
 } from "./tokens.js";
@@ -47,6 +48,15 @@ describe("accent helpers (scheme-aware)", () => {
     expect(underlineAccent(SCHEMES.dark.accent)).toContain(SCHEMES.dark.accent);
     expect(glassAccentWash(SCHEMES.highContrast.accent, 0.3)).toBe(
       hexToRgba(SCHEMES.highContrast.accent, 0.3),
+    );
+  });
+
+  it("liquidGlassButtonFor embeds the scheme accent glow", () => {
+    expect(liquidGlassButtonFor(colors.accent).boxShadow).toContain(
+      hexToRgba(colors.accent, 0.07),
+    );
+    expect(liquidGlassButtonFor(SCHEMES.dark.accent).boxShadow).toContain(
+      hexToRgba(SCHEMES.dark.accent, 0.07),
     );
   });
 });

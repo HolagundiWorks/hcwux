@@ -15,9 +15,11 @@ changes, not npm releases.
 
 ### Fixed
 - **Scheme-aware accent helpers** — `hexToRgba`, `underlineAccent`,
-  `glassAccentWash`, `focusRingFor`, `ddFlatFor` derive from the active scheme
-  accent instead of baking light `#FF4F18` into underlines, washes, focus rings,
-  and Select hover. Theme + dark/HC recipes consume them.
+  `glassAccentWash`, `focusRingFor`, `ddFlatFor`, `liquidGlassButtonFor` derive
+  from the active scheme accent instead of baking light `#FF4F18` into underlines,
+  washes, focus rings, Select hover, DataGrid selection hover, and liquid-glass
+  glow. Theme + dark/HC recipes + chrome-sx consume them; `portal-chrome.scss`
+  exposes `--hcw-accent` / `--hcw-accent-glow` (mirrors light `colors.accent`).
 - **`docs/styleguide.html` high-contrast theme** — CSS + theme toggle now cycle
   light · dark · highContrast (`#C93A00` accent), matching `SCHEMES.highContrast`.
 

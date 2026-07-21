@@ -25,6 +25,7 @@ export {
   LIQUID_GLASS_BUTTON,
   DOCK_BUTTON_LIFT,
   SECTION_DOCK_CHIP_GLASS,
+  liquidGlassButtonFor,
 } from "./tokens.js";
 export {
   actionDockButtonSx,

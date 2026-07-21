@@ -497,7 +497,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
             "&:hover": { backgroundColor: CDS.hoverSoft },
             "&.Mui-selected": {
               backgroundColor: CDS.accentSoft,
-              "&:hover": { backgroundColor: "rgba(255,79,24,0.20)" },
+              "&:hover": { backgroundColor: glassAccentWash(CDS.accent, 0.2) },
             },
           },
         },
