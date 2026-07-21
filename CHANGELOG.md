@@ -4,6 +4,23 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 1.1.0 — 2026-07-21
+
+### Added
+- **HCW UX Framework Charter** — `docs/HCW-UX-FRAMEWORK.md`: problem · scope ·
+  users · seven principles · one diagram · lifecycle · KPIs · integration ·
+  evaluation checklist (framework criteria, not process-only).
+- **Construction UX Overlay** — `docs/esti/HCW-CONSTRUCTION-UX-OVERLAY.md`
+  (lifecycle · stakeholder modes · safety interrupts · BIM stance · field rules)
+  without polluting the domain-agnostic kit.
+- **KPI instrument** — `docs/esti/HCW-UX-KPI-INSTRUMENT.md` event vocabulary +
+  healthy bands.
+- Debt register **F1–F5** open framework gaps (orchestration primitives, capacity
+  enforcement, COGA calm, KPI wiring, case studies).
+
+### Docs
+- Playbook + governance README + UX principles map point at the charter.
+
 ## 1.0.0 — 2026-07-21
 
 ### Added

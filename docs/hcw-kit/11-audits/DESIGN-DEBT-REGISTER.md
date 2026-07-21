@@ -6,18 +6,29 @@ withdraws. Agents: update this file in the same change that alters a fact
 
 ## Open
 
-**None.** D18 closed 2026-07-12 (3 raw-`fontSize`-on-text → `TYPE_SCALE`). Remaining
-scope is **roadmap-class** (below) — product/design programmes, not design defects.
+### Framework gaps (UX Framework Charter §10)
+
+| ID | Gap | Severity | Remediation |
+| --- | --- | --- | --- |
+| **F1** | AI orchestration anatomy under-primitivized (Mission, Decision, Freeze, Confidence, Phase) | P0 | Domain-agnostic kit primitives + T10 template |
+| **F2** | `CAPACITY` only partly enforced (toast/loops/outcomes; not dock/KPI strips) | P1 | Trim/warn in ActionDock · `KpiStrip` or assert helper |
+| **F3** | `COGA` calm mode tokens unused by KitRoot | P1 | `KitRoot({ coga: "default"\|"calm" })` |
+| **F4** | KPI instrument defined; telemetry not wired in kit/app | P1 | `logUxEvent` + dock outcome coupling — [HCW-UX-KPI-INSTRUMENT.md](../../esti/HCW-UX-KPI-INSTRUMENT.md) |
+| **F5** | No published validation case studies | P2 | 2–3 before/after KPI write-ups |
+
+### Roadmap-class (not defect)
+
+- **RTL / i18n** (ex-D15) — product feature programme.
+- **Figma library / variables bridge** (ex-D16) — design-tool deliverable.
 
 *Assessed & sanctioned (no change): `ZonalComplianceCalculator`'s centralised
 9-colour SVG plot palette — canvas/SVG is an explicit token-rule exception; the
 values are bespoke AA-tuned and don't map to categorical `DATA_VIZ`, so forcing
 tokens would regress contrast.*
 
-## Roadmap-class (not debt — tracked in 13-Roadmaps; require product/design programmes)
+## Roadmap-class (tracked in 13-Roadmaps)
 
-- **RTL / i18n** (ex-D15) — a product feature programme, not a design defect.
-- **Figma library / variables bridge** (ex-D16) — design-tool deliverable outside agent reach.
+- **RTL / i18n** · **Figma bridge** — see above.
 
 ## Component conformance (Quality-checklist §Gate)
 
@@ -29,6 +40,7 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-21 · **UX Framework Charter (1.1.0)** — `HCW-UX-FRAMEWORK.md` (purpose·scope·lifecycle·KPIs·diagram); construction overlay + KPI instrument; open F1–F5 framework gaps (honest vs “Open: none”).
 - 2026-07-21 · **HCW Catalog 1.0.0** — internalised every element/component/pattern/pictogram/icon with attributes (`14-HCW-CATALOG.md`); `PICTOGRAM`/`ICON` contracts; `KitRoot`/`createHcwTheme` aliases; retired external-system mapping framing.
 - 2026-07-21 · **UX psychology pack** — Cowan capacity caps, interruption budget, AwarenessStrip (Endsley), ActionOutcome (Norman), ConfirmModal slip/mistake (Reason), StatusDot shapes (Treisman/Ware), form/empty contiguity (Mayer), TRUST/COGA tokens.
 - 2026-07-21 · **Density mode + list/search recipes (0.9.0)** — `densityFor` / `MuiRoot({ density })`; Button·Input·List·Table·DataGrid·Chip wired; `searchFieldSx` + `layoutSx.listToolbar`; TaskbarFooter off raw `#ffffff`.
