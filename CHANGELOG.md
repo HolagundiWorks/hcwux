@@ -13,6 +13,10 @@ changes, not npm releases.
   `ICON` / `ICON_SLOTS` / `ICON_SIZE` / tones · brand accent shapes.
 - **HCW aliases** — `KitRoot` (= `MuiRoot`), `createHcwTheme` / `hcwTheme`.
 - **10-ELEMENTS.md** cheat-sheet; former mapping file redirects to the catalog.
+- **Cognitive contracts** — `CAPACITY` · `INTERRUPTION` · `COGA` · `TRUST` ·
+  `STATUS_SHAPE`; `AwarenessStrip`; `publishOutcome` / `ActionOutcomeBanner`;
+  ConfirmModal `kind`/`reason`; toast stack budget + undo; `StatusDot.shape`;
+  `layoutSx.formField`.
 
 ### Changed
 - Token governance, styleguide, and token comments speak HCW only (no external

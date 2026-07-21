@@ -24,11 +24,13 @@ tokens would regress contrast.*
 | Component | Gate status |
 | --- | --- |
 | Surface, GlassRail, ActionDock, TaskbarFooter, SectionDock, HealthGlassOrb, BrandMark | ✓ shipped pre-checklist; re-audit opportunistically |
-| StatusDot, DataState, ConfirmModal, PageBreadcrumb, ToastHost, Avatar | ✓ gate items met at promotion; render tests + visual-regression shipped (kit suite 51 tests; VR `visual` job in CI) |
+| StatusDot, DataState, ConfirmModal, PageBreadcrumb, ToastHost, Avatar | ✓ gate items met at promotion; render tests + visual-regression shipped |
+| AwarenessStrip, ActionOutcomeBanner | ✓ promoted 0.7.0 with psychology suite |
 
 ## Retired (most recent first)
 
 - 2026-07-21 · **HCW Catalog 1.0.0** — internalised every element/component/pattern/pictogram/icon with attributes (`14-HCW-CATALOG.md`); `PICTOGRAM`/`ICON` contracts; `KitRoot`/`createHcwTheme` aliases; retired external-system mapping framing.
+- 2026-07-21 · **UX psychology pack** — Cowan capacity caps, interruption budget, AwarenessStrip (Endsley), ActionOutcome (Norman), ConfirmModal slip/mistake (Reason), StatusDot shapes (Treisman/Ware), form/empty contiguity (Mayer), TRUST/COGA tokens.
 - 2026-07-21 · **Density mode + list/search recipes (0.9.0)** — `densityFor` / `MuiRoot({ density })`; Button·Input·List·Table·DataGrid·Chip wired; `searchFieldSx` + `layoutSx.listToolbar`; TaskbarFooter off raw `#ffffff`.
 - 2026-07-21 · **Data-viz enhancement (0.8.0)** — sequential / diverging / semantic palettes; `chartPalette` · `chartChromeFor` · `chartRootSx` · `withChartSeriesColors` · `CHART_MARKERS`; styleguide specimen.
 - 2026-07-21 · **MUI ↔ Carbon marriage gap closure (0.7.0)** — `HealthGlassOrb` off `--cds-*`; Tooltip/Alert-filled/DatePicker popup tokenised; `DENSITY` + `chromeIconSx`; `DATA_VIZ_CATEGORICAL` / `chartSeriesColors`; mapping Pagination/Stepper/Charts/DatePicker → 🟩; narrative docs de-Carbon-strangler.

@@ -8,12 +8,14 @@
  *   3. Glassmorphism   (GLASS)  — the live layer: hover, CTAs, the dock, alerts.
  *
  * Spatial model: Rail · Stage · TaskbarFooter · ActionDock.
+ * Cognitive contracts: CAPACITY · INTERRUPTION · AwarenessStrip · ActionOutcome.
  *
  *   import { KitRoot, ActionDockProvider, ActionDock, TaskbarFooter,
  *            useScreenActions, Surface, GlassRail, HealthGlassOrb,
  *            BrandMark } from "@hcw/ui-kit";
  *
  * Full catalog (attributes): docs/hcw-kit/14-HCW-CATALOG.md.
+ * UX laws: docs/esti/HCW-UI-UX-PRINCIPLES.md.
  */
 export * from "./tokens.js";
 export {
@@ -68,9 +70,11 @@ export {
   useDockActions,
 } from "./ActionDock.js";
 export type { DockAction, DockZone, DockTone } from "./ActionDock.js";
-export { StatusDot } from "./StatusDot.js";
+export { StatusDot, statusShapeFor } from "./StatusDot.js";
+export type { StatusShape } from "./StatusDot.js";
 export { DataState } from "./DataState.js";
 export { ConfirmModal } from "./ConfirmModal.js";
+export type { ConfirmKind } from "./ConfirmModal.js";
 export { PageBreadcrumb } from "./PageBreadcrumb.js";
 export type { Crumb } from "./PageBreadcrumb.js";
 export { ToastHost, pushToast, dismissToast, useToasts, resetToasts } from "./Toast.js";
@@ -80,3 +84,15 @@ export type { AvatarSize } from "./Avatar.js";
 export { SectionDock } from "./SectionDock.js";
 export type { SectionDockLink } from "./SectionDock.js";
 export { TaskbarFooter, TaskbarButton, TASKBAR_HEIGHT } from "./TaskbarFooter.js";
+export { AwarenessStrip } from "./AwarenessStrip.js";
+export type { OpenLoop } from "./AwarenessStrip.js";
+export {
+  publishOutcome,
+  clearOutcome,
+  resetOutcomes,
+  useActionOutcome,
+  useActionOutcomes,
+  usePublishOutcome,
+} from "./ActionOutcome.js";
+export type { ActionOutcome, OutcomeStatus } from "./ActionOutcome.js";
+export { ActionOutcomeBanner } from "./ActionOutcomeBanner.js";

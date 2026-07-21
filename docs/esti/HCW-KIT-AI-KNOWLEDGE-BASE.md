@@ -43,10 +43,11 @@ rounded. One spatial model everywhere:
 (LEFT destroy · CENTER create · RIGHT commit). `:focus-visible` receives the same
 Layer-3 glass lift as `:hover` — keyboard parity is a brand behaviour, not a patch.
 
-**Package layout** (`src/`): `tokens.ts` (all raw values — colour,
-radius, type, **scales**: `SPACING`, `BREAKPOINTS`, `Z_INDEX`, `OPACITY`, `MOTION`,
-`ELEVATION`, plus layer recipes), `theme.ts` (`createAormsTheme()` — every MUI override),
-`chrome-sx.ts`, and primitives `Surface`, `GlassRail`, `ActionDock` (+`useScreenActions`),
+**Package layout** (`src/`): `tokens.ts` (colour, type, **scales**: `SPACING`,
+`LAYOUT`, `CAPACITY`, `INTERRUPTION`, `COGA`, `TRUST`, `BREAKPOINTS`, `Z_INDEX`,
+`OPACITY`, `MOTION`, `ELEVATION`, plus layer recipes), `theme.ts`
+(`createAormsTheme()`), `chrome-sx.ts` (`layoutSx`), and primitives `Surface`,
+`GlassRail`, `ActionDock`, `AwarenessStrip`, `ActionOutcomeBanner`, `ToastHost`,
 `TaskbarFooter`, `SectionDock`, `HealthGlassOrb`, `BrandMark`, `MuiRoot`.
 
 ---
@@ -121,6 +122,14 @@ plain, specific, honest (no fabricated stats — brand stance).
 A kit change without a matching update to HCW-UI-KIT.md (and `/design-system` showcase
 where visual) is incomplete. Docs and code diverging = a finding against the **change**,
 not the docs.
+
+### R10 — Cognitive contracts (capacity · interruption · awareness)
+Do not exceed `CAPACITY` caps (Cowan WM) without progressive disclosure. Toasts obey
+`INTERRUPTION.maxConcurrentToasts`. Rail supervision uses `AwarenessStrip` (Endsley).
+Dock commits publish `publishOutcome` (Norman evaluation). Confirm destroy with
+`ConfirmModal` slip/mistake kinds (Reason). Status never colour-only — use
+`StatusDot.shape` / `STATUS_SHAPE`.
+- Detect: unbounded KPI strips, toast spam patterns, colour-only urgency in tables.
 
 ---
 

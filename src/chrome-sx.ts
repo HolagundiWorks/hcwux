@@ -167,6 +167,18 @@ export const layoutSx = {
     mb: 1.5,
     width: "100%",
   } satisfies SxProps<Theme>,
+  /**
+   * Form field cluster — Mayer spatial contiguity: label, control, and helper
+   * share one column so related info is never scattered.
+   */
+  formField: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "stretch",
+    gap: 0.5,
+    width: "100%",
+    maxWidth: 480,
+  } satisfies SxProps<Theme>,
 } as const;
 
 /**
