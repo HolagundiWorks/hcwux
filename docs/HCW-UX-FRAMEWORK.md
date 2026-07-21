@@ -1,10 +1,16 @@
 # HCW UX Framework — Charter
 
-**Status:** Canonical framework charter · **Adopted:** 2026-07-21 · **Version:** 1.1  
-**Type:** UX **framework** (not a process cookbook)  
+**Status:** Canonical UX **framework** (model) · **Adopted:** 2026-07-21 · **Version:** 1.2  
+**Type:** UX **framework** — principles, scope, diagram, KPIs  
+**Run it with:** [HCW-UX-PROCESS.md](HCW-UX-PROCESS.md) (the **process**) · **Index:** [HCW-UX.md](HCW-UX.md)  
 **Executable layer:** `@hcw/ui-kit` · **Laws:** [HCW-UI-UX-PRINCIPLES.md](esti/HCW-UI-UX-PRINCIPLES.md) · **AI module:** [HCW-AI-ORCHESTRATION-UX.md](esti/HCW-AI-ORCHESTRATION-UX.md) · **Construction overlay:** [HCW-CONSTRUCTION-UX-OVERLAY.md](esti/HCW-CONSTRUCTION-UX-OVERLAY.md)
 
-This charter answers: *what problem we solve, for whom, with what structure, how we measure, and where we stop.* Everything else (tokens, components, checklists) implements it.
+| Framework (this doc) | Process |
+| --- | --- |
+| *What is true* — problem, seven principles, one diagram, KPIs | *What we do* — Plan → Design → Build → Evaluate → Improve |
+| Rarely changes | Runs every change / sprint |
+
+This charter answers: *what problem we solve, for whom, with what structure, how we measure, and where we stop.* The process turns that model into repeatable team action. Everything else (tokens, components, checklists) implements both.
 
 ---
 
@@ -87,6 +93,8 @@ Keep these seven; everything else is elaboration.
 
 ### Lifecycle coverage (framework phases)
 
+The framework **names** the lifecycle; the **process** runs it with roles and gates — see [HCW-UX-PROCESS.md](HCW-UX-PROCESS.md).
+
 | Phase | Framework activity | Primary outputs |
 | --- | --- | --- |
 | **Plan** | Frame mission / screen job; pick template (T1–T10); set capacity budgets | Mission brief · template ID · CAPACITY plan |
@@ -99,7 +107,9 @@ Modules (usable alone): Geography · Depth · Capacity · Interaction contract �
 
 ---
 
-## 3. Usability — how to apply in one sitting
+## 3. Usability — framework quickpath (process owns the gates)
+
+This section is the **model checklist** for a single sitting. Roles, exit gates, and cadence live in **[HCW-UX-PROCESS.md](HCW-UX-PROCESS.md)**.
 
 1. Name the user’s **cognitive role** and the screen’s **job** (one sentence).
 2. Pick a **template** ([05-TEMPLATES.md](hcw-kit/05-TEMPLATES.md)) or T10 AI surface.
@@ -107,7 +117,7 @@ Modules (usable alone): Geography · Depth · Capacity · Interaction contract �
 4. Choose **layer by role** (flat / soft / glass).
 5. Cap choices with **CAPACITY**; interrupts with **INTERRUPTION**.
 6. For AI: answer the **four questions** above the fold in the rail.
-7. Ship with checklist + KPIs logged ([HCW-UX-KPI-INSTRUMENT.md](esti/HCW-UX-KPI-INSTRUMENT.md)).
+7. Ship via process Evaluate → Improve (checklist + KPIs · [HCW-UX-KPI-INSTRUMENT.md](esti/HCW-UX-KPI-INSTRUMENT.md)).
 
 **Actionable outputs (not ideas):** templates · dock action tables · AwarenessStrip copy · Decision queue · ConfirmModal kind · KPI row · debt register entry.
 
@@ -181,13 +191,13 @@ Detail: [HCW-UX-KPI-INSTRUMENT.md](esti/HCW-UX-KPI-INSTRUMENT.md).
 | # | Question | HCW answer (2026-07-21) |
 | --- | --- | --- |
 | 1 | Problem better than existing? | Yes — cognitive-role chrome + mission-first AI vs chat/DS-only |
-| 2 | Every component necessary? | Mostly; enforce remaining CAPACITY/COGA flags |
-| 3 | Short intro success? | Yes for chrome; AI anatomy still finishing primitives |
-| 4 | Consistent across teams? | Designed for yes; enforce via R1–R10 |
-| 5 | Impact measurable? | KPIs defined; instrument rolling out |
+| 2 | Every component necessary? | Yes — CAPACITY/COGA/orchestration shipped; no spare shells |
+| 3 | Short intro success? | Yes — framework §3 + process §3 + T10 primitives |
+| 4 | Consistent across teams? | Designed for yes; enforce via R1–R10 + process gates |
+| 5 | Impact measurable? | KPIs + `logUxEvent` + case studies published |
 | 6 | Integrates workflows? | Yes with eng; overlay for CPM/BIM |
 | 7 | Scales? | Yes for screens; programmes via overlay |
-| 8 | Evidence / cases? | Theory strong; publish case studies next |
+| 8 | Evidence / cases? | [case-studies/](hcw-kit/11-audits/case-studies/) (interrupt · dock · mission) |
 | 9 | One diagram? | Yes (§2) |
 | 10 | Adoption motive? | Reduces inventiveness tax **and** improves decision speed |
 
@@ -197,9 +207,11 @@ Detail: [HCW-UX-KPI-INSTRUMENT.md](esti/HCW-UX-KPI-INSTRUMENT.md).
 
 | Need | Document |
 | --- | --- |
+| **Index (framework + process)** | [HCW-UX.md](HCW-UX.md) |
 | Why (philosophy) | [HCW-DESIGN-PLAYBOOK.md](HCW-DESIGN-PLAYBOOK.md) |
 | Law | [hcw-kit/00-CONSTITUTION.md](hcw-kit/00-CONSTITUTION.md) |
-| This charter | **You are here** |
+| This charter (framework) | **You are here** |
+| **How to run (process)** | [HCW-UX-PROCESS.md](HCW-UX-PROCESS.md) |
 | Heuristic → pattern | [esti/HCW-UI-UX-PRINCIPLES.md](esti/HCW-UI-UX-PRINCIPLES.md) |
 | AI module | [esti/HCW-AI-ORCHESTRATION-UX.md](esti/HCW-AI-ORCHESTRATION-UX.md) · [ai-orchestration-ux-framework.md](ai-orchestration-ux-framework.md) |
 | Construction | [esti/HCW-CONSTRUCTION-UX-OVERLAY.md](esti/HCW-CONSTRUCTION-UX-OVERLAY.md) |
@@ -208,12 +220,16 @@ Detail: [HCW-UX-KPI-INSTRUMENT.md](esti/HCW-UX-KPI-INSTRUMENT.md).
 
 ---
 
-## 10. Open framework gaps (honest)
+## 10. Framework gaps
 
-Tracked in [DESIGN-DEBT-REGISTER.md](hcw-kit/11-audits/DESIGN-DEBT-REGISTER.md):
+**Closed in 1.3.0** (see [DESIGN-DEBT-REGISTER.md](hcw-kit/11-audits/DESIGN-DEBT-REGISTER.md) Retired):
 
-- F1 Orchestration primitives (Mission, Decision, Freeze, Confidence, Phase)
-- F2 CAPACITY enforcement beyond toast/loops
-- F3 COGA calm mode on KitRoot
-- F4 KPI telemetry plumbing in consumers
-- F5 Published validation case studies
+| ID | Was | Closed by |
+| --- | --- | --- |
+| F1 | Orchestration under-primitivized | `MissionHeader` · `ObjectiveList` · `PhaseStrip` · `DecisionQueue` · `FreezeTable` · `ConfidenceBand` + **T10** |
+| F2 | CAPACITY partial | `enforceCapacity` · ActionDock trim · `KpiStrip` |
+| F3 | COGA unused | `KitRoot({ coga })` / `createHcwTheme({ coga })` |
+| F4 | KPI telemetry unwired | `logUxEvent` / `setUxEventSink` + dock `outcome`/`track` |
+| F5 | No case studies | [11-audits/case-studies/](hcw-kit/11-audits/case-studies/) |
+
+New gaps: file as D- or F-items on the debt register — do not leave §10 stale.

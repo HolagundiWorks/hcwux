@@ -8,11 +8,13 @@
  *   3. Glassmorphism   (GLASS)  — the live layer: hover, CTAs, the dock, alerts.
  *
  * Spatial model: Rail · Stage · TaskbarFooter · ActionDock.
- * Cognitive contracts: CAPACITY · INTERRUPTION · AwarenessStrip · ActionOutcome.
+ * Cognitive contracts: CAPACITY · INTERRUPTION · AwarenessStrip · ActionOutcome ·
+ * Mission/Decision/Phase orchestration · KpiStrip · logUxEvent.
  *
  *   import { KitRoot, ActionDockProvider, ActionDock, TaskbarFooter,
  *            useScreenActions, Surface, GlassRail, HealthGlassOrb,
- *            BrandMark } from "@hcw/ui-kit";
+ *            BrandMark, MissionHeader, DecisionQueue, KpiStrip,
+ *            setUxEventSink } from "@hcw/ui-kit";
  *
  * Full catalog (attributes): docs/hcw-kit/14-HCW-CATALOG.md.
  * UX laws: docs/esti/HCW-UI-UX-PRINCIPLES.md.
@@ -96,3 +98,38 @@ export {
 } from "./ActionOutcome.js";
 export type { ActionOutcome, OutcomeStatus } from "./ActionOutcome.js";
 export { ActionOutcomeBanner } from "./ActionOutcomeBanner.js";
+export { KpiStrip } from "./KpiStrip.js";
+export type { KpiItem } from "./KpiStrip.js";
+export {
+  MissionHeader,
+  ObjectiveList,
+  PhaseStrip,
+  ConfidenceBand,
+  DecisionCard,
+  DecisionQueue,
+  FrozenDecisionRow,
+  FreezeTable,
+} from "./orchestration.js";
+export type {
+  ObjectiveItem,
+  ConfidenceLevel,
+  DecisionCardProps,
+  FrozenDecision,
+} from "./orchestration.js";
+export {
+  assertCapacity,
+  enforceCapacity,
+  capacityCap,
+} from "./capacity.js";
+export type { CapacityChannel } from "./capacity.js";
+export {
+  logUxEvent,
+  setUxEventSink,
+  resetUxEventSink,
+  logOrient,
+  logDecision,
+  logMission,
+  logInterrupt,
+} from "./uxEvents.js";
+export type { UxEventName, UxEventPayload, UxEventSink } from "./uxEvents.js";
+export { trimDockActions, prioritizeDockActions } from "./ActionDock.js";

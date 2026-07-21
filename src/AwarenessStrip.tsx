@@ -16,7 +16,8 @@
  */
 import { Box, Stack, Typography } from "@mui/material";
 import type { ReactNode } from "react";
-import { CAPACITY, TRUST, TYPE_SCALE, colors } from "./tokens.js";
+import { enforceCapacity } from "./capacity.js";
+import { TRUST, TYPE_SCALE, colors } from "./tokens.js";
 
 export type OpenLoop = {
   id: string;
@@ -39,7 +40,7 @@ export function AwarenessStrip({
   /** Marks `next` as needs-judgment (Lee & See trust — interrupt-worthy). */
   judgment?: boolean;
 }) {
-  const visibleLoops = loops.slice(0, CAPACITY.openLoops);
+  const visibleLoops = enforceCapacity("loops", loops);
   const hasAwareness = Boolean(state || meaning || next);
   const hasLoops = visibleLoops.length > 0;
   if (!hasAwareness && !hasLoops) return null;

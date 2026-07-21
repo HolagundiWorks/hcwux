@@ -11,6 +11,8 @@ agent reports, asks, and defers to human judgment*.
 Pulse, AI Studio, the Overview AI-recommendation rail), EmOI surfaces, and every
 future AI feature built on `@hcw/ui-kit`.
 
+**Parent:** [HCW-UX.md](../HCW-UX.md) — framework [HCW-UX-FRAMEWORK.md](../HCW-UX-FRAMEWORK.md) (principle 6) · process [HCW-UX-PROCESS.md](../HCW-UX-PROCESS.md) (Plan/Design AI gates).
+
 > **Scope boundary.** This document is about the UX of the AI *product* (ESTI) —
 > what the user sees. It is **not** the [12-AI-AGENT-RULEBOOK](../hcw-kit/12-AI-AGENT-RULEBOOK.md),
 > which governs how the AI *coding agent* (building the kit) must behave. Different

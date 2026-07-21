@@ -6,15 +6,9 @@ withdraws. Agents: update this file in the same change that alters a fact
 
 ## Open
 
-### Framework gaps (UX Framework Charter §10)
+### Framework gaps
 
-| ID | Gap | Severity | Remediation |
-| --- | --- | --- | --- |
-| **F1** | AI orchestration anatomy under-primitivized (Mission, Decision, Freeze, Confidence, Phase) | P0 | Domain-agnostic kit primitives + T10 template |
-| **F2** | `CAPACITY` only partly enforced (toast/loops/outcomes; not dock/KPI strips) | P1 | Trim/warn in ActionDock · `KpiStrip` or assert helper |
-| **F3** | `COGA` calm mode tokens unused by KitRoot | P1 | `KitRoot({ coga: "default"\|"calm" })` |
-| **F4** | KPI instrument defined; telemetry not wired in kit/app | P1 | `logUxEvent` + dock outcome coupling — [HCW-UX-KPI-INSTRUMENT.md](../../esti/HCW-UX-KPI-INSTRUMENT.md) |
-| **F5** | No published validation case studies | P2 | 2–3 before/after KPI write-ups |
+*None open — F1–F5 closed in 1.3.0 (see Retired).*
 
 ### Roadmap-class (not defect)
 
@@ -36,10 +30,13 @@ tokens would regress contrast.*
 | --- | --- |
 | Surface, GlassRail, ActionDock, TaskbarFooter, SectionDock, HealthGlassOrb, BrandMark | ✓ shipped pre-checklist; re-audit opportunistically |
 | StatusDot, DataState, ConfirmModal, PageBreadcrumb, ToastHost, Avatar | ✓ gate items met at promotion; render tests + visual-regression shipped |
-| AwarenessStrip, ActionOutcomeBanner | ✓ promoted 0.7.0 with psychology suite |
+| AwarenessStrip, ActionOutcomeBanner | ✓ promoted with psychology suite |
+| MissionHeader, ObjectiveList, PhaseStrip, ConfidenceBand, DecisionQueue, FreezeTable, KpiStrip | ✓ 1.3.0 — token-driven, typed, unit-tested (`gaps.test.tsx`); styleguide specimens |
 
 ## Retired (most recent first)
 
+- 2026-07-21 · **Framework gaps F1–F5 closed (1.3.0)** — orchestration primitives + T10; CAPACITY on dock/KpiStrip; `KitRoot({ coga })`; `logUxEvent` + dock outcome; case studies in `11-audits/case-studies/`.
+- 2026-07-21 · **UX process + framework pairing (1.2.0)** — `HCW-UX.md` index; `HCW-UX-PROCESS.md` (Plan→Improve, RACI, gates); framework charter no longer “framework-only”.
 - 2026-07-21 · **UX Framework Charter (1.1.0)** — `HCW-UX-FRAMEWORK.md` (purpose·scope·lifecycle·KPIs·diagram); construction overlay + KPI instrument; open F1–F5 framework gaps (honest vs “Open: none”).
 - 2026-07-21 · **HCW Catalog 1.0.0** — internalised every element/component/pattern/pictogram/icon with attributes (`14-HCW-CATALOG.md`); `PICTOGRAM`/`ICON` contracts; `KitRoot`/`createHcwTheme` aliases; retired external-system mapping framing.
 - 2026-07-21 · **UX psychology pack** — Cowan capacity caps, interruption budget, AwarenessStrip (Endsley), ActionOutcome (Norman), ConfirmModal slip/mistake (Reason), StatusDot shapes (Treisman/Ware), form/empty contiguity (Mayer), TRUST/COGA tokens.

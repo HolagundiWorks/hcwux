@@ -6,7 +6,7 @@
 
 **HCW / ESTI application:** [`esti/HCW-AI-ORCHESTRATION-UX.md`](esti/HCW-AI-ORCHESTRATION-UX.md) adapts this doctrine to AORMS using HCW kit primitives (`@hcw/ui-kit`). There is no parallel visual language — product UI uses the kit's Radiant Orange / Urbanist tokens only.
 
-**Parent framework charter:** [`HCW-UX-FRAMEWORK.md`](HCW-UX-FRAMEWORK.md) (purpose · scope · seven principles · KPIs). Construction specialization: [`esti/HCW-CONSTRUCTION-UX-OVERLAY.md`](esti/HCW-CONSTRUCTION-UX-OVERLAY.md).
+**Parent:** [`HCW-UX.md`](HCW-UX.md) — framework [`HCW-UX-FRAMEWORK.md`](HCW-UX-FRAMEWORK.md) + process [`HCW-UX-PROCESS.md`](HCW-UX-PROCESS.md). Construction specialization: [`esti/HCW-CONSTRUCTION-UX-OVERLAY.md`](esti/HCW-CONSTRUCTION-UX-OVERLAY.md).
 
 ---
 

@@ -24,8 +24,10 @@ import {
   SCHEMES,
   type SchemeName,
   type DensityName,
+  type CogaMode,
   recipesFor,
   densityFor,
+  cogaFor,
   MOTION,
   RADIUS as GLASS_RADIUS,
   BUTTON_RADIUS as BTN_RADIUS,
@@ -56,15 +58,20 @@ import {
  *  neumorphic/glass recipes remain light-tuned until they gain scheme variants,
  *  so treat non-light schemes as preview-grade (see tokens.ts § Colour schemes).
  *
- *  `density` selects comfortable (default) or compact control heights. */
+ *  `density` selects comfortable (default) or compact control heights.
+ *  `coga: "calm"` raises interactive floors and bumps caption/body type one step. */
 export function createAormsTheme(options?: {
   scheme?: SchemeName;
   density?: DensityName;
+  coga?: CogaMode;
 }): Theme {
   const CDS = SCHEMES[options?.scheme ?? "light"];
   // Scheme-matched surface recipes (neu/glass materials) — see tokens.ts.
   const R = recipesFor(options?.scheme ?? "light");
-  const dens = densityFor(options?.density ?? "comfortable");
+  const cogaMode = options?.coga ?? "default";
+  const dens = densityFor(options?.density ?? "comfortable", cogaMode);
+  const coga = cogaFor(cogaMode);
+  const type = coga.type;
   return createTheme({
     shape: { borderRadius: GLASS_RADIUS },
     // Scale tokens drive the theme (parity with MUI defaults → no layout shift):
@@ -93,42 +100,42 @@ export function createAormsTheme(options?: {
     },
     typography: {
       fontFamily: FONT_FAMILY,
-      button: { textTransform: "capitalize", fontWeight: 600, fontSize: TYPE_SCALE.body2 },
+      button: { textTransform: "capitalize", fontWeight: 600, fontSize: type.body2 },
       h1: {
         fontWeight: 300,
         letterSpacing: "0.01em",
         textTransform: "uppercase",
-        fontSize: TYPE_SCALE.display,
+        fontSize: type.display,
       },
       h2: {
         fontWeight: 300,
         letterSpacing: "0.01em",
         textTransform: "uppercase",
-        fontSize: TYPE_SCALE.heading,
+        fontSize: type.heading,
       },
       h3: {
         fontWeight: 400,
         letterSpacing: "0.01em",
         textTransform: "uppercase",
-        fontSize: TYPE_SCALE.subtitle,
+        fontSize: type.subtitle,
       },
       h4: {
         fontWeight: 500,
         letterSpacing: "0.01em",
         textTransform: "uppercase",
-        fontSize: TYPE_SCALE.kpi,
+        fontSize: type.kpi,
       },
-      h5: { fontWeight: 600, textTransform: "none", fontSize: TYPE_SCALE.body },
-      h6: { fontWeight: 600, textTransform: "none", fontSize: TYPE_SCALE.body2 },
-      subtitle1: { textTransform: "none", fontSize: TYPE_SCALE.body },
-      subtitle2: { textTransform: "none", fontSize: TYPE_SCALE.body2 },
-      body1: { fontSize: TYPE_SCALE.body },
-      body2: { fontSize: TYPE_SCALE.body2 },
-      caption: { fontSize: TYPE_SCALE.caption },
+      h5: { fontWeight: 600, textTransform: "none", fontSize: type.body },
+      h6: { fontWeight: 600, textTransform: "none", fontSize: type.body2 },
+      subtitle1: { textTransform: "none", fontSize: type.body },
+      subtitle2: { textTransform: "none", fontSize: type.body2 },
+      body1: { fontSize: type.body },
+      body2: { fontSize: type.body2 },
+      caption: { fontSize: type.caption },
       overline: {
         letterSpacing: "0.08em",
         fontWeight: 600,
-        fontSize: TYPE_SCALE.micro,
+        fontSize: type.micro,
       },
     },
     components: {

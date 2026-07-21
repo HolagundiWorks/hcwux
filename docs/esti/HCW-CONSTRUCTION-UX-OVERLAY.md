@@ -1,7 +1,7 @@
 # HCW Construction UX Overlay
 
 **Status:** Intentional specialization · **Adopted:** 2026-07-21  
-**Parent framework:** [HCW-UX-FRAMEWORK.md](../HCW-UX-FRAMEWORK.md)  
+**Parent:** [HCW-UX.md](../HCW-UX.md) · framework [HCW-UX-FRAMEWORK.md](../HCW-UX-FRAMEWORK.md) · process [HCW-UX-PROCESS.md](../HCW-UX-PROCESS.md)  
 **Rule:** This overlay **does not** pollute `@hcw/ui-kit`. Domain concepts stay in product composition; the kit remains industry-agnostic (Constitution III).
 
 Construction project delivery needs coordination, safety, traceability, and field usability that a generic product chrome framework cannot claim alone. This overlay maps those needs onto HCW geography, capacity, and decision law.

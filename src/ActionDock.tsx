@@ -13,6 +13,9 @@
  * The dock floats bottom-centre, above the taskbar footer, and hides when no screen
  * has published actions.
  *
+ * Capacity: visible actions capped at {@link CAPACITY.dockVisibleActions} (trim + warn).
+ * Telemetry: optional `track` / `outcome` on {@link DockAction} (see KPI instrument).
+ *
  * **Modal exception:** while a create/edit `Dialog` is open, publish `[]` so the
  * dock does not compete with `DialogActions` (commit stays in the dialog). Re-publish
  * screen actions when the dialog closes.
@@ -33,6 +36,9 @@ import {
 } from "react";
 import { Box, Button, Tooltip } from "@mui/material";
 import { actionDockButtonSx } from "./chrome-sx.js";
+import { enforceCapacity } from "./capacity.js";
+import { publishOutcome, type OutcomeStatus } from "./ActionOutcome.js";
+import { logUxEvent } from "./uxEvents.js";
 import { ACTION_DOCK_TRAY, NEU_GROOVE_VERTICAL, colors } from "./tokens.js";
 
 export type DockZone = "left" | "center" | "right";
@@ -48,6 +54,16 @@ export interface DockAction {
   disabled?: boolean;
   /** Show only the icon (label still used as the tooltip / aria-label). */
   iconOnly?: boolean;
+  /**
+   * When set, `publishOutcome` runs after `onClick` (sync success path).
+   * Async flows should call `publishOutcome` themselves.
+   */
+  outcome?: { status: OutcomeStatus; label: string; detail?: string };
+  /**
+   * Emit `ux.dock` (and `ux.outcome` when `outcome` is set). Defaults to true
+   * when `outcome` is present; otherwise false.
+   */
+  track?: boolean;
 }
 
 interface DockContextValue {
@@ -57,6 +73,51 @@ interface DockContextValue {
 }
 
 const DockContext = createContext<DockContextValue | null>(null);
+
+/** Prefer primary/danger, then zone order left→center→right, then original order. */
+export function prioritizeDockActions(actions: readonly DockAction[]): DockAction[] {
+  const zoneRank = { left: 0, center: 1, right: 2 };
+  const toneRank = (t?: DockTone) => (t === "danger" || t === "primary" ? 0 : 1);
+  return [...actions].sort((a, b) => {
+    const tr = toneRank(a.tone) - toneRank(b.tone);
+    if (tr !== 0) return tr;
+    return zoneRank[a.zone] - zoneRank[b.zone];
+  });
+}
+
+/** Cap + warn; keeps highest-priority actions when over {@link CAPACITY.dockVisibleActions}. */
+export function trimDockActions(actions: readonly DockAction[]): DockAction[] {
+  if (actions.length === 0) return [];
+  const ranked = prioritizeDockActions(actions);
+  const kept = enforceCapacity("dock", ranked);
+  // Restore visual zone order for rendering.
+  const zoneRank = { left: 0, center: 1, right: 2 };
+  return [...kept].sort((a, b) => zoneRank[a.zone] - zoneRank[b.zone]);
+}
+
+function instrumentAction(action: DockAction): DockAction {
+  const shouldTrack = action.track ?? Boolean(action.outcome);
+  if (!shouldTrack && !action.outcome) return action;
+  return {
+    ...action,
+    onClick: () => {
+      if (shouldTrack) {
+        logUxEvent("ux.dock", { zone: action.zone, actionId: action.id });
+      }
+      action.onClick();
+      if (action.outcome) {
+        publishOutcome(action.outcome);
+        const status =
+          action.outcome.status === "error"
+            ? "failure"
+            : action.outcome.status === "success"
+              ? "success"
+              : "blocked";
+        logUxEvent("ux.outcome", { status, source: action.id });
+      }
+    },
+  };
+}
 
 export function ActionDockProvider({ children }: { children: ReactNode }) {
   const [actions, setActions] = useState<DockAction[]>([]);
@@ -76,7 +137,7 @@ export function useScreenActions(actions: DockAction[], deps: unknown[] = []): v
   const ctx = useContext(DockContext);
   useEffect(() => {
     if (!ctx) return;
-    ctx.publish(actions);
+    ctx.publish(actions.map(instrumentAction));
     return () => ctx.clear();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
@@ -134,7 +195,8 @@ function Divider() {
 }
 
 export function ActionDock() {
-  const actions = useDockActions();
+  const raw = useDockActions();
+  const actions = useMemo(() => trimDockActions(raw), [raw]);
   const btnRefs = useRef(new Map<string, HTMLButtonElement>());
   const [rovingId, setRovingId] = useState<string | null>(null);
 

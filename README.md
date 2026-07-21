@@ -95,7 +95,8 @@ The philosophy underneath the system — read these before the tokens.
 | [**From the Report to the Model**](docs/whitepapers/from-report-to-model.md) | The spatial turn — from **flat reports to data modelled on the thing itself**. The DOS→GUI leap for information; why calm chrome lets the model speak. |
 
 Index + governance rationale: [`docs/whitepapers/`](docs/whitepapers) ·
-[`HCW-DESIGN-PLAYBOOK.md`](docs/HCW-DESIGN-PLAYBOOK.md).
+[`HCW-DESIGN-PLAYBOOK.md`](docs/HCW-DESIGN-PLAYBOOK.md) ·
+**UX framework + process:** [`docs/HCW-UX.md`](docs/HCW-UX.md).
 
 ---
 
@@ -136,7 +137,8 @@ browser. The live interactive gallery is AORMS-Studio's `/design-system` route.
 | --- | --- |
 | [`src/`](src) | `@hcw/ui-kit` — tokens, MUI theme, layered primitives (`Surface`, `GlassRail`, `ActionDock`, `HealthGlassOrb`, `TaskbarFooter`, `SectionDock`, `StatusDot`, `DataState`, `ConfirmModal`, `PageBreadcrumb`, `Avatar`, `BrandMark`, `MuiRoot`). |
 | [`docs/whitepapers/`](docs/whitepapers) | The philosophy (above). |
-| [`docs/esti/`](docs/esti) · [`docs/hcw-kit/`](docs/hcw-kit) | Foundations, UX principles, governance 00–13 (Constitution, tokens, component quality, templates, MUI mapping, audits, AI-agent rulebook). |
+| [`docs/HCW-UX.md`](docs/HCW-UX.md) · [`HCW-UX-FRAMEWORK.md`](docs/HCW-UX-FRAMEWORK.md) · [`HCW-UX-PROCESS.md`](docs/HCW-UX-PROCESS.md) | UX **framework** (model) + **process** (Plan→Improve). |
+| [`docs/esti/`](docs/esti) · [`docs/hcw-kit/`](docs/hcw-kit) | Foundations, UX principles, governance 00–14 (Constitution, tokens, catalog, audits, AI-agent rulebook). |
 | [`docs/styleguide.html`](docs/styleguide.html) | Visual styleguide (mirrors `src/tokens.ts`). |
 | [`docs/ai-orchestration-ux-framework.md`](docs/ai-orchestration-ux-framework.md) · [`docs/esti/HCW-AI-ORCHESTRATION-UX.md`](docs/esti/HCW-AI-ORCHESTRATION-UX.md) | AI-orchestration doctrine · ESTI/AORMS application using HCW kit primitives. |
 

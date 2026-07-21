@@ -4,6 +4,42 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 1.3.0 — 2026-07-21
+
+### Added
+- **Orchestration primitives (F1)** — `MissionHeader` · `ObjectiveList` · `PhaseStrip` ·
+  `ConfidenceBand` · `DecisionCard` / `DecisionQueue` · `FrozenDecisionRow` /
+  `FreezeTable`; template **T10** in `05-TEMPLATES.md`.
+- **`KpiStrip`** + **`enforceCapacity` / `assertCapacity`** (F2) — Cowan caps on KPI
+  strips; ActionDock trims to `CAPACITY.dockVisibleActions` with warn.
+- **`KitRoot({ coga })` / `createHcwTheme({ coga })`** (F3) — calm mode raises
+  targets and bumps type one step; `data-hcw-coga`; `cogaFor` / `densityFor(..., coga)`.
+- **`logUxEvent` / `setUxEventSink`** (F4) — sink-agnostic KPI instrument; dock
+  `DockAction.track` / `.outcome` couples `ux.dock` + `publishOutcome`; typed
+  `logOrient` · `logDecision` · `logMission` · `logInterrupt`; toast/outcome
+  channels emit `ux.capacity_warn` on overrun.
+- **Case studies (F5)** — `docs/hcw-kit/11-audits/case-studies/` (interrupt · dock ·
+  mission orientation).
+
+### Changed
+- Framework §10 / debt register: F1–F5 closed.
+- Catalog, styleguide, KPI instrument, AI knowledge base updated.
+- Gzip size budget **40 → 50 KB** (new orchestration + telemetry surface).
+
+## 1.2.0 — 2026-07-21
+
+### Added
+- **HCW UX Process** — `docs/HCW-UX-PROCESS.md`: Plan → Design → Build → Evaluate →
+  Improve with RACI, exit gates, cadence, deliverables, and minimal path.
+- **HCW UX index** — `docs/HCW-UX.md`: ships **both** framework (model) and process
+  (how teams run). Neither replaces the other.
+
+### Changed
+- Framework charter (`HCW-UX-FRAMEWORK.md`) pairs explicitly with the process;
+  lifecycle phases point at process gates.
+- Playbook, kit README, CLAUDE.md, principles map, AI/construction/KPI parents
+  all route through `HCW-UX.md`.
+
 ## 1.1.0 — 2026-07-21
 
 ### Added

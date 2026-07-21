@@ -8,6 +8,7 @@
  */
 import { Alert, AlertTitle, Box, Button } from "@mui/material";
 import { useEffect, useState } from "react";
+import { assertCapacity } from "./capacity.js";
 import { INTERRUPTION, LAYOUT, Z_INDEX } from "./tokens.js";
 
 export type ToastKind = "error" | "success" | "info" | "warning";
@@ -47,6 +48,10 @@ export function pushToast(t: Omit<Toast, "id">, ttlMs?: number): void {
   const toast = { ...t, id: ++seq };
   // Drop oldest ambient toasts when over capacity; errors keep priority by
   // trimming from the front (oldest) until under budget.
+  const projected = toasts.length + 1;
+  if (projected > INTERRUPTION.maxConcurrentToasts) {
+    assertCapacity("toast", projected);
+  }
   toasts = [...toasts, toast];
   while (toasts.length > INTERRUPTION.maxConcurrentToasts) {
     const dropIdx = toasts.findIndex((x) => x.kind !== "error");
