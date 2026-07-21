@@ -11,7 +11,7 @@
  */
 import { Box } from "@mui/material";
 import type { ReactNode } from "react";
-import { colors, STATUS_COLORS } from "./tokens.js";
+import { colors, STATUS_COLORS, TYPE_SCALE } from "./tokens.js";
 
 export function StatusDot({
   color = "gray",
@@ -34,7 +34,10 @@ export function StatusDot({
         aria-hidden
         sx={{ width: px, height: px, borderRadius: "50%", flex: "0 0 auto", backgroundColor: dot }}
       />
-      <Box component="span" sx={{ fontSize: size === "md" ? "0.875rem" : "0.75rem", color: "text.primary" }}>
+      <Box
+        component="span"
+        sx={{ fontSize: size === "md" ? TYPE_SCALE.body2 : TYPE_SCALE.caption, color: "text.primary" }}
+      >
         {label}
       </Box>
     </Box>

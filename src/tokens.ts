@@ -143,15 +143,55 @@ export const TAB_ALERT_WIDTH = 3;
 // ── Scale tokens (the numeric ladders the theme + components build on) ─────────
 
 /** Spacing base — 8px, matching MUI's default grid so existing layouts are
- *  unaffected. `theme.spacing(1)` = 8px. Use `SPACING.*` instead of magic px. */
+ *  unaffected. `theme.spacing(1)` = 8px. Use `SPACING.*` instead of magic px.
+ *  Ladder aligns with Carbon's 2/4/8/12/16/24/32/40/48/64 productive steps
+ *  (enterprise density) while keeping HCW names — we do **not** use Carbon's
+ *  visual language. */
 export const SPACING_UNIT = 8;
 export const SPACING = {
-  none: 0, xxs: 2, xs: 4, sm: 8, md: 16, lg: 24, xl: 32, xxl: 48, xxxl: 64,
+  none: 0,
+  xxs: 2,
+  xs: 4,
+  sm: 8,
+  /** Dense stack / chip gap — Carbon `$spacing-04`. */
+  compact: 12,
+  md: 16,
+  lg: 24,
+  xl: 32,
+  /** Section separation — Carbon `$spacing-08`. */
+  section: 40,
+  xxl: 48,
+  xxxl: 64,
 } as const;
 
 /** Responsive breakpoints (px). Mirror MUI defaults; `md: 900` is the rail
  *  stack/unstack line used across the workspace + marketing shells. */
 export const BREAKPOINTS = { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 } as const;
+
+/**
+ * Layout / grid organisation — Carbon-inspired structure (gutters, margins,
+ * shell proportions) expressed as HCW tokens. **Grid is MUI 12-column**, not
+ * Carbon's 16-column. Fluid workspace rails may use `railFraction`; kit
+ * `GlassRail` uses fixed `railWidth` for portal/auth shells.
+ */
+export const LAYOUT = {
+  columns: 12,
+  gutter: SPACING.md,
+  margin: SPACING.md,
+  railWidth: 240,
+  railWidthCollapsed: 56,
+  railFraction: 0.2,
+  stageFraction: 0.8,
+  /** theme.spacing multipliers for GlassRail / stage padding. */
+  railPadding: 2,
+  stagePaddingXs: 2,
+  stagePaddingMd: 3,
+  stagePaddingBottomXs: 4,
+  stagePaddingBottomMd: 6,
+  contentMaxWidth: 1280,
+  taskbarHeight: 56,
+  dockClearance: SPACING.md,
+} as const;
 
 /** Z-index ladder — one stack order for every floating surface, mirroring MUI's
  *  ladder so themed MUI overlays and HCW chrome (rail · dock · footer) never fight. */
@@ -165,16 +205,24 @@ export const OPACITY = {
   disabled: 0.45, muted: 0.6, hoverWash: 0.04, selectedWash: 0.14,
 } as const;
 
-/** Type scale — the sanctioned font sizes BELOW/BESIDE the MUI variants, for the
- *  dense-telemetry cases (rail micro-labels, KPI values) that variants don't cover.
- *  Icon sizing via `fontSize` on icon components is geometry, not typography — it
- *  is exempt from this scale (see HCW-KIT-AI-KNOWLEDGE-BASE.md R1). */
+/**
+ * Type scale — productive hierarchy (Carbon density inspiration) in HCW names.
+ * Dense telemetry (`micro`/`caption`/`label`) sits beside body; `kpi`/`subtitle`/
+ * `heading`/`display` cover stage readouts and page titles. Theme typography
+ * sizes are wired from this ladder — do not invent rem sizes at call sites.
+ * Icon `fontSize` on icon components is geometry, not typography (KB R1).
+ */
 export const TYPE_SCALE = {
-  micro: "0.65rem", // rail telemetry micro-labels (below caption)
-  caption: "0.75rem", // = MUI caption; here for completeness of the ladder
+  micro: "0.65rem",
+  caption: "0.75rem",
+  /** Compact UI label (taskbar, dense controls) — ~13px. */
+  label: "0.8125rem",
   body2: "0.875rem",
   body: "1rem",
-  kpi: "1.1rem", // stage-head / rail KPI values (light weight)
+  kpi: "1.1rem",
+  subtitle: "1.25rem",
+  heading: "1.75rem",
+  display: "2.625rem",
 } as const;
 
 /** Motion tokens — durations (ms) + easings. `fast`/`base` match the 130–200ms
@@ -547,9 +595,11 @@ export const tokens = {
   FONT_FAMILY,
   SPACING,
   SPACING_UNIT,
+  LAYOUT,
   BREAKPOINTS,
   Z_INDEX,
   OPACITY,
+  TYPE_SCALE,
   MOTION,
   ELEVATION,
 } as const;

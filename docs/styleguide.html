@@ -193,29 +193,45 @@
       <div class="card" style="background:#FFFFFF;color:#000;border:1px solid #000"><strong>High-contrast</strong> — pure grounds, full-strength borders, darkened accent <span style="color:#C93A00;font-weight:700">#C93A00</span>.</div>
     </div>
 
-    <h3>Type scale — Urbanist</h3>
+    <h3>Type scale — Urbanist (productive hierarchy)</h3>
     <div class="card">
+      <div class="type-row"><span class="n">display · 2.625rem</span><span style="font-size:2.625rem;font-weight:300;letter-spacing:.01em">DISPLAY</span></div>
+      <div class="type-row"><span class="n">heading · 1.75rem</span><span style="font-size:1.75rem;font-weight:300;letter-spacing:.01em">SECTION HEADING</span></div>
+      <div class="type-row"><span class="n">subtitle · 1.25rem</span><span style="font-size:1.25rem;font-weight:400">Subtitle / card title</span></div>
       <div class="type-row"><span class="n">kpi · 1.1rem</span><span style="font-size:1.1rem;font-weight:300">1,240 projects</span></div>
       <div class="type-row"><span class="n">body · 1rem</span><span style="font-size:1rem">Information at rest reads in Coal Black on Fog Gray.</span></div>
       <div class="type-row"><span class="n">body2 · 0.875rem</span><span style="font-size:.875rem">Secondary body — helper and dense table text.</span></div>
-      <div class="type-row"><span class="n">caption · 0.75rem</span><span style="font-size:.75rem">Caption / label.</span></div>
+      <div class="type-row"><span class="n">label · 0.8125rem</span><span style="font-size:.8125rem;font-weight:600">Compact UI label</span></div>
+      <div class="type-row"><span class="n">caption · 0.75rem</span><span style="font-size:.75rem">Caption / meta.</span></div>
       <div class="type-row"><span class="n">micro · 0.65rem</span><span style="font-size:.65rem;letter-spacing:.04em">RAIL TELEMETRY MICRO-LABEL</span></div>
     </div>
 
     <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:16px">
       <div class="card">
-        <h3 style="margin-top:0">Spacing (8px base)</h3>
+        <h3 style="margin-top:0">Spacing (8px base · Carbon density steps)</h3>
         <div class="space-row"><span class="n">xxs · 2</span><span class="bar" style="width:2px"></span></div>
         <div class="space-row"><span class="n">xs · 4</span><span class="bar" style="width:4px"></span></div>
         <div class="space-row"><span class="n">sm · 8</span><span class="bar" style="width:8px"></span></div>
+        <div class="space-row"><span class="n">compact · 12</span><span class="bar" style="width:12px"></span></div>
         <div class="space-row"><span class="n">md · 16</span><span class="bar" style="width:16px"></span></div>
         <div class="space-row"><span class="n">lg · 24</span><span class="bar" style="width:24px"></span></div>
         <div class="space-row"><span class="n">xl · 32</span><span class="bar" style="width:32px"></span></div>
+        <div class="space-row"><span class="n">section · 40</span><span class="bar" style="width:40px"></span></div>
         <div class="space-row"><span class="n">xxl · 48</span><span class="bar" style="width:48px"></span></div>
         <div class="space-row"><span class="n">xxxl · 64</span><span class="bar" style="width:64px"></span></div>
       </div>
       <div class="card">
-        <h3 style="margin-top:0">Radius — square by default</h3>
+        <h3 style="margin-top:0">Layout · grid organisation</h3>
+        <p class="sub" style="margin:0 0 10px"><strong>12 columns</strong> (MUI Grid / <code>layoutSx.grid</code>) — not Carbon 16-col. Gutter/margin = 16px. Kit rail = 240px; fluid shells may use 20%/80%.</p>
+        <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin:12px 0">
+          <div style="grid-column:span 3;background:var(--accent-soft);border:1px solid var(--accent);padding:8px;font-size:.65rem">span 3</div>
+          <div style="grid-column:span 9;background:var(--layer02);border:1px solid var(--border);padding:8px;font-size:.65rem">span 9</div>
+          <div style="grid-column:span 4;background:var(--layer02);border:1px solid var(--border);padding:8px;font-size:.65rem">span 4</div>
+          <div style="grid-column:span 4;background:var(--layer02);border:1px solid var(--border);padding:8px;font-size:.65rem">span 4</div>
+          <div style="grid-column:span 4;background:var(--layer02);border:1px solid var(--border);padding:8px;font-size:.65rem">span 4</div>
+        </div>
+        <p class="sub" style="margin:0">Tokens: <code>LAYOUT</code> · helpers: <code>layoutSx.rail</code> · <code>.stage</code> · <code>.grid</code> · <code>.content</code> · <code>.page</code>.</p>
+        <h3>Radius — square by default</h3>
         <div class="radrow">
           <div class="radbox" style="border-radius:0">0 · surfaces</div>
           <div class="radbox" style="border-radius:4px">4 · buttons</div>

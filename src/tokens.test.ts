@@ -5,14 +5,18 @@ import {
   DIALOG_RADIUS,
   ELEVATION,
   HIGH_CONTRAST_RECIPES,
+  LAYOUT,
   MOTION,
   RADIUS,
   SCHEMES,
+  SPACING,
   STATUS_COLORS,
   TYPE_SCALE,
   colors,
   recipesFor,
+  tokens,
 } from "./tokens.js";
+import { layoutSx } from "./chrome-sx.js";
 
 describe("colour schemes", () => {
   it("every scheme carries every semantic role of the light scheme", () => {
@@ -29,6 +33,38 @@ describe("colour schemes", () => {
   it("dark scheme lifts the accent for dark grounds", () => {
     expect(SCHEMES.dark.accent).not.toBe(colors.accent);
     expect(SCHEMES.dark.background).not.toBe(colors.background);
+  });
+});
+
+describe("layout · spacing · type hierarchy (Carbon-inspired organisation)", () => {
+  it("exposes a 12-column grid contract with 8px-aligned gutters", () => {
+    expect(LAYOUT.columns).toBe(12);
+    expect(LAYOUT.gutter).toBe(SPACING.md);
+    expect(LAYOUT.margin).toBe(SPACING.md);
+    expect(LAYOUT.railWidth + LAYOUT.dockClearance).toBeGreaterThan(LAYOUT.railWidth);
+    expect(LAYOUT.railFraction + LAYOUT.stageFraction).toBeCloseTo(1);
+  });
+
+  it("spacing ladder includes Carbon mid-steps compact(12) and section(40)", () => {
+    expect(SPACING.compact).toBe(12);
+    expect(SPACING.section).toBe(40);
+    expect(SPACING.sm).toBe(8);
+    expect(SPACING.md).toBe(16);
+  });
+
+  it("type scale covers productive hierarchy steps", () => {
+    expect(TYPE_SCALE.micro).toBeTruthy();
+    expect(TYPE_SCALE.label).toBe("0.8125rem");
+    expect(TYPE_SCALE.subtitle).toBe("1.25rem");
+    expect(TYPE_SCALE.heading).toBe("1.75rem");
+    expect(TYPE_SCALE.display).toBe("2.625rem");
+  });
+
+  it("token bundle and layoutSx recipes stay in sync with LAYOUT", () => {
+    expect(tokens.LAYOUT).toBe(LAYOUT);
+    expect(tokens.TYPE_SCALE).toBe(TYPE_SCALE);
+    expect(layoutSx.grid.gridTemplateColumns).toContain(String(LAYOUT.columns));
+    expect(layoutSx.rail.width).toEqual({ xs: "100%", md: LAYOUT.railWidth });
   });
 });
 

@@ -13,9 +13,9 @@
  */
 import { Box, IconButton, Tooltip, type BoxProps } from "@mui/material";
 import { useEffect, useState, type ReactNode } from "react";
-import { colors, NEU_RAISED, REDUCE_MOTION, FOCUS_RING } from "./tokens.js";
+import { colors, NEU_RAISED, REDUCE_MOTION, FOCUS_RING, LAYOUT, TYPE_SCALE } from "./tokens.js";
 
-export const TASKBAR_HEIGHT = 56;
+export const TASKBAR_HEIGHT = LAYOUT.taskbarHeight;
 
 function Clock() {
   const [now, setNow] = useState(() => new Date());
@@ -27,8 +27,8 @@ function Clock() {
   const date = now.toLocaleDateString("en-IN", { day: "2-digit", month: "short" });
   return (
     <Box sx={{ textAlign: "right", lineHeight: 1.15, fontVariantNumeric: "tabular-nums", pr: 0.5 }}>
-      <Box sx={{ fontWeight: 700, fontSize: "0.82rem", color: "text.primary" }}>{time}</Box>
-      <Box sx={{ fontSize: "0.66rem", color: colors.textSecondary }}>{date}</Box>
+      <Box sx={{ fontWeight: 700, fontSize: TYPE_SCALE.label, color: "text.primary" }}>{time}</Box>
+      <Box sx={{ fontSize: TYPE_SCALE.micro, color: colors.textSecondary }}>{date}</Box>
     </Box>
   );
 }

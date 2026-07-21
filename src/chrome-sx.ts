@@ -13,6 +13,8 @@ import {
   MARKETING_DOCK_RADIUS,
   REDUCE_MOTION,
   SECTION_DOCK_CHIP_GLASS,
+  LAYOUT,
+  TYPE_SCALE,
 } from "./tokens.js";
 
 /** ActionDock button — flat pill at rest, liquid-glass capsule on hover/focus. */
@@ -89,7 +91,7 @@ export function liquidGlassSpecimenSx(ink = colors.accent): SxProps<Theme> {
     color: ink,
     px: 1,
     py: 0.5,
-    fontSize: "0.68rem",
+    fontSize: TYPE_SCALE.micro,
     fontWeight: 700,
     lineHeight: 1.2,
     letterSpacing: "0.02em",
@@ -97,3 +99,42 @@ export function liquidGlassSpecimenSx(ink = colors.accent): SxProps<Theme> {
     verticalAlign: "middle",
   };
 }
+
+/**
+ * Layout `sx` recipes — Carbon-inspired organisation (shell · gutters · 12-col
+ * content) without adopting Carbon Grid. Prefer these over magic padding/widths.
+ */
+export const layoutSx = {
+  /** Stage content padding matching GlassRail. */
+  stage: {
+    p: { xs: LAYOUT.stagePaddingXs, md: LAYOUT.stagePaddingMd },
+    pb: { xs: LAYOUT.stagePaddingBottomXs, md: LAYOUT.stagePaddingBottomMd },
+  } satisfies SxProps<Theme>,
+  /** Fixed kit rail column (portals/auth). */
+  rail: {
+    width: { xs: "100%", md: LAYOUT.railWidth },
+    flex: { xs: "none", md: `0 0 ${LAYOUT.railWidth}px` },
+    p: LAYOUT.railPadding,
+  } satisfies SxProps<Theme>,
+  /** Optional reading-width constraint for stage interiors. */
+  content: {
+    width: "100%",
+    maxWidth: LAYOUT.contentMaxWidth,
+    mx: "auto",
+    px: { xs: LAYOUT.stagePaddingXs, md: 0 },
+  } satisfies SxProps<Theme>,
+  /**
+   * 12-column CSS grid with the sanctioned gutter. Map children with
+   * `gridColumn: span N` (N ≤ {@link LAYOUT.columns}).
+   */
+  grid: {
+    display: "grid",
+    gridTemplateColumns: `repeat(${LAYOUT.columns}, minmax(0, 1fr))`,
+    gap: `${LAYOUT.gutter}px`,
+    width: "100%",
+  } satisfies SxProps<Theme>,
+  /** Outer shell margin (page edge). */
+  page: {
+    px: `${LAYOUT.margin}px`,
+  } satisfies SxProps<Theme>,
+} as const;

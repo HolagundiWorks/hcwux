@@ -98,14 +98,19 @@ in CI (removed with `@carbon/react`) — code review is the check now.
    | `ProgressBar` | `LinearProgress` (`variant="determinate"`) |
    | `@carbon/icons-react` | `@mui/icons-material` (per-icon default import) |
 
-2. **Use the MUI System, not Carbon layout.** Layout, spacing, sizing and type go
-   through the [MUI System](https://mui.com/system/getting-started/): `Box`/`Stack`/
+2. **Use the MUI System + kit `LAYOUT` tokens, not Carbon layout.** Layout, spacing,
+   sizing and type go through the [MUI System](https://mui.com/system/getting-started/)
+   and `@hcw/ui-kit` (`LAYOUT`, `SPACING`, `TYPE_SCALE`, `layoutSx`): `Box`/`Stack`/
    `Grid` with the `sx` prop and system props (`spacing`, `p`/`m`, `width`, `display`,
-   `typography`). No Carbon `Grid`/`Column`/`gap`, no ad-hoc structural divs.
-   - **Grid**: `<Grid container spacing={2}>` + `<Grid size={{ xs: 12, md: 4 }}>`.
-   - **Spacing/sizing**: `sx={{ p: 2, mt: 3, width: 1, maxWidth: 480 }}` (8px unit).
-   - **Type**: MUI `Typography` (`variant="h4|body1|body2|caption"`) or the `typography`
-     sx prop — not raw `<h1>/<p>`. Page titles use `<Typography variant="h4">`.
+   `typography`). No Carbon `Grid`/`Column`/`gap`, no ad-hoc structural divs with
+   magic px. Shell geometry (rail width, stage padding, gutters) lives in `LAYOUT`.
+   - **Grid (12-col, not Carbon 16):** `<Grid container spacing={2}>` +
+     `<Grid size={{ xs: 12, md: 4 }}>` — or `sx={layoutSx.grid}` with
+     `gridColumn: "span N"`.
+   - **Spacing/sizing:** `SPACING.*` / `theme.spacing` (8px unit); mid-steps
+     `compact` (12) and `section` (40) for dense stacks / section rhythm.
+   - **Type:** MUI `Typography` variants (sizes wired from `TYPE_SCALE`) — not
+     raw rem. Dense telemetry uses `TYPE_SCALE.micro` / `.label` / `.kpi`.
 3. **Never hard-code colour.** Use `color="primary|error|warning|success"`, the
    theme palette, or `@hcw/ui-kit` tokens (`--cds-*` vars are a static
    compatibility layer in `styles.scss` for older call sites). No hex.

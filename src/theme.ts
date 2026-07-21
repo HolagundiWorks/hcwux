@@ -41,6 +41,7 @@ import {
   BREAKPOINTS,
   Z_INDEX,
   OPACITY,
+  TYPE_SCALE,
 } from "./tokens.js";
 
 /** Build the AORMS MUI theme. Exposed as a factory so a portal can layer small
@@ -82,16 +83,43 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
     },
     typography: {
       fontFamily: FONT_FAMILY,
-      button: { textTransform: "capitalize", fontWeight: 600 },
-      h1: { fontWeight: 300, letterSpacing: "0.01em", textTransform: "uppercase" },
-      h2: { fontWeight: 300, letterSpacing: "0.01em", textTransform: "uppercase" },
-      h3: { fontWeight: 400, letterSpacing: "0.01em", textTransform: "uppercase" },
-      h4: { fontWeight: 500, letterSpacing: "0.01em", textTransform: "uppercase" },
-      h5: { fontWeight: 600, textTransform: "none" },
-      h6: { fontWeight: 600, textTransform: "none" },
-      subtitle1: { textTransform: "none" },
-      subtitle2: { textTransform: "none" },
-      overline: { letterSpacing: "0.08em", fontWeight: 600 },
+      button: { textTransform: "capitalize", fontWeight: 600, fontSize: TYPE_SCALE.body2 },
+      h1: {
+        fontWeight: 300,
+        letterSpacing: "0.01em",
+        textTransform: "uppercase",
+        fontSize: TYPE_SCALE.display,
+      },
+      h2: {
+        fontWeight: 300,
+        letterSpacing: "0.01em",
+        textTransform: "uppercase",
+        fontSize: TYPE_SCALE.heading,
+      },
+      h3: {
+        fontWeight: 400,
+        letterSpacing: "0.01em",
+        textTransform: "uppercase",
+        fontSize: TYPE_SCALE.subtitle,
+      },
+      h4: {
+        fontWeight: 500,
+        letterSpacing: "0.01em",
+        textTransform: "uppercase",
+        fontSize: TYPE_SCALE.kpi,
+      },
+      h5: { fontWeight: 600, textTransform: "none", fontSize: TYPE_SCALE.body },
+      h6: { fontWeight: 600, textTransform: "none", fontSize: TYPE_SCALE.body2 },
+      subtitle1: { textTransform: "none", fontSize: TYPE_SCALE.body },
+      subtitle2: { textTransform: "none", fontSize: TYPE_SCALE.body2 },
+      body1: { fontSize: TYPE_SCALE.body },
+      body2: { fontSize: TYPE_SCALE.body2 },
+      caption: { fontSize: TYPE_SCALE.caption },
+      overline: {
+        letterSpacing: "0.08em",
+        fontWeight: 600,
+        fontSize: TYPE_SCALE.micro,
+      },
     },
     components: {
       MuiPaper: {
@@ -459,7 +487,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
           head: {
             textTransform: "uppercase",
             letterSpacing: "0.08em",
-            fontSize: "0.6875rem",
+            fontSize: TYPE_SCALE.micro,
             fontWeight: 600,
             color: CDS.textSecondary,
           },
@@ -488,7 +516,7 @@ export function createAormsTheme(options?: { scheme?: SchemeName }): Theme {
           columnHeaderTitle: {
             textTransform: "uppercase",
             letterSpacing: "0.08em",
-            fontSize: "0.6875rem",
+            fontSize: TYPE_SCALE.micro,
             fontWeight: 600,
             color: CDS.textSecondary,
           },

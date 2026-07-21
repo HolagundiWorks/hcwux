@@ -127,7 +127,7 @@ not the docs.
 
 | System | Borrow | Ignore |
 | --- | --- | --- |
-| IBM Carbon | token governance, data-viz rules, enterprise density | its visual language (we left Carbon 2026-07) |
+| IBM Carbon | token governance, **spacing/type density ladders**, data-viz rules, enterprise shell organisation | its visual language (16-col Grid, IBM Plex, indigo — we left Carbon 2026-07) |
 | Material 3 | motion/easing science, state-layer thinking | dynamic colour, rounded shape language |
 | Fluent 2 | desktop/productivity patterns, keyboarding | acrylic/mica aesthetics |
 | Atlassian | IA + governance process docs, RFC workflow | — |

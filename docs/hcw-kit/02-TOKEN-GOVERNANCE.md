@@ -7,9 +7,9 @@ visual values (Constitution II). **Adopted:** 2026-07-11.
 
 | Tier | Examples | Mutability |
 | --- | --- | --- |
-| **Global** | raw ladders: `SPACING`, `BREAKPOINTS`, `Z_INDEX`, `OPACITY`, `MOTION`, `TYPE_SCALE`, `RADIUS`/`BUTTON_RADIUS`/`DIALOG_RADIUS`, base hues | **Immutable** — values change only by Constitution-level decision |
+| **Global** | raw ladders: `SPACING`, `LAYOUT`, `BREAKPOINTS`, `Z_INDEX`, `OPACITY`, `MOTION`, `TYPE_SCALE`, `RADIUS`/`BUTTON_RADIUS`/`DIALOG_RADIUS`, base hues | **Immutable** — values change only by Constitution-level decision |
 | **Semantic** | `colors`/`SCHEMES` roles (`accent`, `textHelper`, `borderSubtle`…), `ELEVATION`, `STATUS_COLORS`, recipe sets (`recipesFor`) | Extend freely; **meanings never silently change** |
-| **Component** | recipe constants a primitive consumes (`ACTION_DOCK_TRAY`, `SECTION_DOCK_CHIP_GLASS`) | Owned by the component's definition; changed with it |
+| **Component** | recipe constants a primitive consumes (`ACTION_DOCK_TRAY`, `SECTION_DOCK_CHIP_GLASS`, `layoutSx.*`) | Owned by the component's definition; changed with it |
 
 ## Rules
 
@@ -32,6 +32,21 @@ visual values (Constitution II). **Adopted:** 2026-07-11.
    palettes (flagged for token migration), brand-mandated colours (e.g. Google
    sign-in), the `landing.scss`/`glass.scss` editorial recipes, and the frozen
    `--cds-*` compat layer.
+
+## Grid · organisation · hierarchy (Carbon-inspired, HCW-owned)
+
+We **borrow Carbon's enterprise density discipline** (8px base, mid-steps 12/40,
+clear type ladder, shell gutters) and **reject** Carbon's visual language
+(16-column Grid, IBM Plex, indigo, productive-heading token names as API).
+
+| Concern | HCW contract | Token / helper |
+| --- | --- | --- |
+| **Grid** | **12 columns** via MUI `Grid` or `layoutSx.grid` (CSS grid). Never Carbon `Grid`/`Column`. | `LAYOUT.columns`, `LAYOUT.gutter` |
+| **Organisation** | Rail · Stage · Taskbar · Dock. Kit portals use fixed `LAYOUT.railWidth`; fluid workspace may use `railFraction`/`stageFraction` (20/80). | `LAYOUT.*`, `layoutSx.rail` / `.stage` / `.page` |
+| **Hierarchy** | Depth encodes importance (`ELEVATION` / layers). Type sizes only from `TYPE_SCALE` (wired into theme typography). Spacing only from `SPACING` (+ `compact`/`section`). | `TYPE_SCALE`, `SPACING`, `ELEVATION` |
+
+Call sites must not invent rem font sizes, shell widths, or gutters. Extend the
+ladder in `tokens.ts` first.
 
 ## Change protocol
 

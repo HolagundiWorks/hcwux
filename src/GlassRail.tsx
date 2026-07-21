@@ -5,13 +5,13 @@
  *
  *   glass="frost"  — default Layer 3 frosted glass (portals, auth)
  *   glass="clear"  — clear glass so atmosphere/canvas shows through (marketing-like)
+ *
+ * Widths/paddings come from {@link LAYOUT} — do not hardcode shell geometry.
  */
 import { Box, type BoxProps } from "@mui/material";
 import type { ReactNode } from "react";
 import { Surface } from "./Surface.js";
-import { colors } from "./tokens.js";
-
-const RAIL_WIDTH = 240;
+import { colors, LAYOUT } from "./tokens.js";
 
 export function GlassRail({
   rail,
@@ -47,13 +47,13 @@ export function GlassRail({
         component="aside"
         aria-label={railAriaLabel}
         sx={{
-          flex: { xs: "none", md: `0 0 ${RAIL_WIDTH}px` },
-          width: { xs: "100%", md: RAIL_WIDTH },
+          flex: { xs: "none", md: `0 0 ${LAYOUT.railWidth}px` },
+          width: { xs: "100%", md: LAYOUT.railWidth },
           minHeight: { xs: 0, md: "100vh" },
           position: { xs: "static", md: "sticky" },
           top: 0,
           alignSelf: { md: "flex-start" },
-          p: 2,
+          p: LAYOUT.railPadding,
           borderRight: { md: `1px solid ${colors.borderSubtle}` },
           borderBottom: { xs: `1px solid ${colors.borderSubtle}`, md: "none" },
         }}
@@ -69,8 +69,8 @@ export function GlassRail({
           minWidth: 0,
           minHeight: { xs: "auto", md: "100vh" },
           overflow: { xs: "visible", md: "auto" },
-          p: { xs: 2, md: 3 },
-          pb: { xs: 4, md: 6 },
+          p: { xs: LAYOUT.stagePaddingXs, md: LAYOUT.stagePaddingMd },
+          pb: { xs: LAYOUT.stagePaddingBottomXs, md: LAYOUT.stagePaddingBottomMd },
         }}
       >
         {children}
