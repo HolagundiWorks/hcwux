@@ -7,6 +7,11 @@ each current and future HCW product — AORMS-Studio, AORMS-Consultancy, and wha
 comes after — must follow. It changes rarely and deliberately; implementations
 (`@hcw/ui-kit`, app code, docs) evolve constantly *underneath* it.
 
+> **Framework charter (purpose · scope · KPIs · diagram):**  
+> **[HCW-UX-FRAMEWORK.md](HCW-UX-FRAMEWORK.md)** — use that when evaluating HCW as a
+> *UX framework* (not only a design system). Construction specialization:
+> [esti/HCW-CONSTRUCTION-UX-OVERLAY.md](esti/HCW-CONSTRUCTION-UX-OVERLAY.md).
+
 > **Why this document exists:** an agent (human or AI) should be able to reason about
 > **why** a rule exists before deciding **how** to implement it. The Playbook holds
 > the why. The [Constitution](hcw-kit/00-CONSTITUTION.md) compresses it into articles;
