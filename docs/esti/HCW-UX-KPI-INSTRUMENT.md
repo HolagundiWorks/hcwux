@@ -51,8 +51,9 @@ Ambient progress must **not** emit `ux.interrupt`.
 | `ConfirmModal` kind | Slip vs mistake tagging |
 | `CAPACITY` / `INTERRUPTION` tokens | Caps for `capacity_warn` |
 | **`logUxEvent` / `setUxEventSink`** | Product attaches analytics sink |
+| **`logOrient` · `logDecision` · `logMission` · `logInterrupt`** | Typed KPI vocabulary helpers |
 | **`DockAction.track` / `.outcome`** | `ux.dock` + auto `publishOutcome` on click |
-| **`KpiStrip` / ActionDock trim** | `ux.capacity_warn` on overrun |
+| **`KpiStrip` / ActionDock trim / Toast trim** | `ux.capacity_warn` on overrun |
 | **DecisionQueue focus** | `ux.decision` pending |
 
 Consumer apps still choose the sink implementation (Segment, custom, etc.).

@@ -123,7 +123,7 @@ Construction stakeholder modes: [HCW-CONSTRUCTION-UX-OVERLAY.md](esti/HCW-CONSTR
 1. File/fix [DESIGN-DEBT-REGISTER.md](hcw-kit/11-audits/DESIGN-DEBT-REGISTER.md).
 2. Retire anti-patterns; bump kit version if contract changed.
 3. Feed KPI trends into next Plan (raise/lower caps only with governance).
-4. Optional: case note for validation (framework F5).
+4. Optional: case note for validation ([case-studies/](hcw-kit/11-audits/case-studies/)).
 
 **Deliverables**
 - Updated debt register · changelog · KPI note

@@ -20,6 +20,10 @@ import {
   setUxEventSink,
   resetUxEventSink,
   logUxEvent,
+  logOrient,
+  logDecision,
+  logMission,
+  logInterrupt,
   publishOutcome,
   resetOutcomes,
   ActionDockProvider,
@@ -178,5 +182,20 @@ describe("logUxEvent + dock outcome coupling", () => {
       publishOutcome({ status: "success", label: "Ok" });
     });
     expect(events).toContain("ux.outcome");
+  });
+
+  it("typed helpers emit instrument vocabulary", () => {
+    const events: Array<{ name: string; payload: Record<string, unknown> }> = [];
+    setUxEventSink((name, payload) => events.push({ name, payload }));
+    logOrient("t10", 18000);
+    logDecision("d1", "frozen", 4000);
+    logMission("m1", "done");
+    logInterrupt("judgment", true);
+    expect(events.map((e) => e.name)).toEqual([
+      "ux.orient",
+      "ux.decision",
+      "ux.mission",
+      "ux.interrupt",
+    ]);
   });
 });

@@ -191,7 +191,7 @@ Detail: [HCW-UX-KPI-INSTRUMENT.md](esti/HCW-UX-KPI-INSTRUMENT.md).
 | # | Question | HCW answer (2026-07-21) |
 | --- | --- | --- |
 | 1 | Problem better than existing? | Yes — cognitive-role chrome + mission-first AI vs chat/DS-only |
-| 2 | Every component necessary? | Mostly; enforce remaining CAPACITY/COGA flags |
+| 2 | Every component necessary? | Yes — CAPACITY/COGA/orchestration shipped; no spare shells |
 | 3 | Short intro success? | Yes — framework §3 + process §3 + T10 primitives |
 | 4 | Consistent across teams? | Designed for yes; enforce via R1–R10 + process gates |
 | 5 | Impact measurable? | KPIs + `logUxEvent` + case studies published |

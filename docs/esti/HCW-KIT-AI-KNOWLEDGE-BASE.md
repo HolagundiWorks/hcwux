@@ -6,16 +6,16 @@ This document is the operating knowledge base for any AI agent auditing, maintai
 or extending the **HCW Design System** (`@hcw/ui-kit`). The agent acts as a combined
 **Design System Architect · UX Lead · Accessibility Specialist · Front-End Architect**.
 
-> **Authority order (2026-07-11 hierarchy):**
+> **Authority order:**
 > [HCW-DESIGN-PLAYBOOK.md](../HCW-DESIGN-PLAYBOOK.md) (why) →
+> [HCW-UX.md](../HCW-UX.md) (framework + process) →
 > [Constitution](../hcw-kit/00-CONSTITUTION.md) (law) →
 > [AI Agent Rulebook](../hcw-kit/12-AI-AGENT-RULEBOOK.md) (permanent behaviour) →
 > this document (recipes + state). Full documentation map:
-> [docs/hcw-kit/README.md](../hcw-kit/README.md) (sections 00–13).
+> [docs/hcw-kit/README.md](../hcw-kit/README.md) (sections 00–14).
 > HCW Kit is the **single source of truth**; Material UI is the **implementation
-> framework only**. External systems (Carbon, Material 3, Fluent 2, Atlassian,
-> Polaris, Primer) are references, never precedent. Where HCW and a reference
-> disagree, **HCW wins**.
+> framework only**. External systems are references, never precedent. Where HCW and a
+> reference disagree, **HCW wins**.
 
 Companion docs — read together, in this order:
 
@@ -46,9 +46,11 @@ Layer-3 glass lift as `:hover` — keyboard parity is a brand behaviour, not a p
 **Package layout** (`src/`): `tokens.ts` (colour, type, **scales**: `SPACING`,
 `LAYOUT`, `CAPACITY`, `INTERRUPTION`, `COGA`, `TRUST`, `BREAKPOINTS`, `Z_INDEX`,
 `OPACITY`, `MOTION`, `ELEVATION`, plus layer recipes), `theme.ts`
-(`createAormsTheme()`), `chrome-sx.ts` (`layoutSx`), and primitives `Surface`,
-`GlassRail`, `ActionDock`, `AwarenessStrip`, `ActionOutcomeBanner`, `ToastHost`,
-`TaskbarFooter`, `SectionDock`, `HealthGlassOrb`, `BrandMark`, `MuiRoot`.
+(`createHcwTheme({ scheme, density, coga })`), `chrome-sx.ts` (`layoutSx`), and
+primitives `Surface`, `GlassRail`, `ActionDock`, `AwarenessStrip`,
+`ActionOutcomeBanner`, `ToastHost`, `KpiStrip`, T10 orchestration
+(`MissionHeader` · `DecisionQueue` · …), `logUxEvent` / `setUxEventSink`,
+`TaskbarFooter`, `SectionDock`, `HealthGlassOrb`, `BrandMark`, `KitRoot`.
 
 ---
 
@@ -123,13 +125,16 @@ A kit change without a matching update to HCW-UI-KIT.md (and `/design-system` sh
 where visual) is incomplete. Docs and code diverging = a finding against the **change**,
 not the docs.
 
-### R10 — Cognitive contracts (capacity · interruption · awareness)
+### R10 — Cognitive contracts (capacity · interruption · awareness · telemetry)
 Do not exceed `CAPACITY` caps (Cowan WM) without progressive disclosure. Toasts obey
-`INTERRUPTION.maxConcurrentToasts`. Rail supervision uses `AwarenessStrip` (Endsley).
-Dock commits publish `publishOutcome` (Norman evaluation). Confirm destroy with
-`ConfirmModal` slip/mistake kinds (Reason). Status never colour-only — use
-`StatusDot.shape` / `STATUS_SHAPE`.
-- Detect: unbounded KPI strips, toast spam patterns, colour-only urgency in tables.
+`INTERRUPTION.maxConcurrentToasts` (emits `ux.capacity_warn` on trim). Rail supervision
+uses `AwarenessStrip` (Endsley). Dock commits publish `publishOutcome` / `DockAction.outcome`
+(Norman evaluation). Confirm destroy with `ConfirmModal` slip/mistake kinds (Reason).
+Status never colour-only — use `StatusDot.shape` / `STATUS_SHAPE`. AI surfaces use T10
+orchestration primitives. Attach `setUxEventSink` in the product; prefer `logOrient` /
+`logDecision` / `logMission` / `logInterrupt`.
+- Detect: unbounded KPI strips, toast spam patterns, colour-only urgency in tables,
+  chat-first AI without Mission/Decision anatomy.
 
 ---
 

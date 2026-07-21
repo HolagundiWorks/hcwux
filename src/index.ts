@@ -126,6 +126,10 @@ export {
   logUxEvent,
   setUxEventSink,
   resetUxEventSink,
+  logOrient,
+  logDecision,
+  logMission,
+  logInterrupt,
 } from "./uxEvents.js";
 export type { UxEventName, UxEventPayload, UxEventSink } from "./uxEvents.js";
 export { trimDockActions, prioritizeDockActions } from "./ActionDock.js";

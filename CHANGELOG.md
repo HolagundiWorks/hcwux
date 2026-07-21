@@ -15,13 +15,15 @@ changes, not npm releases.
 - **`KitRoot({ coga })` / `createHcwTheme({ coga })`** (F3) — calm mode raises
   targets and bumps type one step; `data-hcw-coga`; `cogaFor` / `densityFor(..., coga)`.
 - **`logUxEvent` / `setUxEventSink`** (F4) — sink-agnostic KPI instrument; dock
-  `DockAction.track` / `.outcome` couples `ux.dock` + `publishOutcome`.
+  `DockAction.track` / `.outcome` couples `ux.dock` + `publishOutcome`; typed
+  `logOrient` · `logDecision` · `logMission` · `logInterrupt`; toast/outcome
+  channels emit `ux.capacity_warn` on overrun.
 - **Case studies (F5)** — `docs/hcw-kit/11-audits/case-studies/` (interrupt · dock ·
   mission orientation).
 
 ### Changed
 - Framework §10 / debt register: F1–F5 closed.
-- Catalog, styleguide, KPI instrument docs updated.
+- Catalog, styleguide, KPI instrument, AI knowledge base updated.
 - Gzip size budget **40 → 50 KB** (new orchestration + telemetry surface).
 
 ## 1.2.0 — 2026-07-21

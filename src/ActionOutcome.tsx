@@ -9,6 +9,7 @@
  *   const outcome = useActionOutcome();
  */
 import { useEffect, useState } from "react";
+import { assertCapacity } from "./capacity.js";
 import { CAPACITY } from "./tokens.js";
 import { logUxEvent } from "./uxEvents.js";
 
@@ -35,6 +36,10 @@ export function publishOutcome(
     id: ++seq,
     at: o.at ?? Date.now(),
   };
+  const projected = outcomes.length + 1;
+  if (projected > CAPACITY.workingMemoryChunks) {
+    assertCapacity("outcomes", projected);
+  }
   outcomes = [row, ...outcomes].slice(0, CAPACITY.workingMemoryChunks);
   emit();
   const status =

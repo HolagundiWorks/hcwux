@@ -30,7 +30,8 @@ tokens would regress contrast.*
 | --- | --- |
 | Surface, GlassRail, ActionDock, TaskbarFooter, SectionDock, HealthGlassOrb, BrandMark | ✓ shipped pre-checklist; re-audit opportunistically |
 | StatusDot, DataState, ConfirmModal, PageBreadcrumb, ToastHost, Avatar | ✓ gate items met at promotion; render tests + visual-regression shipped |
-| AwarenessStrip, ActionOutcomeBanner | ✓ promoted 0.7.0 with psychology suite |
+| AwarenessStrip, ActionOutcomeBanner | ✓ promoted with psychology suite |
+| MissionHeader, ObjectiveList, PhaseStrip, ConfidenceBand, DecisionQueue, FreezeTable, KpiStrip | ✓ 1.3.0 — token-driven, typed, unit-tested (`gaps.test.tsx`); styleguide specimens |
 
 ## Retired (most recent first)
 
