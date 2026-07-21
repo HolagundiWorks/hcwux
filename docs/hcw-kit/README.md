@@ -18,15 +18,16 @@ files are not duplicated).
 | **07** | **UX rules** | [HCW-UI-UX-PRINCIPLES.md](../esti/HCW-UI-UX-PRINCIPLES.md) (laws) · [07-UX-REVIEW-CHECKLISTS.md](07-UX-REVIEW-CHECKLISTS.md) (measurable) · **AI surfaces:** [HCW-AI-ORCHESTRATION-UX.md](../esti/HCW-AI-ORCHESTRATION-UX.md) (mission-first ESTI UX) |
 | **08** | **Accessibility** | [HCW-UI-UX-PRINCIPLES.md](../esti/HCW-UI-UX-PRINCIPLES.md) §8 · rule R6 in the [AI knowledge base](../esti/HCW-KIT-AI-KNOWLEDGE-BASE.md) |
 | **09** | **DesignOps** | [GOVERNANCE.md](../../packages/hcw-ui-kit/GOVERNANCE.md) (contribution · semver · deprecation) |
-| **10** | **MUI integration** | [10-MUI-MAPPING.md](10-MUI-MAPPING.md) — every MUI component → HCW treatment |
+| **10** | **Elements** | [10-ELEMENTS.md](10-ELEMENTS.md) — cheat-sheet · **full:** [14-HCW-CATALOG.md](14-HCW-CATALOG.md) |
 | **11** | **Audits** | [11-audits/README.md](11-audits/README.md) (index + kit snapshots) · **living:** [DESIGN-DEBT-REGISTER.md](11-audits/DESIGN-DEBT-REGISTER.md) · surfaces: [Studio](../../esti/AORMS-STUDIO-INTERFACE-AUDIT-2026-07-11.md) · [Public](../../marketing/PUBLIC-PAGES-AUDIT-2026-07-11.md) · [Security](../../esti/SECURITY-AUDIT-2026-07-11.md) |
 | **12** | **AI agent rules** | [12-AI-AGENT-RULEBOOK.md](12-AI-AGENT-RULEBOOK.md) (permanent behaviour) · [HCW-KIT-AI-KNOWLEDGE-BASE.md](../esti/HCW-KIT-AI-KNOWLEDGE-BASE.md) (contract + recipes) · skill: `.claude/skills/hcw-design-audit` |
 | **13** | **Roadmaps** | [AORMS-UI-AUTOPILOT-ROADMAP.md](../esti/AORMS-UI-AUTOPILOT-ROADMAP.md) · [AORMS-PRODUCT-AUTOPILOT-ROADMAP.md](../esti/AORMS-PRODUCT-AUTOPILOT-ROADMAP.md) |
+| **14** | **Catalog** | [14-HCW-CATALOG.md](14-HCW-CATALOG.md) — every element · component · pattern · pictogram · icon with attributes |
 
 ## Reading order for a new agent (human or AI)
 
 1. [Playbook](../HCW-DESIGN-PLAYBOOK.md) — why the rules exist.
 2. [Constitution](00-CONSTITUTION.md) — the law.
 3. [Rulebook](12-AI-AGENT-RULEBOOK.md) — your permanent operating manual.
-4. [HCW-UI-KIT.md](../esti/HCW-UI-KIT.md) + [05-TEMPLATES.md](05-TEMPLATES.md) + [HCW-UI-UX-PRINCIPLES.md](../esti/HCW-UI-UX-PRINCIPLES.md) — the system itself.
+4. [14-HCW-CATALOG.md](14-HCW-CATALOG.md) + [HCW-UI-KIT.md](../esti/HCW-UI-KIT.md) + [05-TEMPLATES.md](05-TEMPLATES.md) — the system itself.
 5. [Debt register](11-audits/DESIGN-DEBT-REGISTER.md) — current state before touching anything.

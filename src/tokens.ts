@@ -117,10 +117,9 @@ export const DATA_VIZ = {
 } as const;
 
 /**
- * Ordered categorical series for charts (MUI X / canvas). Prefer this over
+ * Ordered categorical series for charts. Prefer this over
  * `Object.values(DATA_VIZ)` so series order stays stable across builds.
- * Borrowed from Carbon's categorical sequencing discipline — not Carbon hues
- * as a brand language (those blues are viz-only; CTAs stay Radiant Orange).
+ * Viz hues are never CTAs — brand accent stays Radiant Orange.
  */
 export const DATA_VIZ_CATEGORICAL = [
   DATA_VIZ.blue,
@@ -230,11 +229,10 @@ export function chartAreaFill(stroke: string, alpha = 0.16): string {
 }
 
 /**
- * Enterprise density targets (Carbon productive inspiration) — WCAG touch
- * targets and compact chrome heights. Visual language stays HCW.
+ * Enterprise density targets — WCAG touch targets and compact chrome heights.
  *
  * Prefer {@link densityFor} when wiring theme/control heights; use
- * {@link chromeIconSx} for persistent-chrome 44px icons regardless of mode.
+ * chromeIconSx for persistent-chrome 44px icons regardless of mode.
  */
 export const DENSITY = {
   /** Minimum interactive target (WCAG 2.5.5 / persistent chrome). */
@@ -312,9 +310,8 @@ export const TAB_ALERT_WIDTH = 3;
 
 /** Spacing base — 8px, matching MUI's default grid so existing layouts are
  *  unaffected. `theme.spacing(1)` = 8px. Use `SPACING.*` instead of magic px.
- *  Ladder aligns with Carbon's 2/4/8/12/16/24/32/40/48/64 productive steps
- *  (enterprise density) while keeping HCW names — we do **not** use Carbon's
- *  visual language. */
+ *  Ladder aligns with productive enterprise density steps
+ *  (2/4/8/12/16/24/32/40/48/64) while keeping HCW names. */
 export const SPACING_UNIT = 8;
 export const SPACING = {
   none: 0,
@@ -337,10 +334,9 @@ export const SPACING = {
 export const BREAKPOINTS = { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 } as const;
 
 /**
- * Layout / grid organisation — Carbon-inspired structure (gutters, margins,
- * shell proportions) expressed as HCW tokens. **Grid is MUI 12-column**, not
- * Carbon's 16-column. Fluid workspace rails may use `railFraction`; kit
- * `GlassRail` uses fixed `railWidth` for portal/auth shells.
+ * Layout / grid organisation — shell gutters, margins, and proportions as HCW
+ * tokens. **Grid is 12-column.** Fluid workspace rails may use `railFraction`;
+ * kit `GlassRail` uses fixed `railWidth` for portal/auth shells.
  */
 export const LAYOUT = {
   columns: 12,

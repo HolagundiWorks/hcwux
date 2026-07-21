@@ -9,11 +9,11 @@
  *
  * Spatial model: Rail · Stage · TaskbarFooter · ActionDock.
  *
- *   import { MuiRoot, ActionDockProvider, ActionDock, TaskbarFooter,
+ *   import { KitRoot, ActionDockProvider, ActionDock, TaskbarFooter,
  *            useScreenActions, Surface, GlassRail, HealthGlassOrb,
  *            BrandMark } from "@hcw/ui-kit";
  *
- * Full spec: docs/esti/HCW-UI-KIT.md.
+ * Full catalog (attributes): docs/hcw-kit/14-HCW-CATALOG.md.
  */
 export * from "./tokens.js";
 export {
@@ -44,8 +44,18 @@ export {
   withChartSeriesColors,
 } from "./charts.js";
 export type { ChartMarker, ChartSeriesInput } from "./charts.js";
-export { createAormsTheme, aormsTheme } from "./theme.js";
-export { MuiRoot } from "./MuiRoot.js";
+export {
+  ICON,
+  ICON_SLOTS,
+  ICON_SIZE,
+  PICTOGRAM,
+  HEALTH_PICTOGRAM,
+  STATUS_PICTOGRAM,
+  BRAND_ACCENT_SHAPES,
+} from "./pictograms.js";
+export type { IconSlot, IconSizeName, IconTone, BrandAccentShape } from "./pictograms.js";
+export { createAormsTheme, createHcwTheme, aormsTheme, hcwTheme } from "./theme.js";
+export { MuiRoot, KitRoot } from "./MuiRoot.js";
 export { BrandMark } from "./BrandMark.js";
 export { Surface } from "./Surface.js";
 export { GlassRail } from "./GlassRail.js";

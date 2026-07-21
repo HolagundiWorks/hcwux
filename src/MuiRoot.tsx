@@ -1,18 +1,12 @@
 /**
- * MuiRoot — mounts the shared AORMS Material UI theme for a portal.
+ * KitRoot — mounts the shared HCW theme for a portal.
  *
- * Wrap a portal's tree in this once and every MUI surface inherits the brand
+ * Wrap a portal's tree in this once and every themed surface inherits the brand
  * (colour, shape, surfaces, type). It supplies the theme *context* only and
- * injects no page-level background, so host-app CSS (including any frozen
- * `--cds-*` compatibility block) can still style non-MUI surfaces without
- * fighting ThemeProvider.
+ * injects no page-level background.
  *
- * `StyledEngineProvider injectFirst` puts MUI/emotion styles at the top of <head>
- * so app CSS still wins on the cascade. `LocalizationProvider` (dayjs) is mounted
- * here so MUI X Date Pickers work anywhere with no per-screen setup.
- *
- * Pass a `theme` to layer portal-specific overrides on top of the brand defaults.
- * `scheme` + `density` feed `createAormsTheme` when `theme` is omitted.
+ * `scheme` + `density` feed `createHcwTheme` when `theme` is omitted.
+ * Export aliases: `KitRoot` (preferred) · `MuiRoot` (legacy name).
  */
 import { StyledEngineProvider, ThemeProvider, type Theme } from "@mui/material/styles";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -21,7 +15,7 @@ import { useMemo, type ReactNode } from "react";
 import { aormsTheme, createAormsTheme } from "./theme.js";
 import type { DensityName, SchemeName } from "./tokens.js";
 
-export function MuiRoot({
+export function KitRoot({
   children,
   theme,
   scheme,
@@ -51,4 +45,6 @@ export function MuiRoot({
   );
 }
 
-export default MuiRoot;
+/** @deprecated Prefer {@link KitRoot}. */
+export const MuiRoot = KitRoot;
+export default KitRoot;

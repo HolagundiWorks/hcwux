@@ -239,7 +239,7 @@
 
     <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:16px">
       <div class="card">
-        <h3 style="margin-top:0">Spacing (8px base · Carbon density steps)</h3>
+        <h3 style="margin-top:0">Spacing (8px base · productive steps)</h3>
         <div class="space-row"><span class="n">xxs · 2</span><span class="bar" style="width:2px"></span></div>
         <div class="space-row"><span class="n">xs · 4</span><span class="bar" style="width:4px"></span></div>
         <div class="space-row"><span class="n">sm · 8</span><span class="bar" style="width:8px"></span></div>
@@ -253,7 +253,7 @@
       </div>
       <div class="card">
         <h3 style="margin-top:0">Layout · grid organisation</h3>
-        <p class="sub" style="margin:0 0 10px"><strong>12 columns</strong> (MUI Grid / <code>layoutSx.grid</code>) — not Carbon 16-col. Gutter/margin = 16px. Kit rail = 240px; fluid shells may use 20%/80%.</p>
+        <p class="sub" style="margin:0 0 10px"><strong>12 columns</strong> (<code>layoutSx.grid</code>). Gutter/margin = 16px. Kit rail = 240px; fluid shells may use 20%/80%.</p>
         <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin:12px 0">
           <div style="grid-column:span 3;background:var(--accent-soft);border:1px solid var(--accent);padding:8px;font-size:.65rem">span 3</div>
           <div style="grid-column:span 9;background:var(--layer02);border:1px solid var(--border);padding:8px;font-size:.65rem">span 9</div>
@@ -261,7 +261,7 @@
           <div style="grid-column:span 4;background:var(--layer02);border:1px solid var(--border);padding:8px;font-size:.65rem">span 4</div>
           <div style="grid-column:span 4;background:var(--layer02);border:1px solid var(--border);padding:8px;font-size:.65rem">span 4</div>
         </div>
-        <p class="sub" style="margin:0">Tokens: <code>LAYOUT</code> · helpers: <code>layoutSx.rail</code> · <code>.stage</code> · <code>.grid</code> · <code>.content</code> · <code>.page</code> · <code>.listToolbar</code>. Density: <code>MuiRoot({ density: "comfortable" | "compact" })</code> · search: <code>searchFieldSx</code>.</p>
+        <p class="sub" style="margin:0">Tokens: <code>LAYOUT</code> · helpers: <code>layoutSx.rail</code> · <code>.stage</code> · <code>.grid</code> · <code>.content</code> · <code>.page</code> · <code>.listToolbar</code>. Density: <code>KitRoot({ density: "comfortable" | "compact" })</code> · search: <code>searchFieldSx</code>. Full attribute catalog: <code>docs/hcw-kit/14-HCW-CATALOG.md</code>.</p>
         <h3>Radius — square by default</h3>
         <div class="radrow">
           <div class="radbox" style="border-radius:0">0 · surfaces</div>
@@ -371,6 +371,9 @@
       <span class="av" style="background:#FF4F18">AM</span>
     </div>
 
+    <h3>Pictograms — shape encodes meaning</h3>
+    <p class="sub" style="margin:0 0 10px">Health: circle stable · triangle watch · square critical. Status: circle + ink label. Chart markers: circle · square · triangle · diamond · cross · star. Icons are <strong>injected</strong> into slots (dock · taskbar · chrome · inline) — the kit ships no icon font. Attributes: <code>docs/hcw-kit/14-HCW-CATALOG.md</code>.</p>
+
     <h3>Tabs — active = inset accent rule (not a fill)</h3>
     <div class="tabstrip">
       <span class="tab active">Overview</span><span class="tab">Lead</span><span class="tab">Project</span><span class="tab">Financial</span><span class="tab">Team</span>
@@ -393,13 +396,13 @@
       <div class="card">
         <h3 style="margin-top:0">Install &amp; mount</h3>
         <p style="font-size:.82rem;color:var(--secondary);margin-bottom:8px">Vendored built copy; consumed via <code>@hcw/ui-kit</code>.</p>
-        <pre style="font-family:var(--mono);font-size:.72rem;color:var(--ink);white-space:pre-wrap;margin:0">import { MuiRoot, ActionDock,
+        <pre style="font-family:var(--mono);font-size:.72rem;color:var(--ink);white-space:pre-wrap;margin:0">import { KitRoot, ActionDock,
   Surface, GlassRail } from "@hcw/ui-kit";
 import "@hcw/ui-kit/portal-chrome.scss";</pre>
       </div>
       <div class="card">
         <h3 style="margin-top:0">Docs</h3>
-        <p style="font-size:.86rem;color:var(--secondary)"><a href="esti/HCW-UI-KIT.md">HCW-UI-KIT.md</a> (layers · spatial model) · <a href="esti/HCW-UI-UX-PRINCIPLES.md">UX principles</a> · <a href="hcw-kit/README.md">governance 00–13</a> · <a href="hcw-kit/02-TOKEN-GOVERNANCE.md">token governance</a> · <a href="esti/HCW-AI-ORCHESTRATION-UX.md">AI-Orchestration UX</a></p>
+        <p style="font-size:.86rem;color:var(--secondary)"><a href="hcw-kit/14-HCW-CATALOG.md">HCW Catalog</a> (attributes) · <a href="esti/HCW-UI-KIT.md">HCW-UI-KIT.md</a> · <a href="esti/HCW-UI-UX-PRINCIPLES.md">UX principles</a> · <a href="hcw-kit/README.md">governance</a> · <a href="hcw-kit/02-TOKEN-GOVERNANCE.md">token governance</a></p>
       </div>
     </div>
   </section>

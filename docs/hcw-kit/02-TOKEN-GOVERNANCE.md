@@ -33,19 +33,20 @@ visual values (Constitution II). **Adopted:** 2026-07-11.
    sign-in), the `landing.scss`/`glass.scss` editorial recipes, and the frozen
    `--cds-*` compat layer.
 
-## Grid · organisation · hierarchy (Carbon-inspired, HCW-owned)
+## Grid · organisation · hierarchy
 
-We **borrow Carbon's enterprise density discipline** (8px base, mid-steps 12/40,
-clear type ladder, shell gutters) and **reject** Carbon's visual language
-(16-column Grid, IBM Plex, indigo, productive-heading token names as API).
+HCW owns the productive density contract: 8px base, mid-steps 12/40, a clear type
+ladder, and shell gutters. Visual language is HCW only (Radiant Orange · Urbanist ·
+square surfaces).
 
 | Concern | HCW contract | Token / helper |
 | --- | --- | --- |
-| **Grid** | **12 columns** via MUI `Grid` or `layoutSx.grid` (CSS grid). Never Carbon `Grid`/`Column`. | `LAYOUT.columns`, `LAYOUT.gutter` |
+| **Grid** | **12 columns** via `layoutSx.grid` or themed Grid. | `LAYOUT.columns`, `LAYOUT.gutter` |
 | **Organisation** | Rail · Stage · Taskbar · Dock. Kit portals use fixed `LAYOUT.railWidth`; fluid workspace may use `railFraction`/`stageFraction` (20/80). | `LAYOUT.*`, `layoutSx.rail` / `.stage` / `.page` |
-| **Hierarchy** | Depth encodes importance (`ELEVATION` / layers). Type sizes only from `TYPE_SCALE` (wired into theme typography). Spacing only from `SPACING` (+ `compact`/`section`). | `TYPE_SCALE`, `SPACING`, `ELEVATION` |
-| **Density** | Productive touch/control heights. `MuiRoot({ density })` / `createAormsTheme({ density })` — comfortable (default) or compact. Persistent chrome icons use `chromeIconSx` (44) regardless. | `DENSITY`, `densityFor`, `chromeIconSx` |
+| **Hierarchy** | Depth encodes importance (`ELEVATION` / layers). Type sizes only from `TYPE_SCALE`. Spacing only from `SPACING` (+ `compact`/`section`). | `TYPE_SCALE`, `SPACING`, `ELEVATION` |
+| **Density** | Productive touch/control heights. `KitRoot({ density })` / `createHcwTheme({ density })` — comfortable (default) or compact. Persistent chrome icons use `chromeIconSx` (44) regardless. | `DENSITY`, `densityFor`, `chromeIconSx` |
 | **Charts** | Ordered palettes (categorical · sequential · diverging · semantic); chrome via `chartChromeFor` / `chartRootSx`; markers for WCAG 1.4.1; never brand accent as a default series hue. | `DATA_VIZ_*`, `chartPalette`, `withChartSeriesColors`, `CHART_MARKERS` |
+| **Pictograms / icons** | Kit-owned shapes (`PICTOGRAM`); injected glyphs via `ICON` slots — no icon font in the kit. | `PICTOGRAM`, `ICON`, [14-HCW-CATALOG.md](14-HCW-CATALOG.md) §5–6 |
 
 Call sites must not invent rem font sizes, shell widths, or gutters. Extend the
 ladder in `tokens.ts` first.

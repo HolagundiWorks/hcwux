@@ -28,6 +28,7 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-21 · **HCW Catalog 1.0.0** — internalised every element/component/pattern/pictogram/icon with attributes (`14-HCW-CATALOG.md`); `PICTOGRAM`/`ICON` contracts; `KitRoot`/`createHcwTheme` aliases; retired external-system mapping framing.
 - 2026-07-21 · **Density mode + list/search recipes (0.9.0)** — `densityFor` / `MuiRoot({ density })`; Button·Input·List·Table·DataGrid·Chip wired; `searchFieldSx` + `layoutSx.listToolbar`; TaskbarFooter off raw `#ffffff`.
 - 2026-07-21 · **Data-viz enhancement (0.8.0)** — sequential / diverging / semantic palettes; `chartPalette` · `chartChromeFor` · `chartRootSx` · `withChartSeriesColors` · `CHART_MARKERS`; styleguide specimen.
 - 2026-07-21 · **MUI ↔ Carbon marriage gap closure (0.7.0)** — `HealthGlassOrb` off `--cds-*`; Tooltip/Alert-filled/DatePicker popup tokenised; `DENSITY` + `chromeIconSx`; `DATA_VIZ_CATEGORICAL` / `chartSeriesColors`; mapping Pagination/Stepper/Charts/DatePicker → 🟩; narrative docs de-Carbon-strangler.

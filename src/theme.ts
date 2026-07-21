@@ -12,9 +12,8 @@
  *  3. Layer 3 GLASS (glassmorphism) — the live layer: BUTTON HOVER takes the
  *     glass slab, and priority alerts (error/warning) read as tinted glass.
  *
- * MUI is the rendering engine; Carbon contributes **density/organisation
- * discipline only** (see `LAYOUT` · `SPACING` · `DENSITY`) — never IBM Plex,
- * indigo, or 16-col Grid.
+ * MUI is the rendering engine; HCW owns appearance and patterns
+ * (see `LAYOUT` · `SPACING` · `DENSITY` · catalog).
  */
 import { createTheme, type Theme } from "@mui/material/styles";
 // Theme augmentation so `components.MuiDataGrid` / `MuiPickersDay` (MUI X) are
@@ -57,8 +56,7 @@ import {
  *  neumorphic/glass recipes remain light-tuned until they gain scheme variants,
  *  so treat non-light schemes as preview-grade (see tokens.ts § Colour schemes).
  *
- *  `density` selects comfortable (default) or compact control heights — Carbon
- *  productive density discipline without Carbon visual language. */
+ *  `density` selects comfortable (default) or compact control heights. */
 export function createAormsTheme(options?: {
   scheme?: SchemeName;
   density?: DensityName;
@@ -651,4 +649,8 @@ export function createAormsTheme(options?: {
 
 /** The shared, ready-to-use AORMS theme instance. */
 export const aormsTheme = createAormsTheme();
+/** HCW name for {@link aormsTheme}. Prefer this in new code. */
+export const hcwTheme = aormsTheme;
+/** HCW name for {@link createAormsTheme}. Prefer this in new code. */
+export const createHcwTheme = createAormsTheme;
 export default aormsTheme;
