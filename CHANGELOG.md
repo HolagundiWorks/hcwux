@@ -4,6 +4,21 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 1.0.0 — 2026-07-21
+
+### Added
+- **HCW Catalog** — `docs/hcw-kit/14-HCW-CATALOG.md`: every foundation, element,
+  component, pattern, pictogram, and icon with attributes (HCW vocabulary only).
+- **`src/pictograms.ts`** — `PICTOGRAM` · `HEALTH_PICTOGRAM` · `STATUS_PICTOGRAM` ·
+  `ICON` / `ICON_SLOTS` / `ICON_SIZE` / tones · brand accent shapes.
+- **HCW aliases** — `KitRoot` (= `MuiRoot`), `createHcwTheme` / `hcwTheme`.
+- **10-ELEMENTS.md** cheat-sheet; former mapping file redirects to the catalog.
+
+### Changed
+- Token governance, styleguide, and token comments speak HCW only (no external
+  system framing in public contracts).
+- Governance README §10 → Elements; §14 → Catalog.
+
 ## 0.9.0 — 2026-07-21
 
 ### Added
@@ -18,7 +33,7 @@ changes, not npm releases.
   uses `DENSITY.controlCompact`.
 
 ### Docs
-- Token governance density contract; MUI mapping list/search/density notes.
+- Token governance density contract; element list/search/density notes.
 
 ## 0.8.0 — 2026-07-21
 
