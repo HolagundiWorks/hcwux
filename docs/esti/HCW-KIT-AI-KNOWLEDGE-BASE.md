@@ -36,8 +36,9 @@ HCW-UI-Kit is a **token + MUI-theme + primitives** system, not a bespoke compone
 library. Its thesis — **depth encodes importance** — stacks three material languages:
 FLAT (info at rest, ~90% of pixels), SOFT/neumorphic (objects you work within), GLASS
 (actions/alerts that want you now). One accent (Radiant Orange `#FF4F18`, fills/CTAs
-only — links are slate). Surfaces are **square** (`RADIUS 0`); only buttons (4px),
-dialogs (8px) and the ActionDock capsule are rounded. One spatial model everywhere:
+and active chrome glyph tints; body links stay slate). Surfaces are **square**
+(`RADIUS 0`); only buttons (4px), dialogs (8px) and the ActionDock capsule are
+rounded. One spatial model everywhere:
 **Rail (20%, glass) · Stage (80%, scrolls) · Taskbar footer · ActionDock**
 (LEFT destroy · CENTER create · RIGHT commit). `:focus-visible` receives the same
 Layer-3 glass lift as `:hover` — keyboard parity is a brand behaviour, not a patch.

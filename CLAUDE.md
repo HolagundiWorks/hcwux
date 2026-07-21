@@ -15,7 +15,7 @@ apps (AORMS `esti`, and siblings) vendor the **built** output of this repo; they
 | `package.json` | The npm package (`@hcw/ui-kit`) at the repo root. `main`/`exports` point at `dist/`. |
 | `docs/hcw-kit/` | Governance tree 00–13 (Constitution, token governance, component quality, templates, MUI mapping, audits, AI-agent rulebook). |
 | `docs/esti/HCW-*.md` | Layers/spatial model, UX principles, AI knowledge base, AI-Orchestration UX doctrine. |
-| `docs/ai-orchestration-ux-framework.md` + `…-prototype.html` | The framework spec + interactive mission-dashboard prototype. |
+| `docs/ai-orchestration-ux-framework.md` · `docs/esti/HCW-AI-ORCHESTRATION-UX.md` | AI-orchestration doctrine · ESTI/AORMS application (HCW kit primitives). |
 | `docs/ADOPTING-THE-KIT.md` | How consumers (esti) vendor the built kit. |
 | `.github/workflows/ci.yml` | install(prepare→build) · typecheck · test · verify dist · **size budget**. |
 

@@ -206,7 +206,7 @@ Orchestration lives in the rail.
 ### Read next
 
 - The material law it obeys: [`depth-encodes-importance.md`](depth-encodes-importance.md)
-- The mission-first framework it implements: [`../ai-orchestration-ux-framework.md`](../ai-orchestration-ux-framework.md) ([prototype](../ai-orchestration-ux-prototype.html))
+- The mission-first framework it implements: [`../ai-orchestration-ux-framework.md`](../ai-orchestration-ux-framework.md) ([ESTI application](../esti/HCW-AI-ORCHESTRATION-UX.md))
 - The operating philosophy underneath: [`the-calm-interface.md`](the-calm-interface.md)
 - The HCW/ESTI doctrine: [`../esti/HCW-AI-ORCHESTRATION-UX.md`](../esti/HCW-AI-ORCHESTRATION-UX.md)
 

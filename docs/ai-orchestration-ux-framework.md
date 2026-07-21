@@ -4,7 +4,7 @@
 
 > **Core Principle** — The interface should adapt to the user's **cognitive role**, not the AI's implementation role.
 
-**Reference implementation:** [`ai-orchestration-ux-prototype.html`](ai-orchestration-ux-prototype.html) — an interactive, self-contained mission-dashboard prototype of this framework (open directly in a browser; light/dark, reduced-motion aware). **HCW / ESTI application:** [`esti/HCW-AI-ORCHESTRATION-UX.md`](esti/HCW-AI-ORCHESTRATION-UX.md) adapts this doctrine to AORMS using HCW kit primitives.
+**HCW / ESTI application:** [`esti/HCW-AI-ORCHESTRATION-UX.md`](esti/HCW-AI-ORCHESTRATION-UX.md) adapts this doctrine to AORMS using HCW kit primitives (`@hcw/ui-kit`). There is no parallel visual language — product UI uses the kit's Radiant Orange / Urbanist tokens only.
 
 ---
 

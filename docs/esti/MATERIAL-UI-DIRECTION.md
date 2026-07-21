@@ -33,7 +33,7 @@ A **TabSplit** inside the Stage repeats the pattern for a single tab (20% meta +
 1. **Hyper-minimalist LIGHT palette — Radiant Orange accent.** Lifted into
    `frontend/src/theme/muiTheme.ts`: a Fog-Gray canvas (`#F2F4F7`), Pure-White
    cards (`#FFFFFF`), Coal-Black ink (`#141517`), with **Radiant Orange `#FF4F18`**
-   the single signature accent (fills only, **white text on it**, deeper `#DB3E0F`
+   the single signature accent (fills + active chrome tints, **white text on fills**, deeper `#DB3E0F`
    on hover). Links use slate, never the accent. Airy whitespace, hairline
    separators, large light-weight numeric readouts over small muted labels.
    **`src/theme/` is the only place raw colour values may live**; everywhere else

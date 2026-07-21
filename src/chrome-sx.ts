@@ -15,6 +15,7 @@ import {
   SECTION_DOCK_CHIP_GLASS,
   LAYOUT,
   TYPE_SCALE,
+  hexToRgba,
 } from "./tokens.js";
 
 /** ActionDock button — flat pill at rest, liquid-glass capsule on hover/focus. */
@@ -67,7 +68,7 @@ export function sectionDockChipSx(active: boolean): SxProps<Theme> {
     color: active ? colors.accent : colors.ink,
     fontWeight: active ? 700 : 600,
     boxShadow: active
-      ? "inset 0 1px 0 rgba(255, 255, 255, 0.75), inset 0 -1px 0 rgba(255, 255, 255, 0.28), 0 4px 16px rgba(255, 79, 24, 0.14)"
+      ? `inset 0 1px 0 rgba(255, 255, 255, 0.75), inset 0 -1px 0 rgba(255, 255, 255, 0.28), 0 4px 16px ${hexToRgba(colors.accent, 0.14)}`
       : SECTION_DOCK_CHIP_GLASS.boxShadow,
     transition:
       "color 0.14s ease, background 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease",

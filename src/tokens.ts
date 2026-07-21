@@ -13,8 +13,10 @@
  * Full spec: docs/esti/AORMS-BRANDING-KIT.md.
  */
 
-/** Brand palette. Orange is a FILL/active accent only (carries white text); links
- *  use slate, never the accent. */
+/** Brand palette. Radiant Orange is the single accent: **fills** (CTAs, chips,
+ *  brand marks — with `onAccent` ink) and **active/hover tints** on chrome glyphs
+ *  (taskbar, docks, tab rules). Body copy and links use slate (`supportInfo`),
+ *  never the accent. */
 export const colors = {
   background: "#F2F4F7", // Fog Gray — clean cool canvas
   layer01: "#FFFFFF", // Pure White — card surface
@@ -101,7 +103,9 @@ export const SCHEMES: Record<SchemeName, ColorScheme> = {
 
 /** Categorical data-viz hues — canvas/SVG marker + series colours (CAD takeoff
  *  markers, chart series). Kit-owned so diagram palettes stop hardcoding hex
- *  (Token Governance §7). Values match the shipped marker palette. */
+ *  (Token Governance §7). Values match the shipped marker palette.
+ *  `orange` here is a **series** hue (`#FF832B`), not the brand accent
+ *  (`colors.accent` / Radiant Orange `#FF4F18`). Never use `DATA_VIZ` for CTAs. */
 export const DATA_VIZ = {
   blue: "#0F62FE",
   cyan: "#1192E8",
@@ -270,9 +274,33 @@ export const FLAT_POP = {
 
 // ── Flat text buttons ─────────────────────────────────────────────────────────
 export const BTN_LIFT = "translateY(-2px)"; // hover float
-export const UNDERLINE_ORANGE = "inset 0 -2px 0 0 #ff4f18"; // hover bottom line
-export const UNDERLINE_RED = "inset 0 -2px 0 0 #c8442e";
-export const GLASS_ORANGE_30 = "rgba(255, 79, 24, 0.30)"; // selected toggle wash
+
+/** Parse `#RGB` / `#RRGGBB` into `rgba(r,g,b,alpha)`. Used so accent washes follow
+ *  the active scheme instead of baking light-scheme hex into recipes. */
+export function hexToRgba(hex: string, alpha: number): string {
+  const raw = hex.replace("#", "").trim();
+  const full = raw.length === 3 ? raw.split("").map((c) => c + c).join("") : raw;
+  const n = Number.parseInt(full, 16);
+  if (!Number.isFinite(n) || full.length !== 6) {
+    throw new Error(`hexToRgba: expected #RRGGBB, got ${hex}`);
+  }
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
+}
+
+/** Hover bottom underline in the given accent (scheme-aware). */
+export function underlineAccent(accent: string = colors.accent): string {
+  return `inset 0 -2px 0 0 ${accent}`;
+}
+
+/** Translucent accent wash (selected toggles, etc.) — scheme-aware. */
+export function glassAccentWash(accent: string = colors.accent, alpha = 0.3): string {
+  return hexToRgba(accent, alpha);
+}
+
+/** Light-scheme defaults — prefer `underlineAccent(scheme.accent)` when scheme-aware. */
+export const UNDERLINE_ORANGE = underlineAccent(colors.accent);
+export const UNDERLINE_RED = underlineAccent(colors.supportError);
+export const GLASS_ORANGE_30 = glassAccentWash(colors.accent, 0.3);
 
 // ── Motion & focus (accessibility) ─────────────────────────────────────────────
 /** Media-query key that matches when the OS "reduce motion" preference is on.
@@ -280,43 +308,51 @@ export const GLASS_ORANGE_30 = "rgba(255, 79, 24, 0.30)"; // selected toggle was
  *  shadow cues but lose the movement (WCAG 2.3.3). Usable as an sx / styleOverride
  *  object key: `{ [REDUCE_MOTION]: { transition: "none" } }`. */
 export const REDUCE_MOTION = "@media (prefers-reduced-motion: reduce)";
-/** Keyboard focus ring — the Radiant-Orange accent, offset off the control. Applied
- *  on `:focus-visible` so keyboard users get the same "this is actionable" signal a
- *  mouse user gets on hover, without showing a ring on plain mouse clicks. */
-export const FOCUS_RING = {
-  outline: `2px solid ${colors.accent}`,
-  outlineOffset: "2px",
-} as const;
+/** Keyboard focus ring — scheme-aware. Applied on `:focus-visible` so keyboard
+ *  users get the same "this is actionable" signal a mouse user gets on hover,
+ *  without showing a ring on plain mouse clicks. */
+export function focusRingFor(accent: string = colors.accent) {
+  return {
+    outline: `2px solid ${accent}`,
+    outlineOffset: "2px",
+  } as const;
+}
+/** Light-scheme default — prefer `focusRingFor(scheme.accent)` when scheme-aware. */
+export const FOCUS_RING = focusRingFor(colors.accent);
 
 // ── Neumorphic recessed inputs (text-entry wells) ──────────────────────────────
 export const NEU_FILL = "#eceef2";
 export const NEU_INSET =
   "inset 2px 2px 4.5px rgba(20, 21, 23, 0.16), inset -2px -2px 4.5px rgba(255, 255, 255, 0.92)";
 export const NEU_INSET_FOCUS =
-  "inset 2.5px 2.5px 5.5px rgba(20, 21, 23, 0.20), inset -2.5px -2.5px 5.5px rgba(255, 255, 255, 0.95), inset 0 0 0 1.5px rgba(255, 79, 24, 0.45)";
+  `inset 2.5px 2.5px 5.5px rgba(20, 21, 23, 0.20), inset -2.5px -2.5px 5.5px rgba(255, 255, 255, 0.95), inset 0 0 0 1.5px ${hexToRgba(colors.accent, 0.45)}`;
 export const NEU_INSET_ERROR =
-  "inset 2px 2px 4.5px rgba(20, 21, 23, 0.16), inset -2px -2px 4.5px rgba(255, 255, 255, 0.92), inset 0 0 0 1.5px rgba(200, 68, 46, 0.55)";
+  `inset 2px 2px 4.5px rgba(20, 21, 23, 0.16), inset -2px -2px 4.5px rgba(255, 255, 255, 0.92), inset 0 0 0 1.5px ${hexToRgba(colors.supportError, 0.55)}`;
 export const NEU_INPUT_RADIUS = 0;
 
-/** Dropdowns (Select) — FLAT at rest, button-like on hover (white box + orange line). */
-export const DD_FLAT = {
-  backgroundColor: "transparent",
-  boxShadow: "none",
-  border: "1px solid transparent",
-  transition: "background 130ms ease, box-shadow 130ms ease, border-color 130ms ease",
-  "&:hover": {
-    backgroundColor: "#ffffff",
-    borderColor: colors.borderSubtle,
-    boxShadow: UNDERLINE_ORANGE,
-  },
-  "&.Mui-focused": {
-    backgroundColor: "#ffffff",
-    border: `1px solid ${colors.accent}`,
+/** Dropdowns (Select) — FLAT at rest, button-like on hover (white box + accent line). */
+export function ddFlatFor(scheme: ColorScheme = colors) {
+  return {
+    backgroundColor: "transparent",
     boxShadow: "none",
-  },
-  "&.Mui-error": { borderColor: "rgba(200, 68, 46, 0.7)" },
-  "&.Mui-disabled": { boxShadow: "none", opacity: 0.6 },
-} as const;
+    border: "1px solid transparent",
+    transition: "background 130ms ease, box-shadow 130ms ease, border-color 130ms ease",
+    "&:hover": {
+      backgroundColor: scheme.layer01,
+      borderColor: scheme.borderSubtle,
+      boxShadow: underlineAccent(scheme.accent),
+    },
+    "&.Mui-focused": {
+      backgroundColor: scheme.layer01,
+      border: `1px solid ${scheme.accent}`,
+      boxShadow: "none",
+    },
+    "&.Mui-error": { borderColor: hexToRgba(scheme.supportError, 0.7) },
+    "&.Mui-disabled": { boxShadow: "none", opacity: 0.6 },
+  } as const;
+}
+/** Light-scheme default — prefer `ddFlatFor(scheme)` when scheme-aware. */
+export const DD_FLAT = ddFlatFor(colors);
 
 // ── The three depth layers (HCW-UI-Kit thesis: depth encodes importance) ───────
 // Layer 1 FLAT (hyperminimalist) — the resting plane: tables, text, inputs at
@@ -376,17 +412,22 @@ export const GLASS_SURFACE = {
  * Layer 3 variant — **liquid glass** for ActionDock buttons on hover/focus.
  * Crystal-clear frosted pill: gradient wash, high saturate blur, specular inset edges.
  * Flat pill at rest; liquid-glass capsule on hover/focus (`DOCK_PILL_RADIUS`).
+ * Accent glow tracks the scheme accent (not a baked light-scheme hex).
  */
-export const LIQUID_GLASS_BUTTON = {
-  background:
-    "linear-gradient(165deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.42) 100%)",
-  backdropFilter: "blur(36px) saturate(2.25) brightness(1.14)",
-  WebkitBackdropFilter: "blur(36px) saturate(2.25) brightness(1.14)",
-  border: "1px solid rgba(255, 255, 255, 0.72)",
-  borderRadius: DOCK_PILL_RADIUS,
-  boxShadow:
-    "0 12px 36px rgba(20, 21, 23, 0.11), 0 2px 10px rgba(255, 79, 24, 0.07), inset 0 1.5px 0 rgba(255, 255, 255, 0.92), inset 0 -1px 0 rgba(255, 255, 255, 0.28)",
-} as const;
+export function liquidGlassButtonFor(accent: string = colors.accent) {
+  return {
+    background:
+      "linear-gradient(165deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.42) 100%)",
+    backdropFilter: "blur(36px) saturate(2.25) brightness(1.14)",
+    WebkitBackdropFilter: "blur(36px) saturate(2.25) brightness(1.14)",
+    border: "1px solid rgba(255, 255, 255, 0.72)",
+    borderRadius: DOCK_PILL_RADIUS,
+    boxShadow:
+      `0 12px 36px rgba(20, 21, 23, 0.11), 0 2px 10px ${hexToRgba(accent, 0.07)}, inset 0 1.5px 0 rgba(255, 255, 255, 0.92), inset 0 -1px 0 rgba(255, 255, 255, 0.28)`,
+  } as const;
+}
+/** Light-scheme default — prefer `liquidGlassButtonFor(scheme.accent)` when scheme-aware. */
+export const LIQUID_GLASS_BUTTON = liquidGlassButtonFor(colors.accent);
 
 /** ActionDock button hover/focus lift. */
 export const DOCK_BUTTON_LIFT = "translateY(-3px)";
@@ -506,9 +547,9 @@ export const DARK_RECIPES: SurfaceRecipes = {
   NEU_INSET:
     "inset 2px 2px 4.5px rgba(0, 0, 0, 0.55), inset -2px -2px 4.5px rgba(255, 255, 255, 0.05)",
   NEU_INSET_FOCUS:
-    "inset 2.5px 2.5px 5.5px rgba(0, 0, 0, 0.62), inset -2.5px -2.5px 5.5px rgba(255, 255, 255, 0.06), inset 0 0 0 1.5px rgba(255, 92, 40, 0.5)",
+    `inset 2.5px 2.5px 5.5px rgba(0, 0, 0, 0.62), inset -2.5px -2.5px 5.5px rgba(255, 255, 255, 0.06), inset 0 0 0 1.5px ${hexToRgba(DARK_SCHEME.accent, 0.5)}`,
   NEU_INSET_ERROR:
-    "inset 2px 2px 4.5px rgba(0, 0, 0, 0.55), inset -2px -2px 4.5px rgba(255, 255, 255, 0.05), inset 0 0 0 1.5px rgba(240, 120, 98, 0.55)",
+    `inset 2px 2px 4.5px rgba(0, 0, 0, 0.55), inset -2px -2px 4.5px rgba(255, 255, 255, 0.05), inset 0 0 0 1.5px ${hexToRgba(DARK_SCHEME.supportError, 0.55)}`,
   GLASS_SURFACE: {
     background: "rgba(25, 28, 33, 0.5)",
     backdropFilter: "blur(28px) saturate(1.6)",
@@ -546,8 +587,8 @@ export const HIGH_CONTRAST_RECIPES: SurfaceRecipes = {
     boxShadow: "none",
   },
   NEU_INSET: "inset 0 0 0 2px #000000",
-  NEU_INSET_FOCUS: "inset 0 0 0 3px #C93A00",
-  NEU_INSET_ERROR: "inset 0 0 0 3px #A31226",
+  NEU_INSET_FOCUS: `inset 0 0 0 3px ${HIGH_CONTRAST_SCHEME.accent}`,
+  NEU_INSET_ERROR: `inset 0 0 0 3px ${HIGH_CONTRAST_SCHEME.supportError}`,
   GLASS_SURFACE: {
     background: "#FFFFFF",
     backdropFilter: "none",

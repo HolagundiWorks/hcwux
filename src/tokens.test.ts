@@ -13,8 +13,12 @@ import {
   STATUS_COLORS,
   TYPE_SCALE,
   colors,
+  glassAccentWash,
+  hexToRgba,
+  liquidGlassButtonFor,
   recipesFor,
   tokens,
+  underlineAccent,
 } from "./tokens.js";
 import { layoutSx } from "./chrome-sx.js";
 
@@ -65,6 +69,31 @@ describe("layout · spacing · type hierarchy (Carbon-inspired organisation)", (
     expect(tokens.TYPE_SCALE).toBe(TYPE_SCALE);
     expect(layoutSx.grid.gridTemplateColumns).toContain(String(LAYOUT.columns));
     expect(layoutSx.rail.width).toEqual({ xs: "100%", md: LAYOUT.railWidth });
+  });
+});
+
+describe("accent helpers (scheme-aware)", () => {
+  it("hexToRgba expands brand accent without baking a second literal", () => {
+    expect(hexToRgba(colors.accent, 0.3)).toBe("rgba(255, 79, 24, 0.3)");
+    expect(hexToRgba(SCHEMES.dark.accent, 0.2)).toBe("rgba(255, 92, 40, 0.2)");
+    expect(hexToRgba(SCHEMES.highContrast.accent, 0.18)).toBe("rgba(201, 58, 0, 0.18)");
+  });
+
+  it("underlineAccent and glassAccentWash follow the given scheme accent", () => {
+    expect(underlineAccent(colors.accent)).toContain(colors.accent);
+    expect(underlineAccent(SCHEMES.dark.accent)).toContain(SCHEMES.dark.accent);
+    expect(glassAccentWash(SCHEMES.highContrast.accent, 0.3)).toBe(
+      hexToRgba(SCHEMES.highContrast.accent, 0.3),
+    );
+  });
+
+  it("liquidGlassButtonFor embeds the scheme accent glow", () => {
+    expect(liquidGlassButtonFor(colors.accent).boxShadow).toContain(
+      hexToRgba(colors.accent, 0.07),
+    );
+    expect(liquidGlassButtonFor(SCHEMES.dark.accent).boxShadow).toContain(
+      hexToRgba(SCHEMES.dark.accent, 0.07),
+    );
   });
 });
 

@@ -28,7 +28,7 @@
     --sans:"Urbanist",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     --mono:ui-monospace,"SFMono-Regular","Cascadia Code",Consolas,monospace;
   }
-  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-theme="highContrast"]){
     --bg:#101215; --layer01:#191C21; --layer02:#232830;
     --border:rgba(255,255,255,0.10); --border-strong:rgba(255,255,255,0.20);
     --ink:#EDEFF3; --secondary:#9AA2AE; --helper:#98A1AD;
@@ -45,6 +45,15 @@
     --success:#4CC29A; --warning:#FFB25C; --error:#F07862; --info:#8FB4CE;
     --hover:rgba(255,255,255,0.06);
     --neu-lo:rgba(0,0,0,0.45); --neu-hi:rgba(255,255,255,0.04);
+  }
+  :root[data-theme="highContrast"]{
+    --bg:#FFFFFF; --layer01:#FFFFFF; --layer02:#E5E5E5;
+    --border:#141517; --border-strong:#000000;
+    --ink:#000000; --secondary:#141517; --helper:#333A44;
+    --accent:#C93A00; --accent-dark:#A32F00; --accent-soft:rgba(201,58,0,0.18);
+    --success:#0E5A3C; --warning:#8A4B00; --error:#A31226; --info:#1F4258;
+    --hover:rgba(0,0,0,0.08);
+    --neu-lo:rgba(0,0,0,0.35); --neu-hi:rgba(255,255,255,1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -368,7 +377,7 @@ import "@hcw/ui-kit/portal-chrome.scss";</pre>
       </div>
       <div class="card">
         <h3 style="margin-top:0">Docs</h3>
-        <p style="font-size:.86rem;color:var(--secondary)"><a href="esti/HCW-UI-KIT.md">HCW-UI-KIT.md</a> (layers · spatial model) · <a href="esti/HCW-UI-UX-PRINCIPLES.md">UX principles</a> · <a href="hcw-kit/README.md">governance 00–13</a> · <a href="hcw-kit/02-TOKEN-GOVERNANCE.md">token governance</a> · <a href="ai-orchestration-ux-prototype.html">AI-Orchestration UX prototype</a></p>
+        <p style="font-size:.86rem;color:var(--secondary)"><a href="esti/HCW-UI-KIT.md">HCW-UI-KIT.md</a> (layers · spatial model) · <a href="esti/HCW-UI-UX-PRINCIPLES.md">UX principles</a> · <a href="hcw-kit/README.md">governance 00–13</a> · <a href="hcw-kit/02-TOKEN-GOVERNANCE.md">token governance</a> · <a href="esti/HCW-AI-ORCHESTRATION-UX.md">AI-Orchestration UX</a></p>
       </div>
     </div>
   </section>
@@ -380,9 +389,11 @@ import "@hcw/ui-kit/portal-chrome.scss";</pre>
 <script>
   document.getElementById('tt').addEventListener('click',()=>{
     const r=document.documentElement;
+    const order=['light','dark','highContrast'];
     const dark=matchMedia('(prefers-color-scheme:dark)').matches;
     const cur=r.dataset.theme||(dark?'dark':'light');
-    r.dataset.theme=cur==='dark'?'light':'dark';
+    const next=order[(order.indexOf(cur)+1)%order.length];
+    r.dataset.theme=next;
   });
 </script>
 </body>

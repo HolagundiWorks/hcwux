@@ -24,7 +24,7 @@ panels, Coal-Black ink, with **Radiant Orange** the single signature accent.
 
 | Role | Name | Hex | Notes |
 |---|---|---|---|
-| **Accent / primary** | **Radiant Orange** | `#FF4F18` | THE accent — CTAs, active states, indicators, brand marks. **Carries white text.** Fill only, never body text. |
+| **Accent / primary** | **Radiant Orange** | `#FF4F18` | THE accent — CTA **fills**, active indicators, brand marks, chrome glyph tints. **Fills carry white text.** Never body copy or links. |
 | Accent hover | Deeper Orange | `#DB3E0F` | Hover/pressed state of the accent |
 | Accent wash | Orange 14% | `rgba(255, 79, 24, 0.14)` | Selected rows, subtle highlights |
 | **Canvas** | **Fog Gray** | `#F2F4F7` | App shell / page background |
@@ -46,12 +46,14 @@ panels, Coal-Black ink, with **Radiant Orange** the single signature accent.
 
 **Rules**
 
-- **Orange is a fill, not a text colour.** Buttons, chips, tab indicators, brand
-  marks fill orange with white text/glyphs. Body text and links stay ink/slate.
+- **Orange is scarce, not a body colour.** CTA fills, brand marks, tab/alert
+  rules, and **active/hover chrome glyph tints** (taskbar, docks) may use the
+  accent. Long body text and links stay ink/slate — never orange.
 - **No hard-coded hex outside the token files.** Everywhere else references the
   theme (`color="primary"`, `sx`, `--cds-*`, the `--esti-*` vars).
 - **One accent.** Do not introduce a second brand hue; use the status family for
-  state, the neutral scale for everything else.
+  state, the neutral scale for everything else. `DATA_VIZ.orange` is a chart
+  series hue, not the brand accent.
 
 ---
 
