@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
 import type { ReactNode } from "react";
-import { TYPE_SCALE, colors } from "./tokens.js";
+import { typeScaleSx } from "./chrome-sx.js";
+import { colors } from "./tokens.js";
 
 /**
  * ConfirmModal — confirmation for destructive / consequential actions (HCW:
@@ -15,18 +16,7 @@ import { TYPE_SCALE, colors } from "./tokens.js";
  */
 export type ConfirmKind = "slip" | "mistake";
 
-export function ConfirmModal({
-  open,
-  heading = "Are you sure?",
-  body,
-  reason,
-  kind = "slip",
-  confirmText = "Delete",
-  danger = true,
-  pending = false,
-  onConfirm,
-  onClose,
-}: {
+export type ConfirmModalProps = {
   open: boolean;
   heading?: string;
   body: ReactNode;
@@ -38,7 +28,20 @@ export function ConfirmModal({
   pending?: boolean;
   onConfirm: () => void;
   onClose: () => void;
-}) {
+};
+
+export function ConfirmModal({
+  open,
+  heading = "Are you sure?",
+  body,
+  reason,
+  kind = "slip",
+  confirmText = "Delete",
+  danger = true,
+  pending = false,
+  onConfirm,
+  onClose,
+}: ConfirmModalProps) {
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs" aria-labelledby="confirm-modal-title">
       <DialogTitle id="confirm-modal-title">{heading}</DialogTitle>
@@ -52,7 +55,7 @@ export function ConfirmModal({
               p: 1.5,
               backgroundColor: colors.layer02,
               borderLeft: `3px solid ${danger ? colors.supportError : colors.accent}`,
-              fontSize: TYPE_SCALE.body2,
+              ...typeScaleSx("body2"),
               color: colors.textSecondary,
             }}
           >

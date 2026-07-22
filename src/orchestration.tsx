@@ -221,7 +221,7 @@ export type DecisionCardProps = {
   id: string;
   question: ReactNode;
   recommendation: ReactNode;
-  /** ≤3 alternatives (enforced). */
+  /** ≤ {@link CAPACITY.decisionAlternatives} alternatives (enforced). */
   alternatives?: ReactNode[];
   impact?: ReactNode;
   timeToDecide?: ReactNode;

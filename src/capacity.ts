@@ -21,7 +21,7 @@ const CAP_FOR: Record<CapacityChannel, number> = {
   toast: CAPACITY.toastStack,
   objectives: CAPACITY.railObjectives,
   outcomes: CAPACITY.workingMemoryChunks,
-  alternatives: 3,
+  alternatives: CAPACITY.decisionAlternatives,
 };
 
 export function capacityCap(channel: CapacityChannel): number {

@@ -299,11 +299,13 @@ useScreenActions(
 
 ```tsx
 import {
-  MuiRoot, ActionDockProvider, ActionDock, SectionDock, TaskbarFooter, TaskbarButton,
-  GlassRail, Surface, useScreenActions, HealthGlassOrb,
+  KitRoot, ActionDockProvider, ActionDock, SectionDock, TaskbarFooter, TaskbarButton,
+  GlassRail, Surface, useScreenActions, HealthGlassOrb, setUxEventSink,
 } from "@hcw/ui-kit";
 
-<MuiRoot>
+setUxEventSink((name, payload) => analytics.track(name, payload));
+
+<KitRoot density="comfortable" coga="default">
   <ActionDockProvider>
     <GlassRail glass="frost" rail={<>…</>}>
       <Routes />
@@ -311,8 +313,10 @@ import {
     <ActionDock />
     <TaskbarFooter left={…} center={…} right={…} />
   </ActionDockProvider>
-</MuiRoot>
+</KitRoot>
 ```
+
+(`MuiRoot` / `createAormsTheme` remain as deprecated aliases of `KitRoot` / `createHcwTheme`.)
 
 Add `"@hcw/ui-kit": "workspace:*"` to the portal's `package.json`, and import the
 brand font once (`@fontsource/urbanist` weights 400/500/600/700).
@@ -321,26 +325,24 @@ brand font once (`@fontsource/urbanist` weights 400/500/600/700).
 
 ```
 src/
-├─ tokens.ts          colour SCHEMES (light · dark/HC scaffolds), radius,
-│                     TYPE_SCALE, LAYER recipes + scale tokens: SPACING ·
-│                     BREAKPOINTS · Z_INDEX · OPACITY · MOTION · ELEVATION ·
-│                     STATUS_COLORS
-├─ theme.ts           shared MUI theme — createAormsTheme({ scheme? })
-├─ chrome-sx.ts       shared sx helpers (actionDockButtonSx, sectionDockChipSx…)
-├─ portal-chrome.scss portal-wide class enforcement (imported once in main.tsx)
-├─ MuiRoot.tsx        provider (theme + dayjs)
-├─ Surface.tsx        <Surface layer="…">
-├─ GlassRail.tsx      rail · stage (`glass="frost|clear"`)
-├─ HealthGlassOrb.tsx zone / office-health (flat | glass)
-├─ ActionDock.tsx     provider · useScreenActions · <ActionDock/>
-├─ SectionDock.tsx    marketing scroll-spy section carousel
-├─ TaskbarFooter.tsx  left · center · right + TaskbarButton
-├─ StatusDot.tsx      canonical status indicator (dot + ink label)
-├─ DataState.tsx      loading-skeleton / empty-state grammar
-├─ ConfirmModal.tsx   the one destroy-confirm dialog
-└─ BrandMark.tsx      asset-free wordmark
+├─ tokens.ts           SCHEMES · TYPE_SCALE · LAYERS · CAPACITY · INTERRUPTION ·
+│                      COGA · TRUST · STATUS_SHAPE · DENSITY · LAYOUT · DATA_VIZ*
+├─ theme.ts            createHcwTheme({ scheme?, density?, coga? }) · hcwTheme
+├─ chrome-sx.ts        layoutSx · chromeIconSx · chromeIconSxFor · typeScaleSx ·
+│                      searchFieldSx · actionDockButtonSx …
+├─ charts.ts · pictograms.ts
+├─ capacity.ts · uxEvents.ts
+├─ portal-chrome.scss
+├─ KitRoot.tsx         (alias MuiRoot) — scheme · density · coga
+├─ Surface · GlassRail · HealthGlassOrb · BrandMark
+├─ ActionDock · SectionDock · TaskbarFooter
+├─ StatusDot · DataState · ConfirmModal · PageBreadcrumb · Avatar · Toast
+├─ AwarenessStrip · ActionOutcome* · KpiStrip
+└─ orchestration.tsx   MissionHeader · ObjectiveList · PhaseStrip ·
+                       ConfidenceBand · DecisionQueue · FreezeTable (T10)
 ```
 
+Full attribute tables: [14-HCW-CATALOG.md](../hcw-kit/14-HCW-CATALOG.md).
 Versioned from **0.1.0** — [`CHANGELOG.md`](../../CHANGELOG.md).
 AI audit contract: [HCW-KIT-AI-KNOWLEDGE-BASE.md](HCW-KIT-AI-KNOWLEDGE-BASE.md).
 
@@ -361,9 +363,8 @@ Package README: [`README.md`](../../README.md).
   glass · flat sub-cards · hero logo · contour z-depth 3× · full-page scroll depth ·
   dock-only CTAs · FAQ 3-up. Spec:
   [§ Marketing shell](#marketing-shell--public-site-marketingshell).
-- **Kit exports:** `GlassRail`, `HealthGlassOrb`, `Surface` (+ clear/heading glass),
-  `ActionDock`, `TaskbarFooter` (`left` · `center` · `right`), `CLEAR_GLASS_SURFACE`,
-  `HEADING_GLASS_SURFACE`.
+- **Kit exports (1.3+):** spatial chrome, psychology pack, T10 orchestration, density,
+  COGA calm, `logUxEvent` telemetry, charts/pictograms, catalog.
 - Workspace + marketing mount `ActionDockProvider` + `ActionDock`.
 - **Taskbar footer** live (`AppFooterBar`); FloatingDock retired.
 - Layer 3 via theme: button hover glass; error/warning alerts tinted glass.
@@ -375,3 +376,4 @@ Package README: [`README.md`](../../README.md).
 3. Optional further shrink of `glass.scss` once orb class aliases fully migrate
    (`hcw-health-glass-orb*`).
 4. `Projects.tsx` / `Clients.tsx` remain parallel-WIP — do not edit unless asked.
+5. Roadmap (not kit defects): RTL/i18n · Figma variables bridge.

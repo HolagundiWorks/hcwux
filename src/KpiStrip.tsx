@@ -10,7 +10,8 @@
 import { Box, Typography } from "@mui/material";
 import type { ReactNode } from "react";
 import { enforceCapacity } from "./capacity.js";
-import { TYPE_SCALE, colors } from "./tokens.js";
+import { colors } from "./tokens.js";
+import { typeScaleSx } from "./chrome-sx.js";
 
 export type KpiItem = {
   id: string;
@@ -20,13 +21,15 @@ export type KpiItem = {
   onClick?: () => void;
 };
 
+export type KpiStripProps = {
+  items: KpiItem[];
+  "aria-label"?: string;
+};
+
 export function KpiStrip({
   items,
   "aria-label": ariaLabel = "Key measures",
-}: {
-  items: KpiItem[];
-  "aria-label"?: string;
-}) {
+}: KpiStripProps) {
   const visible = enforceCapacity("kpi", items);
   if (visible.length === 0) return null;
 
@@ -50,7 +53,7 @@ export function KpiStrip({
               component="span"
               sx={{
                 display: "block",
-                fontSize: TYPE_SCALE.caption,
+                ...typeScaleSx("caption"),
                 color: colors.textSecondary,
                 letterSpacing: "0.04em",
                 textTransform: "uppercase",
@@ -63,7 +66,7 @@ export function KpiStrip({
               component="span"
               sx={{
                 display: "block",
-                fontSize: TYPE_SCALE.kpi,
+                ...typeScaleSx("kpi"),
                 fontWeight: 600,
                 color: colors.ink,
                 lineHeight: 1.2,

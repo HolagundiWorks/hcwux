@@ -29,7 +29,7 @@ RailLayout(title, description, aside: search/filters)
 ├ optional success Alert (dismissible)
 └ DataState(loading, isEmpty, empty:{one sentence + one action})
     └ DataGrid (≤8 columns · StatusDot for status · RowActionsMenu per row)
-       — prefer MuiRoot density="compact" on dense registers
+       — prefer KitRoot density="compact" on dense registers
 Dock: CENTER "New <object>" · dialog publishes [] while open
 Create/edit = Dialog (aria-labelledby) — never an always-visible form
 ```

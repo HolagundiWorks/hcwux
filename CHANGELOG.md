@@ -4,6 +4,25 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 1.3.1 — 2026-07-22
+
+### Fixed
+- **COGA calm** — `chromeIconSx` expands to 48px under `[data-hcw-coga="calm"]`;
+  `chromeIconSxFor` / `typeScaleSx` helpers; theme leftovers use `cogaFor` type ladder.
+- **Scheme-aware chrome** — button lift / table / DataGrid / skeleton borders use
+  `hexToRgba(CDS.ink, α)` instead of light-only coal rgba.
+- **`CAPACITY.decisionAlternatives`** — DecisionCard alternatives cap is a token
+  (was hardcoded `3` in capacity helper).
+- **Catalog + HCW-UI-KIT.md** — ConfirmModal `kind`/`reason`, StatusDot `shape`,
+  Toast undo, AwarenessStrip props, KitRoot mount, package listing synced to exports.
+- **Tests** — ConfirmModal mistake path, Decision alternatives trim, KitRoot
+  `data-hcw-coga`, toast `ux.capacity_warn`; exported `ConfirmModalProps` /
+  `AwarenessStripProps` / `KpiStripProps`.
+
+### Docs
+- KB gap list no longer claims Toast/DataState/Avatar absent; audits index 00–14 /
+  50 KB budget; debt register kit-defect queue cleared.
+
 ## 1.3.0 — 2026-07-21
 
 ### Added

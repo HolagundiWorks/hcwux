@@ -96,6 +96,21 @@ describe("ConfirmModal", () => {
     );
     expect((screen.getByRole("button", { name: "Working…" }) as HTMLButtonElement).disabled).toBe(true);
   });
+
+  it("renders mistake reason when kind=mistake", () => {
+    render(
+      <ConfirmModal
+        open
+        kind="mistake"
+        heading="Revoke access?"
+        body="This removes the login."
+        reason="Client still has open invoices."
+        onConfirm={() => {}}
+        onClose={() => {}}
+      />,
+    );
+    expect(screen.getByText("Client still has open invoices.")).toBeTruthy();
+  });
 });
 
 describe("PageBreadcrumb", () => {

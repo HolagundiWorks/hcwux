@@ -29,6 +29,10 @@ import {
   ActionDockProvider,
   ActionDock,
   useScreenActions,
+  chromeIconSxFor,
+  KitRoot,
+  pushToast,
+  resetToasts,
   type DockAction,
 } from "./index.js";
 
@@ -118,6 +122,8 @@ describe("orchestration primitives", () => {
     expect(screen.getByLabelText("Current phase").textContent).toContain("Build");
     expect(screen.getByLabelText("Medium confidence").textContent).toMatch(/confidence/i);
     expect(screen.getByLabelText("Pending decisions")).toBeTruthy();
+    const alts = screen.getByLabelText("Pending decisions").querySelectorAll("ul li");
+    expect(alts.length).toBe(CAPACITY.decisionAlternatives);
     expect(screen.getByLabelText("Frozen decisions").textContent).toContain("Frozen");
   });
 });
@@ -130,6 +136,33 @@ describe("COGA calm on theme / KitRoot metrics", () => {
     const def = createHcwTheme();
     expect(calm.typography.caption.fontSize).not.toBe(def.typography.caption.fontSize);
     expect(densityFor("compact", "calm").input).toBeGreaterThanOrEqual(COGA.calmTargetMinPx);
+  });
+
+  it("KitRoot sets data-hcw-coga and chromeIconSxFor(calm) is 48", () => {
+    expect(chromeIconSxFor("calm").width).toBe(COGA.calmTargetMinPx);
+    const { container } = render(
+      <KitRoot coga="calm">
+        <span>child</span>
+      </KitRoot>,
+    );
+    expect(container.querySelector('[data-hcw-coga="calm"]')).toBeTruthy();
+  });
+});
+
+describe("toast capacity_warn", () => {
+  beforeEach(() => {
+    resetToasts();
+  });
+
+  it("emits ux.capacity_warn when toast stack overflows", () => {
+    const events: string[] = [];
+    setUxEventSink((name) => events.push(name));
+    act(() => {
+      pushToast({ kind: "info", title: "A" }, 0);
+      pushToast({ kind: "info", title: "B" }, 0);
+      pushToast({ kind: "info", title: "C" }, 0);
+    });
+    expect(events).toContain("ux.capacity_warn");
   });
 });
 
