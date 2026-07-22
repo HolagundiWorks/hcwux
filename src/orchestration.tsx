@@ -260,7 +260,7 @@ export function DecisionCard({
         sx={{
           fontSize: TYPE_SCALE.body2,
           color: colors.ink,
-          borderLeft: `3px solid ${colors.accent}`,
+          borderInlineStart: `3px solid ${colors.accent}`,
           pl: 1.25,
           backgroundColor: hexToRgba(colors.accent, 0.06),
           py: 0.75,

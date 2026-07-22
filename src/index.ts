@@ -61,7 +61,11 @@ export {
 } from "./pictograms.js";
 export type { IconSlot, IconSizeName, IconTone, BrandAccentShape } from "./pictograms.js";
 export { createAormsTheme, createHcwTheme, aormsTheme, hcwTheme } from "./theme.js";
-export { MuiRoot, KitRoot } from "./MuiRoot.js";
+export { MuiRoot, KitRoot, HcwLocaleContext, useHcwLocale } from "./MuiRoot.js";
+export { createHcwRtlCacheOptions, DEFAULT_LOCALE } from "./rtl.js";
+export type { TextDirection } from "./rtl.js";
+export { buildTokenExport, buildTokensJson, buildTokensCss } from "./token-export.js";
+export type { TokenExportJson } from "./token-export.js";
 export { BrandMark } from "./BrandMark.js";
 export { Surface } from "./Surface.js";
 export { GlassRail } from "./GlassRail.js";

@@ -54,7 +54,7 @@ export function GlassRail({
           top: 0,
           alignSelf: { md: "flex-start" },
           p: LAYOUT.railPadding,
-          borderRight: { md: `1px solid ${colors.borderSubtle}` },
+          borderInlineEnd: { md: `1px solid ${colors.borderSubtle}` },
           borderBottom: { xs: `1px solid ${colors.borderSubtle}`, md: "none" },
         }}
       >

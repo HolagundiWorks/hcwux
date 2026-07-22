@@ -236,10 +236,14 @@ Mounts theme + date localisation once at the portal root.
 | `scheme` | `light` · `dark` · `highContrast` | `light` |
 | `density` | `comfortable` · `compact` | `comfortable` |
 | `coga` | `default` · `calm` | `default` |
-| `theme` | full theme override | — (wins over scheme/density/coga) |
+| `direction` | `ltr` · `rtl` | `ltr` |
+| `locale` | BCP 47 string | `en-IN` |
+| `theme` | full theme override | — (wins over scheme/density/coga/direction) |
 
-Theme factory: `createHcwTheme({ scheme?, density?, coga? })` · singleton `hcwTheme`.  
-Calm: larger interactive floors (`COGA.calmTargetMinPx`) + one type step; sets `data-hcw-coga`.
+Theme factory: `createHcwTheme({ scheme?, density?, coga?, direction? })` · singleton `hcwTheme`.  
+Calm: larger interactive floors (`COGA.calmTargetMinPx`) + one type step; sets `data-hcw-coga`.  
+RTL: sets `dir` / `data-hcw-direction`; pair with Emotion `createHcwRtlCacheOptions` — [13-ROADMAPS.md](13-ROADMAPS.md).  
+Token export: [02-TOKEN-EXPORT.md](02-TOKEN-EXPORT.md).
 
 ### Surface
 
