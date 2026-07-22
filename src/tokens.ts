@@ -232,7 +232,8 @@ export function chartAreaFill(stroke: string, alpha = 0.16): string {
  * Enterprise density targets — WCAG touch targets and compact chrome heights.
  *
  * Prefer {@link densityFor} when wiring theme/control heights; use
- * chromeIconSx for persistent-chrome 44px icons regardless of mode.
+ * {@link chromeIconSx} for persistent-chrome icons (44 default; 48 under
+ * `[data-hcw-coga="calm"]`).
  */
 export const DENSITY = {
   /** Minimum interactive target (WCAG 2.5.5 / persistent chrome). */
@@ -275,8 +276,9 @@ export function densityFor(mode: DensityName = "comfortable", coga: CogaMode = "
     chip: compact && coga !== "calm" ? 22 : coga === "calm" ? 32 : 28,
     dataGridRow: lift(compact ? 36 : 48),
     /**
-     * In-content IconButton size. Persistent chrome (taskbar/ribbon) still uses
-     * {@link DENSITY.touchTarget} via `chromeIconSx` (calm → calmTargetMinPx).
+     * In-content IconButton size. Persistent chrome (taskbar/ribbon) uses
+     * {@link chromeIconSx} — 44 by default, 48 under COGA calm via
+     * `[data-hcw-coga="calm"]`.
      */
     iconButton: lift(compact ? 32 : DENSITY.controlCompact),
   } as const;
@@ -366,7 +368,8 @@ export const LAYOUT = {
 /**
  * Working-memory capacity caps (Cowan ~4±1 chunks — tighter than Miller 7±2).
  * UI surfaces must not exceed these without progressive disclosure. Audits and
- * primitives (`ToastHost`, `AwarenessStrip`, dock) enforce where possible.
+ * primitives (`ToastHost`, `AwarenessStrip`, dock, `KpiStrip`, DecisionCard) enforce
+ * where possible.
  */
 export const CAPACITY = {
   workingMemoryChunks: 4,
@@ -378,6 +381,8 @@ export const CAPACITY = {
   toastStack: 2,
   /** Endsley SA lines: state · meaning · next. */
   awarenessLines: 3,
+  /** DecisionCard alternatives (Hick) — progressive disclosure beyond this. */
+  decisionAlternatives: 3,
 } as const;
 
 /**

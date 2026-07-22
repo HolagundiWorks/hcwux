@@ -6,6 +6,10 @@ withdraws. Agents: update this file in the same change that alters a fact
 
 ## Open
 
+### Kit defects
+
+*None open — incompleteness from 1.3.0 closed in 1.3.1 (see Retired).*
+
 ### Framework gaps
 
 *None open — F1–F5 closed in 1.3.0 (see Retired).*
@@ -35,6 +39,7 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-22 · **Kit defect sweep (1.3.1)** — COGA calm chrome (`chromeIconSx` + `typeScaleSx`); theme scheme-aware borders/shadows; `CAPACITY.decisionAlternatives`; catalog + HCW-UI-KIT.md sync; ConfirmModal/AwarenessStrip prop types + tests; KB/audit hygiene.
 - 2026-07-21 · **Framework gaps F1–F5 closed (1.3.0)** — orchestration primitives + T10; CAPACITY on dock/KpiStrip; `KitRoot({ coga })`; `logUxEvent` + dock outcome; case studies in `11-audits/case-studies/`.
 - 2026-07-21 · **UX process + framework pairing (1.2.0)** — `HCW-UX.md` index; `HCW-UX-PROCESS.md` (Plan→Improve, RACI, gates); framework charter no longer “framework-only”.
 - 2026-07-21 · **UX Framework Charter (1.1.0)** — `HCW-UX-FRAMEWORK.md` (purpose·scope·lifecycle·KPIs·diagram); construction overlay + KPI instrument; open F1–F5 framework gaps (honest vs “Open: none”).

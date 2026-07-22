@@ -62,7 +62,7 @@ dialogs, and the ActionDock capsule round.
 | `taskbarHeight` | `56` | |
 | `dockClearance` | `16` | |
 
-Helpers: `layoutSx.rail` · `.stage` · `.content` · `.grid` · `.page` · `.listToolbar`.
+Helpers: `layoutSx.rail` · `.stage` · `.content` · `.grid` · `.page` · `.listToolbar` · `.formField`.
 
 ### Density (`DENSITY` / `densityFor`)
 
@@ -74,9 +74,9 @@ Helpers: `layoutSx.rail` · `.stage` · `.content` · `.grid` · `.page` · `.li
 | `chip` | 28 | 22 |
 | `dataGridRow` | 48 | 36 |
 | `iconButton` (in-content) | 38 | 32 |
-| Chrome icons | always **44** via `chromeIconSx` | |
+| Chrome icons | **44** via `chromeIconSx`; **48** under `KitRoot coga="calm"` | |
 
-Mount: `KitRoot density="comfortable" | "compact"`.
+Mount: `KitRoot density="comfortable" | "compact"` · `coga="default" | "calm"`.
 
 ### Shape
 
@@ -302,21 +302,24 @@ Class: `hcw-surface`. Always square.
 | `ObjectiveList` | Objectives ≤ `CAPACITY.railObjectives` |
 | `PhaseStrip` | Phase · progress (0–1) · eta |
 | `ConfidenceBand` | `low` · `medium` · `high` (word band, not lone %) |
-| `DecisionCard` / `DecisionQueue` | Pending decisions; ≤3 alternatives |
+| `DecisionCard` / `DecisionQueue` | Pending decisions; ≤ `CAPACITY.decisionAlternatives` |
 | `FrozenDecisionRow` / `FreezeTable` | Locked decisions |
 
 ### AwarenessStrip · ActionOutcomeBanner
 
 | Export | Attributes |
 | --- | --- |
-| `AwarenessStrip` | `state` · `meaning` · `next` · `loops[]` · `judgment` |
-| `publishOutcome` / banner | closes evaluation gulf after dock commits |
+| `AwarenessStrip` | `state` · `meaning` · `next` · `loops[]` · `judgment` — loops capped at `CAPACITY.openLoops` |
+| `publishOutcome` / `ActionOutcomeBanner` | closes evaluation gulf after dock commits |
+
+Exported type: `AwarenessStripProps`.
 
 ### Telemetry
 
 | Export | Job |
 | --- | --- |
 | `setUxEventSink` / `logUxEvent` | Product analytics sink |
+| `logOrient` · `logDecision` · `logMission` · `logInterrupt` | Typed KPI vocabulary |
 | `enforceCapacity` / `assertCapacity` | Cap + `ux.capacity_warn` |
 
 ### SectionDock
@@ -357,8 +360,10 @@ Height token: `TASKBAR_HEIGHT` (56).
 | `label` | node | required |
 | `color` | status hue name or CSS | `"gray"` |
 | `size` | `sm` · `md` | `sm` |
+| `shape` | `circle` · `triangle` · `square` | `circle` |
 
-Named hues: `red` · `magenta` · `purple` · `blue` · `cyan` · `teal` · `green` · `gray` · `cool-gray` · `warm-gray`.
+Named hues: `red` · `magenta` · `purple` · `blue` · `cyan` · `teal` · `green` · `gray` · `cool-gray` · `warm-gray`.  
+Helper: `statusShapeFor(severity)` maps `STATUS_SHAPE` (ok→circle · watch→triangle · critical→square).
 
 ### HealthGlassOrb
 
@@ -411,17 +416,21 @@ Separator pictogram: `›`.
 | `open` | bool | required |
 | `heading` | string | `"Are you sure?"` |
 | `body` | node | required |
+| `kind` | `slip` · `mistake` | `slip` |
+| `reason` | node | — (mistake-path explanation) |
 | `confirmText` | string | `"Delete"` |
 | `danger` | bool | `true` |
 | `pending` | bool | `false` |
 | `onConfirm` / `onClose` | fn | required |
+
+Exported type: `ConfirmModalProps`.
 
 ### Toast
 
 | Export | Attributes |
 | --- | --- |
 | `ToastHost` | (none) — mount once |
-| `pushToast({ kind, title, subtitle? }, ttlMs?)` | `kind`: error · success · info · warning |
+| `pushToast({ kind, title, subtitle?, undoLabel?, onUndo? }, ttlMs?)` | `kind`: error · success · info · warning; stack capped at `CAPACITY.toastStack` (+ `ux.capacity_warn`) |
 | `dismissToast(id)` | |
 | `useToasts()` | |
 

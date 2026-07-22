@@ -1,6 +1,10 @@
 # HCW Kit & AORMS — audit index
 
-**Updated:** 2026-07-21 · **Living queue:** [DESIGN-DEBT-REGISTER.md](DESIGN-DEBT-REGISTER.md) — framework F1–F5 closed in 1.3.0 · Case studies: [case-studies/](case-studies/) · Canonical kit repo: **github.com/HolagundiWorks/hcwux**
+**Updated:** 2026-07-22 · **Living queue:** [DESIGN-DEBT-REGISTER.md](DESIGN-DEBT-REGISTER.md) —
+kit defects closed in 1.3.1 (COGA calm chrome · catalog sync · scheme borders) ·
+framework F1–F5 closed in 1.3.0 · Case studies: [case-studies/](case-studies/) ·
+Governance tree **00–14** · gzip budget **50 KB** · Canonical:
+**github.com/HolagundiWorks/hcwux**
 
 All audits are repo-resident markdown — no external canvas URLs. Re-run surface
 audits after major feature waves; update the debt register in the same PR as fixes.

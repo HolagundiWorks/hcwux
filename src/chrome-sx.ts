@@ -6,6 +6,7 @@
 import type { SxProps, Theme } from "@mui/material/styles";
 import {
   BUTTON_RADIUS,
+  COGA,
   DOCK_PILL_RADIUS,
   colors,
   DOCK_BUTTON_LIFT,
@@ -18,12 +19,38 @@ import {
   LAYOUT,
   TYPE_SCALE,
   hexToRgba,
+  type CogaMode,
 } from "./tokens.js";
 
 /**
- * Persistent-chrome IconButton (≥44px touch target) — taskbar, ribbon, rail
- * utilities. Use for always-visible glyph controls; dense in-content icons may
- * stay `size="small"` with an explicit ≥24px hit area.
+ * Persistent-chrome IconButton — taskbar, ribbon, rail utilities.
+ * Default ≥44px (WCAG); under KitRoot `coga="calm"` expands to
+ * {@link COGA.calmTargetMinPx} via `[data-hcw-coga="calm"]`.
+ */
+export function chromeIconSxFor(coga: CogaMode = "default"): {
+  width: number;
+  height: number;
+  borderRadius: number;
+  color: string;
+  "&:hover": { color: string; backgroundColor: string };
+  "&:focus-visible": Record<string, unknown>;
+  [REDUCE_MOTION]: { transition: string };
+} {
+  const px = coga === "calm" ? COGA.calmTargetMinPx : DENSITY.touchTarget;
+  return {
+    width: px,
+    height: px,
+    borderRadius: BUTTON_RADIUS,
+    color: colors.ink,
+    "&:hover": { color: colors.accent, backgroundColor: colors.hoverSoft },
+    "&:focus-visible": { ...FOCUS_RING, color: colors.accent },
+    [REDUCE_MOTION]: { transition: "none" },
+  };
+}
+
+/**
+ * Default chrome icon recipe with calm CSS override when inside
+ * `KitRoot({ coga: "calm" })` (`data-hcw-coga="calm"`).
  */
 export const chromeIconSx = {
   width: DENSITY.touchTarget,
@@ -33,7 +60,39 @@ export const chromeIconSx = {
   "&:hover": { color: colors.accent, backgroundColor: colors.hoverSoft },
   "&:focus-visible": { ...FOCUS_RING, color: colors.accent },
   [REDUCE_MOTION]: { transition: "none" },
+  '[data-hcw-coga="calm"] &': {
+    width: COGA.calmTargetMinPx,
+    height: COGA.calmTargetMinPx,
+  },
 } satisfies SxProps<Theme>;
+
+/**
+ * Type size that bumps one ladder step under COGA calm (via data attribute).
+ * Prefer MUI Typography variants when the theme already carries calm metrics.
+ */
+export function typeScaleSx(
+  key: keyof typeof TYPE_SCALE,
+): { fontSize: string; '[data-hcw-coga="calm"] &'?: { fontSize: string } } {
+  const ladder = [
+    "micro",
+    "caption",
+    "label",
+    "body2",
+    "body",
+    "kpi",
+    "subtitle",
+    "heading",
+    "display",
+  ] as const;
+  const i = ladder.indexOf(key as (typeof ladder)[number]);
+  const calmKey =
+    i >= 0 ? ladder[Math.min(i + COGA.calmTypeStep, ladder.length - 1)]! : key;
+  if (calmKey === key) return { fontSize: TYPE_SCALE[key] };
+  return {
+    fontSize: TYPE_SCALE[key],
+    '[data-hcw-coga="calm"] &': { fontSize: TYPE_SCALE[calmKey] },
+  };
+}
 
 /** ActionDock button — flat pill at rest, liquid-glass capsule on hover/focus. */
 export function actionDockButtonSx(

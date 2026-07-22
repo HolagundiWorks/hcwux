@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   BUTTON_RADIUS,
+  CAPACITY,
+  COGA,
   DARK_RECIPES,
   DATA_VIZ,
   DATA_VIZ_CATEGORICAL,
@@ -25,7 +27,7 @@ import {
   tokens,
   underlineAccent,
 } from "./tokens.js";
-import { chromeIconSx, layoutSx } from "./chrome-sx.js";
+import { chromeIconSx, chromeIconSxFor, layoutSx } from "./chrome-sx.js";
 
 describe("colour schemes", () => {
   it("every scheme carries every semantic role of the light scheme", () => {
@@ -83,6 +85,8 @@ describe("layout · spacing · type hierarchy (Carbon-inspired organisation)", (
     expect(DENSITY.control).toBe(40);
     expect(chromeIconSx.width).toBe(DENSITY.touchTarget);
     expect(chromeIconSx.height).toBe(DENSITY.touchTarget);
+    expect(chromeIconSxFor("calm").width).toBe(COGA.calmTargetMinPx);
+    expect(CAPACITY.decisionAlternatives).toBe(3);
   });
 
   it("densityFor resolves comfortable vs compact metrics", () => {

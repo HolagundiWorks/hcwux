@@ -47,7 +47,6 @@ import {
   BREAKPOINTS,
   Z_INDEX,
   OPACITY,
-  TYPE_SCALE,
 } from "./tokens.js";
 
 /** Build the AORMS MUI theme. Exposed as a factory so a portal can layer small
@@ -221,7 +220,7 @@ export function createAormsTheme(options?: {
                 WebkitBackdropFilter: R.GLASS_SURFACE.WebkitBackdropFilter,
                 color: isError ? CDS.supportError : CDS.accentDark,
                 transform: BTN_LIFT,
-                boxShadow: `0 8px 24px rgba(20, 21, 23, 0.14), ${underline}`,
+                boxShadow: `0 8px 24px ${hexToRgba(CDS.ink, 0.14)}, ${underline}`,
               },
               // Keyboard parity: a :focus-visible control lifts to the same Layer-3
               // glass slab as hover AND shows the accent focus ring, so keyboard
@@ -233,7 +232,7 @@ export function createAormsTheme(options?: {
                 WebkitBackdropFilter: R.GLASS_SURFACE.WebkitBackdropFilter,
                 color: isError ? CDS.supportError : CDS.accentDark,
                 transform: BTN_LIFT,
-                boxShadow: `0 8px 24px rgba(20, 21, 23, 0.14), ${underline}`,
+                boxShadow: `0 8px 24px ${hexToRgba(CDS.ink, 0.14)}, ${underline}`,
               },
               "&:active": {
                 transform: "none",
@@ -370,7 +369,7 @@ export function createAormsTheme(options?: {
           root: {
             backgroundColor: "transparent",
             color: CDS.textSecondary,
-            fontSize: TYPE_SCALE.micro,
+            fontSize: type.micro,
             fontWeight: 600,
             letterSpacing: "0.08em",
             textTransform: "uppercase",
@@ -396,8 +395,8 @@ export function createAormsTheme(options?: {
       },
       MuiListItemText: {
         styleOverrides: {
-          primary: { fontSize: TYPE_SCALE.body2, fontWeight: 500 },
-          secondary: { fontSize: TYPE_SCALE.caption, color: CDS.textHelper },
+          primary: { fontSize: type.body2, fontWeight: 500 },
+          secondary: { fontSize: type.caption, color: CDS.textHelper },
         },
       },
       MuiMenuItem: {
@@ -510,7 +509,7 @@ export function createAormsTheme(options?: {
       },
       MuiSkeleton: {
         styleOverrides: {
-          root: { borderRadius: 0, backgroundColor: "rgba(20, 21, 23, 0.06)" },
+          root: { borderRadius: 0, backgroundColor: hexToRgba(CDS.ink, 0.06) },
         },
       },
       MuiBadge: {
@@ -585,19 +584,19 @@ export function createAormsTheme(options?: {
       MuiPickersCalendarHeader: {
         styleOverrides: {
           root: { color: CDS.textPrimary, paddingLeft: SPACING_UNIT, paddingRight: SPACING_UNIT },
-          label: { fontWeight: 600, fontSize: TYPE_SCALE.body2 },
+          label: { fontWeight: 600, fontSize: type.body2 },
         },
       },
       MuiTableCell: {
         styleOverrides: {
           root: {
-            borderColor: "rgba(20, 21, 23, 0.08)",
+            borderColor: hexToRgba(CDS.ink, 0.08),
             py: dens.tableCellPy,
           },
           head: {
             textTransform: "uppercase",
             letterSpacing: "0.08em",
-            fontSize: TYPE_SCALE.micro,
+            fontSize: type.micro,
             fontWeight: 600,
             color: CDS.textSecondary,
           },
@@ -610,7 +609,7 @@ export function createAormsTheme(options?: {
             backgroundColor: CDS.ink,
             color: CDS.textOnColor,
             border: `1px solid ${CDS.borderStrong}`,
-            fontSize: TYPE_SCALE.micro,
+            fontSize: type.micro,
           },
         },
       },
@@ -620,7 +619,7 @@ export function createAormsTheme(options?: {
             borderRadius: 0,
             backgroundColor: "transparent",
             border: 0,
-            "--DataGrid-rowBorderColor": "rgba(20,21,23,0.07)",
+            "--DataGrid-rowBorderColor": hexToRgba(CDS.ink, 0.07),
             "--DataGrid-rowHeight": `${dens.dataGridRow}px`,
             "--DataGrid-headerHeight": `${dens.dataGridRow}px`,
           },
@@ -633,12 +632,12 @@ export function createAormsTheme(options?: {
           columnHeaderTitle: {
             textTransform: "uppercase",
             letterSpacing: "0.08em",
-            fontSize: TYPE_SCALE.micro,
+            fontSize: type.micro,
             fontWeight: 600,
             color: CDS.textSecondary,
           },
-          cell: { borderColor: "rgba(20,21,23,0.07)" },
-          footerContainer: { borderColor: "rgba(20,21,23,0.08)" },
+          cell: { borderColor: hexToRgba(CDS.ink, 0.07) },
+          footerContainer: { borderColor: hexToRgba(CDS.ink, 0.08) },
           row: {
             minHeight: dens.dataGridRow,
             maxHeight: dens.dataGridRow,

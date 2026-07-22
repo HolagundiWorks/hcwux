@@ -37,6 +37,8 @@ export {
   liquidGlassSpecimenSx,
   layoutSx,
   chromeIconSx,
+  chromeIconSxFor,
+  typeScaleSx,
   searchFieldSx,
 } from "./chrome-sx.js";
 export {
@@ -76,7 +78,7 @@ export { StatusDot, statusShapeFor } from "./StatusDot.js";
 export type { StatusShape } from "./StatusDot.js";
 export { DataState } from "./DataState.js";
 export { ConfirmModal } from "./ConfirmModal.js";
-export type { ConfirmKind } from "./ConfirmModal.js";
+export type { ConfirmKind, ConfirmModalProps } from "./ConfirmModal.js";
 export { PageBreadcrumb } from "./PageBreadcrumb.js";
 export type { Crumb } from "./PageBreadcrumb.js";
 export { ToastHost, pushToast, dismissToast, useToasts, resetToasts } from "./Toast.js";
@@ -87,7 +89,7 @@ export { SectionDock } from "./SectionDock.js";
 export type { SectionDockLink } from "./SectionDock.js";
 export { TaskbarFooter, TaskbarButton, TASKBAR_HEIGHT } from "./TaskbarFooter.js";
 export { AwarenessStrip } from "./AwarenessStrip.js";
-export type { OpenLoop } from "./AwarenessStrip.js";
+export type { OpenLoop, AwarenessStripProps } from "./AwarenessStrip.js";
 export {
   publishOutcome,
   clearOutcome,
@@ -99,7 +101,7 @@ export {
 export type { ActionOutcome, OutcomeStatus } from "./ActionOutcome.js";
 export { ActionOutcomeBanner } from "./ActionOutcomeBanner.js";
 export { KpiStrip } from "./KpiStrip.js";
-export type { KpiItem } from "./KpiStrip.js";
+export type { KpiItem, KpiStripProps } from "./KpiStrip.js";
 export {
   MissionHeader,
   ObjectiveList,

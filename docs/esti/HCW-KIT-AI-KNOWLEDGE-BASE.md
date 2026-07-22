@@ -188,8 +188,8 @@ without instruction.
 3. **Token audit** — R1 + scale coverage (spacing/motion/elevation/z/opacity/breakpoints).
 4. **Theme audit** — used-MUI vs themed-MUI diff; scheme completeness.
 5. **Component gap analysis** — framework component list vs kit+app canonicals;
-   flag app-level canonicals not yet in the kit (Toast, DataState, StatusTag,
-   PageBreadcrumb, Avatar, Charts).
+   flag app-level forks of kit primitives (prefer kit StatusDot / DataState /
+   ToastHost / PageBreadcrumb / Avatar / charts helpers over local copies).
 6. **A11y audit** — R6 sweep + heuristics 1.3.1/1.4.1/2.1.1/2.4.x/2.5.8/4.1.2.
 7. **IA audit** — nav tree vs NAVIGATION.md; Hick/Miller counts; wayfinding.
 8. **UX audit** — Nielsen + laws scorecard with friction maps.
