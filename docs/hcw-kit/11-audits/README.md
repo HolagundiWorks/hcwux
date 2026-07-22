@@ -3,7 +3,7 @@
 **Updated:** 2026-07-22 · **Living queue:** [DESIGN-DEBT-REGISTER.md](DESIGN-DEBT-REGISTER.md) —
 kit roadmap halves D15/D16 closed in **1.4.0** ([13-ROADMAPS.md](../13-ROADMAPS.md)) ·
 Case studies: [case-studies/](case-studies/) · Governance **00–14** · gzip budget
-**50 KB** · Canonical: **github.com/HolagundiWorks/hcwux**
+**56 KB** · Canonical: **github.com/HolagundiWorks/hcwux**
 
 All audits are repo-resident markdown — no external canvas URLs. Re-run surface
 audits after major feature waves; update the debt register in the same PR as fixes.

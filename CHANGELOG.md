@@ -12,6 +12,9 @@ changes, not npm releases.
 - **CI `pnpm voice-lint`** · agent rules 16–18 · KB R11 · Evaluate gate voice/audit.
 - **External case-study template** (`ext-TEMPLATE.md`) for V1 studies.
 
+### Chore
+- Gzip size budget **50 → 56 KB** (voice · fatigue · audit · calibration · telemetry root).
+
 ## 1.4.3 — 2026-07-22
 
 ### Added
