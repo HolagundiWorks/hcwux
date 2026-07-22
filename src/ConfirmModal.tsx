@@ -1,11 +1,13 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
 import type { ReactNode } from "react";
 import { typeScaleSx } from "./chrome-sx.js";
-import { colors } from "./tokens.js";
+import { VOICE, colors } from "./tokens.js";
 
 /**
  * ConfirmModal — confirmation for destructive / consequential actions (HCW:
  * destroy always confirms; never `window.confirm`).
+ *
+ * Voice: invitational defaults ({@link VOICE}) — empathic partner, not commander.
  *
  * Error taxonomy (Reason):
  * - **slip** — unintended action; confirm + optional undo path after.
@@ -24,6 +26,7 @@ export type ConfirmModalProps = {
   reason?: ReactNode;
   kind?: ConfirmKind;
   confirmText?: string;
+  cancelText?: string;
   danger?: boolean;
   pending?: boolean;
   onConfirm: () => void;
@@ -32,19 +35,24 @@ export type ConfirmModalProps = {
 
 export function ConfirmModal({
   open,
-  heading = "Are you sure?",
+  heading,
   body,
   reason,
   kind = "slip",
   confirmText = "Delete",
+  cancelText = VOICE.cancelLabel,
   danger = true,
   pending = false,
   onConfirm,
   onClose,
 }: ConfirmModalProps) {
+  const title =
+    heading ??
+    (kind === "mistake" ? VOICE.confirmHeadingMistake : VOICE.confirmHeadingSlip);
+
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs" aria-labelledby="confirm-modal-title">
-      <DialogTitle id="confirm-modal-title">{heading}</DialogTitle>
+      <DialogTitle id="confirm-modal-title">{title}</DialogTitle>
       <DialogContent>
         {typeof body === "string" ? <p>{body}</p> : body}
         {(kind === "mistake" || reason) && reason ? (
@@ -65,7 +73,7 @@ export function ConfirmModal({
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} variant="text" color="inherit">
-          Cancel
+          {cancelText}
         </Button>
         <Button
           onClick={onConfirm}
@@ -73,7 +81,7 @@ export function ConfirmModal({
           variant="contained"
           color={danger ? "error" : "primary"}
         >
-          {pending ? "Working…" : confirmText}
+          {pending ? VOICE.pendingLabel : confirmText}
         </Button>
       </DialogActions>
     </Dialog>

@@ -88,13 +88,13 @@ describe("ConfirmModal", () => {
       <ConfirmModal open heading="Remove?" body="b" confirmText="Remove" onConfirm={onConfirm} onClose={onClose} />,
     );
     fireEvent.click(screen.getByRole("button", { name: "Remove" }));
-    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    fireEvent.click(screen.getByRole("button", { name: "Not now" }));
     expect(onConfirm).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenCalledTimes(1);
     rerender(
       <ConfirmModal open heading="Remove?" body="b" pending onConfirm={onConfirm} onClose={onClose} />,
     );
-    expect((screen.getByRole("button", { name: "Working…" }) as HTMLButtonElement).disabled).toBe(true);
+    expect((screen.getByRole("button", { name: "Working on it…" }) as HTMLButtonElement).disabled).toBe(true);
   });
 
   it("renders mistake reason when kind=mistake", () => {

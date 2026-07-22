@@ -8,8 +8,8 @@
  *   3. Glassmorphism   (GLASS)  — the live layer: hover, CTAs, the dock, alerts.
  *
  * Spatial model: Rail · Stage · TaskbarFooter · ActionDock.
- * Cognitive contracts: CAPACITY · INTERRUPTION · AwarenessStrip · ActionOutcome ·
- * Mission/Decision/Phase orchestration · KpiStrip · logUxEvent.
+ * Cognitive contracts: CAPACITY · INTERRUPTION · VOICE · FATIGUE · AwarenessStrip ·
+ * ActionOutcome · Mission/Decision/Phase orchestration · KpiStrip · logUxEvent.
  *
  *   import { KitRoot, ActionDockProvider, ActionDock, TaskbarFooter,
  *            useScreenActions, Surface, GlassRail, HealthGlassOrb,
@@ -132,10 +132,49 @@ export {
   logUxEvent,
   setUxEventSink,
   resetUxEventSink,
+  clearUxEventObservers,
+  addUxEventObserver,
   logOrient,
   logDecision,
   logMission,
   logInterrupt,
 } from "./uxEvents.js";
-export type { UxEventName, UxEventPayload, UxEventSink } from "./uxEvents.js";
+export type { UxEventName, UxEventPayload, UxEventSink, UxEventObserver } from "./uxEvents.js";
+export {
+  installFatigueTracking,
+  startFatigueSession,
+  resetFatigueSession,
+  pulseFatigueSession,
+  evaluateFatigue,
+  getFatigueSnapshot,
+  suggestFatigueCopy,
+  getLatestFatigueOffer,
+  clearLatestFatigueOffer,
+  subscribeFatigueOffer,
+} from "./fatigue.js";
+export type { FatigueKind, FatigueLevel, FatigueAssessment, FatigueOffer } from "./fatigue.js";
+export { FatigueOfferBanner } from "./FatigueOfferBanner.js";
+export type { FatigueOfferBannerProps } from "./FatigueOfferBanner.js";
+export {
+  setDecisionAuditSink,
+  recordDecisionAudit,
+  recordFreezeAudit,
+  freezeDecision,
+  openDecision,
+  listSessionDecisionAudits,
+  exportSessionDecisionAudits,
+  resetDecisionAudit,
+} from "./decisionAudit.js";
+export type {
+  DecisionAuditAction,
+  DecisionAuditRecord,
+  DecisionAuditSink,
+} from "./decisionAudit.js";
+export { estimateOrientMultiplier, isLoadRisk } from "./calibration.js";
+export type { LoadInputs } from "./calibration.js";
+export { HcwTelemetryRoot } from "./HcwTelemetryRoot.js";
+export type { HcwTelemetryRootProps } from "./HcwTelemetryRoot.js";
 export { trimDockActions, prioritizeDockActions } from "./ActionDock.js";
+
+import { installFatigueTracking } from "./fatigue.js";
+installFatigueTracking();

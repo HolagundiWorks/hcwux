@@ -411,14 +411,54 @@ export const COGA = {
 } as const;
 
 /**
+ * Product voice — empathic partner, not commander.
+ * Non-P0 chrome invites collaboration; safety/blocker copy may stay direct (precedence P0).
+ * Full grammar: docs/HCW-UX-VOICE.md
+ */
+export const VOICE = {
+  stance: "empathic-partner",
+  /** Prefer invitation over order in ambient / confirm / awareness copy. */
+  preferInvitation: true,
+  confirmHeadingSlip: "Just checking before we continue",
+  confirmHeadingMistake: "This needs a careful look",
+  cancelLabel: "Not now",
+  pendingLabel: "Working on it…",
+  /** Soft offer when fatigue signals fire — never force a break. */
+  fatiguePauseOffer: "You've been deciding a lot — a short pause may help",
+  fatigueCalmOffer: "Things are stacking up — calm mode can reduce the noise",
+} as const;
+
+/**
  * AI trust calibration (Lee & See) — ESTI / orchestration copy grammar.
  * Overconfident success theatre is banned; judgment is the only interrupt cue.
+ * Labels stay invitational ({@link VOICE}).
  */
 export const TRUST = {
-  assumptionChipLabel: "Assumption",
-  judgmentNeedsLabel: "Needs your judgment",
+  assumptionChipLabel: "We're assuming",
+  judgmentNeedsLabel: "Your judgment would help here",
   /** Confidence is shown as a band/word, never a false-precision percent alone. */
   preferConfidenceBand: true,
+} as const;
+
+/**
+ * Operational-load / fatigue *proxies* (not medical diagnosis).
+ * Products observe via `ux.fatigue_signal` and may offer
+ * {@link VOICE.fatiguePauseOffer} / COGA calm — never block work on these alone.
+ */
+export const FATIGUE = {
+  /** Judgment+blocker+error interrupts per active hour → watch. */
+  interruptPerHourWarn: 8,
+  /** Capacity warnings in {@link FATIGUE.capacityWarnWindowMs} → elevated. */
+  capacityWarnBurst: 3,
+  capacityWarnWindowMs: 10 * 60 * 1000,
+  /** Continuous session wall time → watch (suggest pause). */
+  sessionActiveMsWarn: 90 * 60 * 1000,
+  /** Concurrent pending decisions → watch. */
+  pendingDecisionsWarn: 5,
+  /** Single decision open longer than this → watch. */
+  longPendingDecisionMs: 30 * 60 * 1000,
+  /** Suppress repeat emissions of the same kind. */
+  signalCooldownMs: 15 * 60 * 1000,
 } as const;
 
 /**
@@ -925,7 +965,9 @@ export const tokens = {
   CAPACITY,
   INTERRUPTION,
   COGA,
+  VOICE,
   TRUST,
+  FATIGUE,
   STATUS_SHAPE,
   BREAKPOINTS,
   Z_INDEX,

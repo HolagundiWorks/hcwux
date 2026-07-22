@@ -5,10 +5,10 @@ import { readdirSync, readFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 import { join } from "node:path";
 
-// Ceiling for total gzipped dist JS. Raised to 50 KB with 1.3.0 orchestration /
-// capacity / telemetry exports (~45.5 KB gzipped). Raise deliberately (with a
-// CHANGELOG note) when the kit grows further.
-const BUDGET_GZIP_KB = 50;
+// Ceiling for total gzipped dist JS. Raised to 56 KB with 1.4.x voice / fatigue /
+// audit / calibration / telemetry-root exports (~55 KB gzipped). Raise
+// deliberately (with a CHANGELOG note) when the kit grows further.
+const BUDGET_GZIP_KB = 56;
 
 let raw = 0;
 let gz = 0;

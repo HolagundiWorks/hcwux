@@ -9,8 +9,10 @@ comes after — must follow. It changes rarely and deliberately; implementations
 
 > **HCW UX = framework + process:**  
 > **[HCW-UX.md](HCW-UX.md)** (index) · **[HCW-UX-FRAMEWORK.md](HCW-UX-FRAMEWORK.md)**
-> (model: purpose · principles · KPIs) · **[HCW-UX-PROCESS.md](HCW-UX-PROCESS.md)**
-> (Plan → Design → Build → Evaluate → Improve). Construction specialization:
+> (model: purpose · principles · precedence · KPIs) · **[HCW-UX-PROCESS.md](HCW-UX-PROCESS.md)**
+> (Plan → Design → Build → Evaluate → Improve) · **[HCW-UX-EVALUATION.md](HCW-UX-EVALUATION.md)**
+> (published scorecard, **88/100**) · **[HCW-UX-VOICE.md](HCW-UX-VOICE.md)** (empathic tone).
+> Construction-**aware** overlay (not a CPM UX framework):
 > [esti/HCW-CONSTRUCTION-UX-OVERLAY.md](esti/HCW-CONSTRUCTION-UX-OVERLAY.md).
 
 > **Why this document exists:** an agent (human or AI) should be able to reason about

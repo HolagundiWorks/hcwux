@@ -263,7 +263,7 @@
         </div>
         <p class="sub" style="margin:0">Tokens: <code>LAYOUT</code> · helpers: <code>layoutSx.rail</code> · <code>.stage</code> · <code>.grid</code> · <code>.content</code> · <code>.page</code> · <code>.listToolbar</code> · <code>.formField</code>. Density: <code>KitRoot({ density: "comfortable" | "compact" })</code> · search: <code>searchFieldSx</code>. Full attribute catalog: <code>docs/hcw-kit/14-HCW-CATALOG.md</code>.</p>
         <h3>Cognitive contracts</h3>
-        <p class="sub" style="margin:0"><code>CAPACITY</code> (Cowan caps) · <code>INTERRUPTION</code> (toast budget ≤2) · <code>AwarenessStrip</code> (state·meaning·next) · <code>publishOutcome</code> · <code>TRUST</code>/<code>COGA</code>. See UX principles.</p>
+        <p class="sub" style="margin:0"><code>CAPACITY</code> · <code>INTERRUPTION</code> · <code>VOICE</code>/<code>TRUST</code> (empathic partner) · <code>FATIGUE</code> → <code>ux.fatigue_signal</code> · <code>AwarenessStrip</code> · <code>publishOutcome</code> · decision audit. See <code>docs/HCW-UX-VOICE.md</code>.</p>
         <h3>Radius — square by default</h3>
         <div class="radrow">
           <div class="radbox" style="border-radius:0">0 · surfaces</div>
@@ -369,6 +369,25 @@
       <div><div style="font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;font-weight:600;color:var(--secondary)">Blocked</div><div style="font-size:1.1rem;font-weight:600;color:var(--ink)">1</div></div>
       <div><div style="font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;font-weight:600;color:var(--secondary)">Done</div><div style="font-size:1.1rem;font-weight:600;color:var(--ink)">48</div></div>
     </div>
+
+    <h3>Voice · fatigue offer (empathic partner)</h3>
+    <p class="sub" style="margin:0 0 10px">Defaults invite collaboration. Fatigue offers never lock the UI. Grammar: <code>docs/HCW-UX-VOICE.md</code>.</p>
+    <div class="card" style="padding:16px;max-width:480px;display:flex;flex-direction:column;gap:10px">
+      <div style="font-size:.85rem;color:var(--ink)"><strong>Just checking before we continue</strong><br><span style="color:var(--secondary)">This removes the login for this client.</span></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn btn-text">Not now</button>
+        <button class="btn btn-danger">Delete</button>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:12px;font-size:.85rem">
+        <strong style="color:var(--ink)">A lighter pace may help</strong>
+        <div style="color:var(--secondary);margin:6px 0 10px">You've been deciding a lot — a short pause may help</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-outline">Try calm mode</button>
+          <button class="btn btn-text">Not now</button>
+        </div>
+      </div>
+      <div class="sub" style="margin:0">Judgment cue: <em>Your judgment would help here:</em> approve scale</div>
+    </div>
   </section>
 
   <!-- ELEMENTS -->
@@ -379,7 +398,7 @@
     <h3>Buttons</h3>
     <div class="specimen">
       <button class="btn btn-primary">Create project</button>
-      <button class="btn btn-outline">Cancel</button>
+      <button class="btn btn-outline">Not now</button>
       <button class="btn btn-text">Learn more</button>
       <button class="btn btn-danger">Delete</button>
     </div>

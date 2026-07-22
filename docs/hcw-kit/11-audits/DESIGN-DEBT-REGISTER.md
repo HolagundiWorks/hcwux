@@ -14,6 +14,21 @@ withdraws. Agents: update this file in the same change that alters a fact
 
 *None open — F1–F5 closed in 1.3.0 (see Retired).*
 
+### Empirical maturity (industry-reference bar)
+
+Published reaudit: [HCW-UX-EVALUATION.md](../../HCW-UX-EVALUATION.md) (**88/100**).  
+**Kit halves shipped in 1.4.3** — contracts/recipes exist; **field evidence** still open:
+
+| ID | Gap | Kit / docs (1.4.3) | Still open (product / research) |
+| --- | --- | --- | --- |
+| **V1** | External validation | [VALIDATION-PROTOCOL.md](VALIDATION-PROTOCOL.md) | ≥3 independent studies |
+| **V2** | Live KPI dashboards | [HCW-UX-ADOPTION-PLAYBOOK.md](../../esti/HCW-UX-ADOPTION-PLAYBOOK.md) sink recipe | Production sink + before/after tiles |
+| **V3** | Predictive models | [HCW-UX-CALIBRATION.md](../../esti/HCW-UX-CALIBRATION.md) · `estimateOrientMultiplier` | Holdout-calibrated coefficients |
+| **V4** | Construction patterns | [HCW-CONSTRUCTION-PATTERNS.md](../../esti/HCW-CONSTRUCTION-PATTERNS.md) CP-01…11 | Product UI implementations |
+| **V5** | Audit persistence | `setDecisionAuditSink` · `ux.audit` | Durable DB ≥6 months |
+
+Adoption checklist: [HCW-UX-ADOPTION-PLAYBOOK.md](../../esti/HCW-UX-ADOPTION-PLAYBOOK.md).
+
 ### Roadmap-class
 
 *Kit halves of D15/D16 shipped in **1.4.0** — see [13-ROADMAPS.md](../13-ROADMAPS.md).*
@@ -21,6 +36,7 @@ Product-only remainders (not kit defects):
 
 - **Product i18n** — message catalogs / locale switcher in consumer apps
 - **Figma component library** — designer-owned `.fig` mirroring primitives
+- **Variables sync ritual** — DesignOps (see roadmaps)
 
 ## Roadmap-class (tracked in 13-Roadmaps)
 
@@ -42,6 +58,10 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-22 · **Telemetry bootstrap + freeze helpers (1.4.4)** — `HcwTelemetryRoot` · `freezeDecision` · CI voice-lint · rulebook 16–18 · ext case-study template.
+- 2026-07-22 · **Maturity kit halves (1.4.3)** — FatigueOfferBanner · decision audit · calibration heuristics · adoption playbook · CP-01…11 patterns · validation protocol · voice-lint · styleguide specimens. Field evidence for V1–V5 still open.
+- 2026-07-22 · **Empathic voice + fatigue trackers (1.4.2)** — `VOICE` / invitational `TRUST`; `FATIGUE` + `ux.fatigue_signal`; [HCW-UX-VOICE.md](../../HCW-UX-VOICE.md).
+- 2026-07-22 · **Framework reaudit published (1.4.1)** — [HCW-UX-EVALUATION.md](../../HCW-UX-EVALUATION.md) weighted **88/100**; charter §2.1 precedence; construction labeled aware not CPM framework; open V1–V5 empirical (not kit).
 - 2026-07-22 · **Roadmap kit halves D15/D16 (1.4.0)** — RTL foundation (`direction`/`locale`, logical chrome, Emotion cache recipe); Figma Variables bridge (`tokens.json`/`tokens.css`); [13-ROADMAPS.md](../13-ROADMAPS.md). Product i18n + Figma component library remain DesignOps/esti.
 - 2026-07-22 · **Kit defect sweep (1.3.1)** — COGA calm chrome (`chromeIconSx` + `typeScaleSx`); theme scheme-aware borders/shadows; `CAPACITY.decisionAlternatives`; catalog + HCW-UI-KIT.md sync; ConfirmModal/AwarenessStrip prop types + tests; KB/audit hygiene.
 - 2026-07-21 · **Framework gaps F1–F5 closed (1.3.0)** — orchestration primitives + T10; CAPACITY on dock/KpiStrip; `KitRoot({ coga })`; `logUxEvent` + dock outcome; case studies in `11-audits/case-studies/`.

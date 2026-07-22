@@ -31,6 +31,9 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: Voice lint
+        run: pnpm voice-lint
+
       - name: Verify build output
         run: |
           test -f dist/index.js
