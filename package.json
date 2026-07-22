@@ -1,6 +1,6 @@
 {
   "name": "@hcw/ui-kit",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "private": true,
   "type": "module",
   "sideEffects": ["*.scss"],
@@ -37,6 +37,7 @@
     "export-tokens": "node scripts/export-tokens.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
+    "voice-lint": "node scripts/voice-lint.mjs",
     "size": "node scripts/size-budget.mjs",
     "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\""
   },

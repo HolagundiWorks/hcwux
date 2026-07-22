@@ -148,8 +148,28 @@ export {
   evaluateFatigue,
   getFatigueSnapshot,
   suggestFatigueCopy,
+  getLatestFatigueOffer,
+  clearLatestFatigueOffer,
+  subscribeFatigueOffer,
 } from "./fatigue.js";
-export type { FatigueKind, FatigueLevel, FatigueAssessment } from "./fatigue.js";
+export type { FatigueKind, FatigueLevel, FatigueAssessment, FatigueOffer } from "./fatigue.js";
+export { FatigueOfferBanner } from "./FatigueOfferBanner.js";
+export type { FatigueOfferBannerProps } from "./FatigueOfferBanner.js";
+export {
+  setDecisionAuditSink,
+  recordDecisionAudit,
+  recordFreezeAudit,
+  listSessionDecisionAudits,
+  exportSessionDecisionAudits,
+  resetDecisionAudit,
+} from "./decisionAudit.js";
+export type {
+  DecisionAuditAction,
+  DecisionAuditRecord,
+  DecisionAuditSink,
+} from "./decisionAudit.js";
+export { estimateOrientMultiplier, isLoadRisk } from "./calibration.js";
+export type { LoadInputs } from "./calibration.js";
 export { trimDockActions, prioritizeDockActions } from "./ActionDock.js";
 
 import { installFatigueTracking } from "./fatigue.js";

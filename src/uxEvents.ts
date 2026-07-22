@@ -15,7 +15,8 @@ export type UxEventName =
   | "ux.outcome"
   | "ux.a11y_gate"
   | "ux.mission"
-  | "ux.fatigue_signal";
+  | "ux.fatigue_signal"
+  | "ux.audit";
 
 export type UxEventPayload = Record<string, unknown>;
 export type UxEventSink = (name: UxEventName, payload: UxEventPayload) => void;

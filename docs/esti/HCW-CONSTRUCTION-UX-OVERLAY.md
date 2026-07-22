@@ -6,7 +6,7 @@
 
 Construction project delivery needs coordination, safety, traceability, and field usability that a generic product chrome framework cannot claim alone. This overlay maps those needs onto HCW geography, capacity, and decision law.
 
-**Honest scope:** lifecycle phases · stakeholder modes · safety interrupt classes · BIM viewer stance · field density · freeze/trace grammar. It is **not** yet a Construction UX Framework — missing product-side domain interaction patterns (RFI · submittals · NCR · site diaries · inspections · progress claims · delay / programme change · variations · safety permits · multi-tier approvals). Those stay in product libraries composed on the kit.
+**Honest scope:** lifecycle phases · stakeholder modes · safety interrupt classes · BIM viewer stance · field density · freeze/trace grammar. Domain **job** specs (RFI, NCR, claims…) live in [HCW-CONSTRUCTION-PATTERNS.md](HCW-CONSTRUCTION-PATTERNS.md) for product implementation — not in the kit. Until those UIs ship, do not call this a Construction UX Framework (~**68**/100).
 
 ---
 

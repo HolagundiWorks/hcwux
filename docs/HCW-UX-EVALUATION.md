@@ -169,13 +169,14 @@ domain-agnostic kit. Overlay score for domain completeness: **~68 / 100**.
 
 ## 8. Path to 90–95
 
-| Work | Owner | Moves |
-| --- | --- | --- |
-| Independent multi-project / multi-org validation | Product + research | Validation 5.5 → 8+ |
-| Live KPI dashboards with before/after deltas | Product telemetry | Measurable impact |
-| Quantified predictive models (capacity × interrupt → orientation/decision latency) | Research | Predictive 6.5 → 8+ |
-| Construction domain pattern library (RFI, NCR, claims…) on kit | Product (not kit core) | Construction-aware → domain-strong |
-| Persist decision/freeze audit for explainability at 6 months | Product | Explainability → 9+ |
+| Work | Owner | Kit / docs ready | Moves |
+| --- | --- | --- | --- |
+| Independent multi-project / multi-org validation | Research | [VALIDATION-PROTOCOL.md](hcw-kit/11-audits/VALIDATION-PROTOCOL.md) | Validation 5.5 → 8+ |
+| Live KPI dashboards with before/after deltas | Product | [HCW-UX-ADOPTION-PLAYBOOK.md](esti/HCW-UX-ADOPTION-PLAYBOOK.md) | Measurable impact |
+| Quantified predictive models | Research | [HCW-UX-CALIBRATION.md](esti/HCW-UX-CALIBRATION.md) | Predictive 6.5 → 8+ |
+| Construction domain UIs (CP-01…11) | Product | [HCW-CONSTRUCTION-PATTERNS.md](esti/HCW-CONSTRUCTION-PATTERNS.md) | Domain-strong |
+| Persist decision/freeze audit ≥6 months | Product | `setDecisionAuditSink` | Explainability → 9+ |
+| Voice + fatigue UI in shells | Product | `VOICE` · `FatigueOfferBanner` | Partner tone under load |
 
 Until then, reputation should rest on **demonstrated decision quality in shipping
 products**, not on documentation volume.

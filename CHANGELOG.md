@@ -4,6 +4,20 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 1.4.3 — 2026-07-22
+
+### Added
+- **`FatigueOfferBanner`** — soft pause/calm offer UI for `ux.fatigue_signal`.
+- **Decision audit contract** — `recordDecisionAudit` / `recordFreezeAudit` /
+  `setDecisionAuditSink` · `ux.audit` (V5 kit half); DecisionQueue records `opened`.
+- **Calibration heuristics** — `estimateOrientMultiplier` / `isLoadRisk` (explanatory priors).
+- **Product adoption playbook** · **construction pattern library (CP-01…11)** ·
+  **validation protocol (V1)** · **calibration doc (V3)**.
+- **`pnpm voice-lint`** — commanding-copy warnings; styleguide voice/fatigue specimens.
+
+### Docs
+- Debt register: kit halves for V2/V4/V5 wired; empirical fieldwork remains open.
+
 ## 1.4.2 — 2026-07-22
 
 ### Added

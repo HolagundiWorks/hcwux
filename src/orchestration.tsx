@@ -9,6 +9,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import type { ReactNode } from "react";
 import { enforceCapacity } from "./capacity.js";
 import { logUxEvent } from "./uxEvents.js";
+import { recordDecisionAudit } from "./decisionAudit.js";
 import { Surface } from "./Surface.js";
 import { TRUST, TYPE_SCALE, colors, hexToRgba } from "./tokens.js";
 
@@ -341,6 +342,11 @@ export function DecisionQueue({
           {...item}
           onOpen={() => {
             logUxEvent("ux.decision", { id: item.id, state: "pending" });
+            recordDecisionAudit({
+              decisionId: item.id,
+              action: "opened",
+              question: typeof item.question === "string" ? item.question : undefined,
+            });
             item.onOpen?.();
           }}
         />

@@ -430,7 +430,7 @@ Separator pictogram: `›`.
 
 Exported type: `ConfirmModalProps`. Voice: [HCW-UX-VOICE.md](../HCW-UX-VOICE.md).
 
-### Fatigue / voice contracts
+### Fatigue / voice / audit contracts
 
 | Export | Role |
 | --- | --- |
@@ -438,6 +438,9 @@ Exported type: `ConfirmModalProps`. Voice: [HCW-UX-VOICE.md](../HCW-UX-VOICE.md)
 | `TRUST` | Invitational judgment / assumption labels |
 | `FATIGUE` | Operational-load thresholds |
 | `installFatigueTracking` · `pulseFatigueSession` · `suggestFatigueCopy` | Observe KPI events → `ux.fatigue_signal` |
+| `FatigueOfferBanner` | Soft pause/calm offer (never locks) |
+| `setDecisionAuditSink` · `recordFreezeAudit` | Durable explainability (product persists) |
+| `estimateOrientMultiplier` | Explanatory load prior (not calibrated) |
 
 ### Toast
 

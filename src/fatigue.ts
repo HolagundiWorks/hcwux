@@ -31,6 +31,11 @@ export type FatigueAssessment = {
   detail?: Record<string, unknown>;
 };
 
+export type FatigueOffer = FatigueAssessment & {
+  offer: string;
+  at: number;
+};
+
 type SessionState = {
   startedAt: number | null;
   interruptAt: number[];
@@ -50,6 +55,30 @@ const state: SessionState = {
   orientSamples: [],
   lastSignalAt: new Map(),
 };
+
+let latestOffer: FatigueOffer | null = null;
+const offerSubs = new Set<(offer: FatigueOffer | null) => void>();
+
+export function getLatestFatigueOffer(): FatigueOffer | null {
+  return latestOffer;
+}
+
+export function clearLatestFatigueOffer(): void {
+  latestOffer = null;
+  offerSubs.forEach((fn) => fn(null));
+}
+
+export function subscribeFatigueOffer(fn: (offer: FatigueOffer | null) => void): () => void {
+  offerSubs.add(fn);
+  return () => {
+    offerSubs.delete(fn);
+  };
+}
+
+function setLatestOffer(offer: FatigueOffer | null): void {
+  latestOffer = offer;
+  offerSubs.forEach((fn) => fn(offer));
+}
 
 let installed = false;
 
@@ -78,6 +107,7 @@ export function resetFatigueSession(): void {
   state.pendingOpenedAt.clear();
   state.orientSamples = [];
   state.lastSignalAt.clear();
+  setLatestOffer(null);
 }
 
 export function getFatigueSnapshot(now = Date.now()) {
@@ -176,10 +206,13 @@ function emitIfCooled(assessment: FatigueAssessment, now: number): void {
   const last = state.lastSignalAt.get(assessment.kind) ?? 0;
   if (now - last < FATIGUE.signalCooldownMs) return;
   state.lastSignalAt.set(assessment.kind, now);
+  const offer = suggestFatigueCopy(assessment.kind);
+  const row: FatigueOffer = { ...assessment, offer, at: now };
+  setLatestOffer(row);
   logUxEvent("ux.fatigue_signal", {
     kind: assessment.kind,
     level: assessment.level,
-    offer: suggestFatigueCopy(assessment.kind),
+    offer,
     ...(assessment.detail ?? {}),
   });
 }

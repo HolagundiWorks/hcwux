@@ -46,6 +46,8 @@ documented product exception (marketing atmosphere in `landing.scss` is one).
 | Construction stakeholders / lifecycle / field? | [HCW-CONSTRUCTION-UX-OVERLAY.md](HCW-CONSTRUCTION-UX-OVERLAY.md) |
 | How do we measure UX? | [HCW-UX-KPI-INSTRUMENT.md](HCW-UX-KPI-INSTRUMENT.md) |
 | What tone should copy use? | [HCW-UX-VOICE.md](../HCW-UX-VOICE.md) |
+| How does a product adopt the kit? | [HCW-UX-ADOPTION-PLAYBOOK.md](HCW-UX-ADOPTION-PLAYBOOK.md) |
+| Construction job patterns? | [HCW-CONSTRUCTION-PATTERNS.md](HCW-CONSTRUCTION-PATTERNS.md) |
 | Where does this module live in nav? | [NAVIGATION.md](NAVIGATION.md) |
 | Why Radiant Orange / Urbanist? | [AORMS-BRANDING-KIT.md](AORMS-BRANDING-KIT.md) |
 | Shell rollout status | [AORMS-UI-AUTOPILOT-ROADMAP.md](AORMS-UI-AUTOPILOT-ROADMAP.md) |
@@ -233,7 +235,7 @@ Editorial CSS lives in `landing.scss` — not in `@hcw/ui-kit` tokens.
 |---------|------|
 | **Voice** | Invitation over order in ambient UI; P0 safety/regulatory may stay direct |
 | **Buttons** | Verb-first: “Create project”, “Save changes”, not “OK” |
-| **Confirms** | Default headings from `VOICE` (“Just checking…”) — not “Are you sure?” |
+| **Confirms** | Default headings from `VOICE` (checking-before-continue) — avoid bare sure-check prompts |
 | **Cancel / pending** | `VOICE.cancelLabel` (“Not now”) · `VOICE.pendingLabel` |
 | **Judgment** | `TRUST.judgmentNeedsLabel` — “Your judgment would help here” |
 | **Errors** | What failed + what to do next (no blame) |

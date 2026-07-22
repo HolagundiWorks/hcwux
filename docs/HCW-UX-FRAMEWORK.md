@@ -257,10 +257,10 @@ Canonical scored reaudit: **[HCW-UX-EVALUATION.md](HCW-UX-EVALUATION.md)** (weig
 
 | ID | Gap | Moves score |
 | --- | --- | --- |
-| **V1** | External multi-org / multi-project validation | Validation → 8+ |
-| **V2** | Live KPI dashboards with before/after deltas | Measurable impact |
-| **V3** | Calibrated predictive models | Predictive → 8+ |
-| **V4** | Construction domain pattern library in product (RFI, NCR, claims…) | Domain completeness |
-| **V5** | Long-lived decision/freeze audit persistence | Explainability → 9+ |
+| **V1** | External multi-org / multi-project validation | Validation → 8+ | [VALIDATION-PROTOCOL.md](hcw-kit/11-audits/VALIDATION-PROTOCOL.md) |
+| **V2** | Live KPI dashboards with before/after deltas | Measurable impact | [HCW-UX-ADOPTION-PLAYBOOK.md](esti/HCW-UX-ADOPTION-PLAYBOOK.md) |
+| **V3** | Calibrated predictive models | Predictive → 8+ | [HCW-UX-CALIBRATION.md](esti/HCW-UX-CALIBRATION.md) |
+| **V4** | Construction domain pattern library in product (RFI, NCR, claims…) | Domain completeness | [HCW-CONSTRUCTION-PATTERNS.md](esti/HCW-CONSTRUCTION-PATTERNS.md) |
+| **V5** | Long-lived decision/freeze audit persistence | Explainability → 9+ | `setDecisionAuditSink` · adoption §4 |
 
 New kit defects: file on the debt register — do not leave this section stale.

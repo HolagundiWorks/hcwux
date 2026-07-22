@@ -116,4 +116,4 @@ See [HCW-UX-VOICE.md](../HCW-UX-VOICE.md).
 - KPIs without owners
 - Changing caps without Constitution-level review
 - Treating fatigue proxies as medical claims or hard lockouts
-- Commanding ambient copy (“You must…”) outside P0 safety/regulatory
+- Commanding ambient copy outside P0 safety/regulatory (see [HCW-UX-VOICE.md](../HCW-UX-VOICE.md))
