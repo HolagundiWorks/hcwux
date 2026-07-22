@@ -21,6 +21,7 @@ Neither replaces the other.
 | **[HCW-UX-FRAMEWORK.md](HCW-UX-FRAMEWORK.md)** | Framework charter | Defining purpose, seven principles, **precedence**, diagram, scope, KPIs |
 | **[HCW-UX-PROCESS.md](HCW-UX-PROCESS.md)** | Process | Running Plan → Design → Build → Evaluate → Improve on a real change |
 | **[HCW-UX-EVALUATION.md](HCW-UX-EVALUATION.md)** | Published scorecard | Industry-reference bar — weighted **88/100**, validation & prediction honesty |
+| **[HCW-UX-VOICE.md](HCW-UX-VOICE.md)** | Voice & tone | Empathic partner grammar · `VOICE` / `TRUST` · fatigue offers |
 | [HCW-DESIGN-PLAYBOOK.md](HCW-DESIGN-PLAYBOOK.md) | Philosophy | Why the rules exist |
 | [hcw-kit/00-CONSTITUTION.md](hcw-kit/00-CONSTITUTION.md) | Law | Non-negotiable articles |
 | [esti/HCW-UI-UX-PRINCIPLES.md](esti/HCW-UI-UX-PRINCIPLES.md) | Evidence map | Law → pattern table |

@@ -4,6 +4,7 @@
  */
 import { Alert, AlertTitle, Box, Button } from "@mui/material";
 import { clearOutcome, useActionOutcome } from "./ActionOutcome.js";
+import { VOICE } from "./tokens.js";
 
 export function ActionOutcomeBanner({
   onDismiss,
@@ -26,7 +27,7 @@ export function ActionOutcomeBanner({
         action={
           outcome.status === "pending" ? (
             <Button color="inherit" size="small" disabled>
-              Working…
+              {VOICE.pendingLabel}
             </Button>
           ) : undefined
         }

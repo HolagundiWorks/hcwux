@@ -45,6 +45,7 @@ documented product exception (marketing atmosphere in `landing.scss` is one).
 | How should an AI surface report, ask, and defer? | [HCW-AI-ORCHESTRATION-UX.md](HCW-AI-ORCHESTRATION-UX.md) |
 | Construction stakeholders / lifecycle / field? | [HCW-CONSTRUCTION-UX-OVERLAY.md](HCW-CONSTRUCTION-UX-OVERLAY.md) |
 | How do we measure UX? | [HCW-UX-KPI-INSTRUMENT.md](HCW-UX-KPI-INSTRUMENT.md) |
+| What tone should copy use? | [HCW-UX-VOICE.md](../HCW-UX-VOICE.md) |
 | Where does this module live in nav? | [NAVIGATION.md](NAVIGATION.md) |
 | Why Radiant Orange / Urbanist? | [AORMS-BRANDING-KIT.md](AORMS-BRANDING-KIT.md) |
 | Shell rollout status | [AORMS-UI-AUTOPILOT-ROADMAP.md](AORMS-UI-AUTOPILOT-ROADMAP.md) |
@@ -226,13 +227,20 @@ Editorial CSS lives in `landing.scss` — not in `@hcw/ui-kit` tokens.
 
 ## 11. Content & microcopy
 
+**Stance:** empathic partner, not commander — full grammar [HCW-UX-VOICE.md](../HCW-UX-VOICE.md) (`VOICE` · `TRUST`).
+
 | Pattern | Rule |
 |---------|------|
+| **Voice** | Invitation over order in ambient UI; P0 safety/regulatory may stay direct |
 | **Buttons** | Verb-first: “Create project”, “Save changes”, not “OK” |
-| **Errors** | What failed + what to do next |
+| **Confirms** | Default headings from `VOICE` (“Just checking…”) — not “Are you sure?” |
+| **Cancel / pending** | `VOICE.cancelLabel` (“Not now”) · `VOICE.pendingLabel` |
+| **Judgment** | `TRUST.judgmentNeedsLabel` — “Your judgment would help here” |
+| **Errors** | What failed + what to do next (no blame) |
 | **Helper text** | `esti-label--helper` / MUI `helperText` — not `fontSize: 0.75rem` ad hoc |
 | **Money** | Integer paise; `formatINR` / `formatINRShort` — never float rupees in UI |
 | **Dates** | India locale (`en-IN`) in footer clock and filing screens |
+| **Fatigue** | On `ux.fatigue_signal`, offer pause/calm copy — never lock the UI |
 
 ---
 

@@ -7,6 +7,7 @@ import {
   INTERRUPTION,
   STATUS_SHAPE,
   TRUST,
+  VOICE,
 } from "./tokens.js";
 import { pushToast, resetToasts, useToasts } from "./Toast.js";
 import {
@@ -35,7 +36,7 @@ function OutcomeLabel() {
   return <div data-testid="outcome">{o?.label ?? "none"}</div>;
 }
 
-describe("CAPACITY · INTERRUPTION · TRUST · COGA tokens", () => {
+describe("CAPACITY · INTERRUPTION · TRUST · VOICE · COGA tokens", () => {
   it("caps working memory near Cowan's 4±1", () => {
     expect(CAPACITY.workingMemoryChunks).toBe(4);
     expect(CAPACITY.toastStack).toBe(INTERRUPTION.maxConcurrentToasts);
@@ -43,12 +44,14 @@ describe("CAPACITY · INTERRUPTION · TRUST · COGA tokens", () => {
     expect(CAPACITY.awarenessLines).toBe(3);
   });
 
-  it("defines interruption and COGA floors", () => {
+  it("defines interruption, COGA floors, and invitational voice", () => {
     expect(INTERRUPTION.maxConcurrentToasts).toBe(2);
     expect(INTERRUPTION.maxAmbientMotion).toBe(1);
     expect(COGA.targetMinPx).toBe(44);
     expect(COGA.calmTargetMinPx).toBeGreaterThanOrEqual(COGA.targetMinPx);
-    expect(TRUST.judgmentNeedsLabel).toMatch(/judgment/i);
+    expect(TRUST.judgmentNeedsLabel).toMatch(/judgment would help/i);
+    expect(VOICE.stance).toBe("empathic-partner");
+    expect(VOICE.preferInvitation).toBe(true);
     expect(STATUS_SHAPE.critical).toBe("square");
   });
 });
@@ -117,7 +120,7 @@ describe("AwarenessStrip", () => {
       />,
     );
     expect(screen.getByText("Running")).toBeTruthy();
-    expect(screen.getByText(/Needs your judgment/i)).toBeTruthy();
+    expect(screen.getByText(/Your judgment would help here/i)).toBeTruthy();
     expect(screen.getAllByRole("listitem")).toHaveLength(CAPACITY.openLoops);
   });
 

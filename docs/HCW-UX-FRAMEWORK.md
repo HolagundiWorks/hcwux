@@ -66,6 +66,8 @@ Keep these seven; everything else is elaboration.
 | **6** | Mission over conversation | AI surfaces answer four questions in ≤30s |
 | **7** | UX law beats taste | When aesthetics and law conflict, law wins |
 
+**Voice (cross-cutting):** speak as an empathic partner — [HCW-UX-VOICE.md](HCW-UX-VOICE.md) · `VOICE` / `TRUST`. Operational load proxies: `FATIGUE` · `ux.fatigue_signal`.
+
 ### 2.1 Precedence (when principles conflict)
 
 A mature framework declares **what wins**. Lower number wins over higher when they collide.
@@ -234,6 +236,7 @@ Canonical scored reaudit: **[HCW-UX-EVALUATION.md](HCW-UX-EVALUATION.md)** (weig
 | --- | --- |
 | **Index (framework + process)** | [HCW-UX.md](HCW-UX.md) |
 | **Published evaluation / score** | [HCW-UX-EVALUATION.md](HCW-UX-EVALUATION.md) |
+| **Voice & tone** | [HCW-UX-VOICE.md](HCW-UX-VOICE.md) |
 | Why (philosophy) | [HCW-DESIGN-PLAYBOOK.md](HCW-DESIGN-PLAYBOOK.md) |
 | Law | [hcw-kit/00-CONSTITUTION.md](hcw-kit/00-CONSTITUTION.md) |
 | This charter (framework) | **You are here** |

@@ -54,6 +54,7 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-22 · **Empathic voice + fatigue trackers (1.4.2)** — `VOICE` / invitational `TRUST`; `FATIGUE` + `ux.fatigue_signal`; [HCW-UX-VOICE.md](../../HCW-UX-VOICE.md).
 - 2026-07-22 · **Framework reaudit published (1.4.1)** — [HCW-UX-EVALUATION.md](../../HCW-UX-EVALUATION.md) weighted **88/100**; charter §2.1 precedence; construction labeled aware not CPM framework; open V1–V5 empirical (not kit).
 - 2026-07-22 · **Roadmap kit halves D15/D16 (1.4.0)** — RTL foundation (`direction`/`locale`, logical chrome, Emotion cache recipe); Figma Variables bridge (`tokens.json`/`tokens.css`); [13-ROADMAPS.md](../13-ROADMAPS.md). Product i18n + Figma component library remain DesignOps/esti.
 - 2026-07-22 · **Kit defect sweep (1.3.1)** — COGA calm chrome (`chromeIconSx` + `typeScaleSx`); theme scheme-aware borders/shadows; `CAPACITY.decisionAlternatives`; catalog + HCW-UI-KIT.md sync; ConfirmModal/AwarenessStrip prop types + tests; KB/audit hygiene.

@@ -8,8 +8,8 @@
  *   3. Glassmorphism   (GLASS)  — the live layer: hover, CTAs, the dock, alerts.
  *
  * Spatial model: Rail · Stage · TaskbarFooter · ActionDock.
- * Cognitive contracts: CAPACITY · INTERRUPTION · AwarenessStrip · ActionOutcome ·
- * Mission/Decision/Phase orchestration · KpiStrip · logUxEvent.
+ * Cognitive contracts: CAPACITY · INTERRUPTION · VOICE · FATIGUE · AwarenessStrip ·
+ * ActionOutcome · Mission/Decision/Phase orchestration · KpiStrip · logUxEvent.
  *
  *   import { KitRoot, ActionDockProvider, ActionDock, TaskbarFooter,
  *            useScreenActions, Surface, GlassRail, HealthGlassOrb,
@@ -132,10 +132,25 @@ export {
   logUxEvent,
   setUxEventSink,
   resetUxEventSink,
+  clearUxEventObservers,
+  addUxEventObserver,
   logOrient,
   logDecision,
   logMission,
   logInterrupt,
 } from "./uxEvents.js";
-export type { UxEventName, UxEventPayload, UxEventSink } from "./uxEvents.js";
+export type { UxEventName, UxEventPayload, UxEventSink, UxEventObserver } from "./uxEvents.js";
+export {
+  installFatigueTracking,
+  startFatigueSession,
+  resetFatigueSession,
+  pulseFatigueSession,
+  evaluateFatigue,
+  getFatigueSnapshot,
+  suggestFatigueCopy,
+} from "./fatigue.js";
+export type { FatigueKind, FatigueLevel, FatigueAssessment } from "./fatigue.js";
 export { trimDockActions, prioritizeDockActions } from "./ActionDock.js";
+
+import { installFatigueTracking } from "./fatigue.js";
+installFatigueTracking();

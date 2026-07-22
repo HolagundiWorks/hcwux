@@ -14,21 +14,30 @@ export type UxEventName =
   | "ux.decision"
   | "ux.outcome"
   | "ux.a11y_gate"
-  | "ux.mission";
+  | "ux.mission"
+  | "ux.fatigue_signal";
 
 export type UxEventPayload = Record<string, unknown>;
 export type UxEventSink = (name: UxEventName, payload: UxEventPayload) => void;
+export type UxEventObserver = (name: UxEventName, payload: UxEventPayload) => void;
 
 let sink: UxEventSink | null = null;
+const observers: UxEventObserver[] = [];
 
 /** Attach (or clear) the product telemetry sink. Default is no-op. */
 export function setUxEventSink(next: UxEventSink | null): void {
   sink = next;
 }
 
-/** Emit a structured UX event. No-op when no sink is set. */
+/** Internal / kit observers (e.g. fatigue tracker). Idempotent add. */
+export function addUxEventObserver(observer: UxEventObserver): void {
+  if (!observers.includes(observer)) observers.push(observer);
+}
+
+/** Emit a structured UX event. No-op when no sink is set (observers still run). */
 export function logUxEvent(name: UxEventName, payload: UxEventPayload = {}): void {
   sink?.(name, payload);
+  for (const observer of observers) observer(name, payload);
 }
 
 /** Typed helpers for the KPI instrument vocabulary. */
@@ -63,7 +72,12 @@ export function logInterrupt(
   logUxEvent("ux.interrupt", { kind, accepted });
 }
 
-/** Test-only — clears the sink. */
+/** Test-only — clears the sink. Observers (e.g. fatigue) stay installed. */
 export function resetUxEventSink(): void {
   sink = null;
+}
+
+/** Test-only — clears observers. Call {@link installFatigueTracking} again after. */
+export function clearUxEventObservers(): void {
+  observers.length = 0;
 }

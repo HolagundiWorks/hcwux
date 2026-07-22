@@ -4,6 +4,20 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 1.4.2 — 2026-07-22
+
+### Added
+- **`VOICE`** — empathic-partner copy tokens (confirm / cancel / pending / fatigue offers).
+- **`FATIGUE`** + `src/fatigue.ts` — operational-load proxies → `ux.fatigue_signal`
+  (interrupt density · capacity burst · session duration · decision backlog ·
+  orient slowing). Suggests pause/calm; never locks UI.
+- **[HCW-UX-VOICE.md](docs/HCW-UX-VOICE.md)** — tone grammar; ConfirmModal /
+  AwarenessStrip / TRUST defaults invitational.
+
+### Changed
+- `TRUST.judgmentNeedsLabel` → “Your judgment would help here”; assumption chip
+  invitational; ConfirmModal defaults use `VOICE` (not “Are you sure?” / “Cancel”).
+
 ## 1.4.1 — 2026-07-22
 
 ### Docs / governance
