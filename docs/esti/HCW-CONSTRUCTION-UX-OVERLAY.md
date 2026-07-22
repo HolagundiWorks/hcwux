@@ -1,10 +1,12 @@
 # HCW Construction UX Overlay
 
-**Status:** Intentional specialization · **Adopted:** 2026-07-21  
-**Parent:** [HCW-UX.md](../HCW-UX.md) · framework [HCW-UX-FRAMEWORK.md](../HCW-UX-FRAMEWORK.md) · process [HCW-UX-PROCESS.md](../HCW-UX-PROCESS.md)  
+**Status:** Intentional specialization · **Adopted:** 2026-07-21 · **Maturity:** construction-**aware** (~**68**/100 domain patterns)  
+**Parent:** [HCW-UX.md](../HCW-UX.md) · framework [HCW-UX-FRAMEWORK.md](../HCW-UX-FRAMEWORK.md) · process [HCW-UX-PROCESS.md](../HCW-UX-PROCESS.md) · score [HCW-UX-EVALUATION.md](../HCW-UX-EVALUATION.md)  
 **Rule:** This overlay **does not** pollute `@hcw/ui-kit`. Domain concepts stay in product composition; the kit remains industry-agnostic (Constitution III).
 
 Construction project delivery needs coordination, safety, traceability, and field usability that a generic product chrome framework cannot claim alone. This overlay maps those needs onto HCW geography, capacity, and decision law.
+
+**Honest scope:** lifecycle phases · stakeholder modes · safety interrupt classes · BIM viewer stance · field density · freeze/trace grammar. It is **not** yet a Construction UX Framework — missing product-side domain interaction patterns (RFI · submittals · NCR · site diaries · inspections · progress claims · delay / programme change · variations · safety permits · multi-tier approvals). Those stay in product libraries composed on the kit.
 
 ---
 

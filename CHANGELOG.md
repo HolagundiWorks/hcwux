@@ -4,6 +4,13 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 1.4.1 — 2026-07-22
+
+### Docs / governance
+- **[HCW-UX-EVALUATION.md](docs/HCW-UX-EVALUATION.md)** — published industry-reference scorecard (**88/100**); validation weighted harder than internal consistency; path to 90–95.
+- **Charter precedence** ([HCW-UX-FRAMEWORK.md](docs/HCW-UX-FRAMEWORK.md) §2.1) — P0 safety → P1 capacity → P2 mission → P3 geography → P4 depth → P5 taste; Mission vs Capacity / Calm vs Safety worked.
+- Construction overlay labeled **construction-aware** (~68), not a Construction UX Framework; V1–V5 empirical gaps on debt register.
+
 ## 1.4.0 — 2026-07-22
 
 ### Added

@@ -9,9 +9,10 @@ comes after — must follow. It changes rarely and deliberately; implementations
 
 > **HCW UX = framework + process:**  
 > **[HCW-UX.md](HCW-UX.md)** (index) · **[HCW-UX-FRAMEWORK.md](HCW-UX-FRAMEWORK.md)**
-> (model: purpose · principles · KPIs) · **[HCW-UX-PROCESS.md](HCW-UX-PROCESS.md)**
-> (Plan → Design → Build → Evaluate → Improve). Construction specialization:
-> [esti/HCW-CONSTRUCTION-UX-OVERLAY.md](esti/HCW-CONSTRUCTION-UX-OVERLAY.md).
+> (model: purpose · principles · precedence · KPIs) · **[HCW-UX-PROCESS.md](HCW-UX-PROCESS.md)**
+> (Plan → Design → Build → Evaluate → Improve) · **[HCW-UX-EVALUATION.md](HCW-UX-EVALUATION.md)**
+> (published scorecard, **88/100**). Construction-**aware** overlay (not a CPM UX
+> framework): [esti/HCW-CONSTRUCTION-UX-OVERLAY.md](esti/HCW-CONSTRUCTION-UX-OVERLAY.md).
 
 > **Why this document exists:** an agent (human or AI) should be able to reason about
 > **why** a rule exists before deciding **how** to implement it. The Playbook holds
