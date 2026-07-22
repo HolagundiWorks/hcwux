@@ -4,6 +4,14 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 1.4.4 — 2026-07-22
+
+### Added
+- **`HcwTelemetryRoot`** — session start + optional `FatigueOfferBanner` under `KitRoot`.
+- **`freezeDecision` / `openDecision`** — paired KPI + audit helpers; DecisionQueue uses `openDecision`.
+- **CI `pnpm voice-lint`** · agent rules 16–18 · KB R11 · Evaluate gate voice/audit.
+- **External case-study template** (`ext-TEMPLATE.md`) for V1 studies.
+
 ## 1.4.3 — 2026-07-22
 
 ### Added

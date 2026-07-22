@@ -7,7 +7,7 @@
  *   recordDecisionAudit({ decisionId, action: "frozen", reason, chosen });
  */
 
-import { logUxEvent } from "./uxEvents.js";
+import { logDecision, logUxEvent } from "./uxEvents.js";
 
 export type DecisionAuditAction = "opened" | "frozen" | "rejected" | "revised";
 
@@ -63,6 +63,30 @@ export function recordFreezeAudit(
   fields: Omit<DecisionAuditRecord, "id" | "at" | "decisionId" | "action"> = {},
 ): DecisionAuditRecord {
   return recordDecisionAudit({ decisionId, action: "frozen", ...fields });
+}
+
+/**
+ * Freeze a decision end-to-end: KPI `ux.decision` frozen + durable audit row.
+ * Prefer this at dock RIGHT commit over calling the two APIs separately.
+ */
+export function freezeDecision(
+  decisionId: string,
+  fields: Omit<DecisionAuditRecord, "id" | "at" | "decisionId" | "action"> & {
+    msOpen?: number;
+  } = {},
+): DecisionAuditRecord {
+  const { msOpen, ...auditFields } = fields;
+  logDecision(decisionId, "frozen", msOpen);
+  return recordFreezeAudit(decisionId, auditFields);
+}
+
+/** Open / focus a pending decision (KPI + audit). */
+export function openDecision(
+  decisionId: string,
+  fields: Omit<DecisionAuditRecord, "id" | "at" | "decisionId" | "action"> = {},
+): DecisionAuditRecord {
+  logDecision(decisionId, "pending");
+  return recordDecisionAudit({ decisionId, action: "opened", ...fields });
 }
 
 export function listSessionDecisionAudits(): readonly DecisionAuditRecord[] {

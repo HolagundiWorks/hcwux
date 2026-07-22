@@ -58,6 +58,7 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-22 · **Telemetry bootstrap + freeze helpers (1.4.4)** — `HcwTelemetryRoot` · `freezeDecision` · CI voice-lint · rulebook 16–18 · ext case-study template.
 - 2026-07-22 · **Maturity kit halves (1.4.3)** — FatigueOfferBanner · decision audit · calibration heuristics · adoption playbook · CP-01…11 patterns · validation protocol · voice-lint · styleguide specimens. Field evidence for V1–V5 still open.
 - 2026-07-22 · **Empathic voice + fatigue trackers (1.4.2)** — `VOICE` / invitational `TRUST`; `FATIGUE` + `ux.fatigue_signal`; [HCW-UX-VOICE.md](../../HCW-UX-VOICE.md).
 - 2026-07-22 · **Framework reaudit published (1.4.1)** — [HCW-UX-EVALUATION.md](../../HCW-UX-EVALUATION.md) weighted **88/100**; charter §2.1 precedence; construction labeled aware not CPM framework; open V1–V5 empirical (not kit).

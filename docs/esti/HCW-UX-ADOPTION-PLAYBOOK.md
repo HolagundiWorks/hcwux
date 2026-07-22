@@ -49,27 +49,28 @@ Full vocabulary: [HCW-UX-KPI-INSTRUMENT.md](HCW-UX-KPI-INSTRUMENT.md).
 ## 3. Fatigue UI
 
 ```tsx
-import { FatigueOfferBanner, KitRoot } from "@hcw/ui-kit";
+import { FatigueOfferBanner, HcwTelemetryRoot, KitRoot } from "@hcw/ui-kit";
 
 <KitRoot coga={coga}>
-  <FatigueOfferBanner onEnableCalm={() => setCoga("calm")} />
-  …
+  <HcwTelemetryRoot fatigueOffer onEnableCalm={() => setCoga("calm")}>
+    …
+  </HcwTelemetryRoot>
 </KitRoot>
 ```
 
-Never hard-lock on `ux.fatigue_signal`. Offers only.
+Or mount `FatigueOfferBanner` alone. Never hard-lock on `ux.fatigue_signal`.
 
 ---
 
 ## 4. Decision audit persistence (V5)
 
 ```ts
-import { setDecisionAuditSink, recordFreezeAudit } from "@hcw/ui-kit";
+import { setDecisionAuditSink, freezeDecision } from "@hcw/ui-kit";
 
 setDecisionAuditSink((row) => api.post("/ux/decision-audit", row));
 
 // on dock commit / freeze:
-recordFreezeAudit(id, { chosen, reason, actorId, surfaceId });
+freezeDecision(id, { chosen, reason, actorId, surfaceId, msOpen });
 ```
 
 Session ring (`listSessionDecisionAudits`) is for the current tab only.

@@ -104,11 +104,12 @@ Construction stakeholder modes: [HCW-CONSTRUCTION-UX-OVERLAY.md](esti/HCW-CONSTR
 ### 3.4 Evaluate
 
 **Do**
-1. Run [07-UX-REVIEW-CHECKLISTS.md](hcw-kit/07-UX-REVIEW-CHECKLISTS.md) (pass/fail + `file:line`).
+1. Run [07-UX-REVIEW-CHECKLISTS.md](hcw-kit/07-UX-REVIEW-CHECKLISTS.md) (pass/fail + `file:line`) including **Voice & tone**.
 2. Keyboard + skip-link + focus-visible pass (WCAG).
 3. AI: can a cold user answer the **four questions in ≤30s**?
-4. Sample KPIs (orientation, interrupts, capacity_warn, outcome coverage).
-5. Construction: safety interrupt class and field mode if applicable.
+4. Sample KPIs (orientation, interrupts, capacity_warn, outcome coverage, fatigue_signal, audit).
+5. Construction: safety interrupt class and field mode if applicable; cite CP-ID when using [patterns](esti/HCW-CONSTRUCTION-PATTERNS.md).
+6. Confirm product sink / audit wiring when the change touches chrome ([adoption playbook](esti/HCW-UX-ADOPTION-PLAYBOOK.md)).
 
 **Deliverables**
 - Checklist sheet · KPI sample · findings list

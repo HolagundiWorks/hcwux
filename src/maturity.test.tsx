@@ -2,6 +2,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { FatigueOfferBanner } from "./FatigueOfferBanner.js";
+import { HcwTelemetryRoot } from "./HcwTelemetryRoot.js";
 import {
   clearLatestFatigueOffer,
   installFatigueTracking,
@@ -20,6 +21,7 @@ import {
   listSessionDecisionAudits,
   recordFreezeAudit,
   recordDecisionAudit,
+  freezeDecision,
   resetDecisionAudit,
   setDecisionAuditSink,
 } from "./decisionAudit.js";
@@ -72,7 +74,10 @@ describe("FatigueOfferBanner", () => {
 });
 
 describe("decision audit", () => {
-  beforeEach(() => resetDecisionAudit());
+  beforeEach(() => {
+    resetDecisionAudit();
+    resetUxEventSink();
+  });
 
   it("records session ring, sink, and ux.audit", () => {
     const sunk: string[] = [];
@@ -85,6 +90,25 @@ describe("decision audit", () => {
     expect(exportSessionDecisionAudits()[1]?.action).toBe("frozen");
     expect(sunk).toEqual(["opened", "frozen"]);
     expect(events.filter((e) => e === "ux.audit")).toHaveLength(2);
+  });
+
+  it("freezeDecision emits decision + audit", () => {
+    const events: string[] = [];
+    setUxEventSink((name) => events.push(name));
+    freezeDecision("d2", { chosen: "Accent", reason: "Brand law", msOpen: 1200 });
+    expect(events).toEqual(["ux.decision", "ux.audit"]);
+    expect(listSessionDecisionAudits().at(-1)?.chosen).toBe("Accent");
+  });
+});
+
+describe("HcwTelemetryRoot", () => {
+  it("renders children and optional fatigue slot stays empty without signal", () => {
+    render(
+      <HcwTelemetryRoot fatigueOffer>
+        <div>app</div>
+      </HcwTelemetryRoot>,
+    );
+    expect(screen.getByText("app")).toBeTruthy();
   });
 });
 

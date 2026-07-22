@@ -159,6 +159,8 @@ export {
   setDecisionAuditSink,
   recordDecisionAudit,
   recordFreezeAudit,
+  freezeDecision,
+  openDecision,
   listSessionDecisionAudits,
   exportSessionDecisionAudits,
   resetDecisionAudit,
@@ -170,6 +172,8 @@ export type {
 } from "./decisionAudit.js";
 export { estimateOrientMultiplier, isLoadRisk } from "./calibration.js";
 export type { LoadInputs } from "./calibration.js";
+export { HcwTelemetryRoot } from "./HcwTelemetryRoot.js";
+export type { HcwTelemetryRootProps } from "./HcwTelemetryRoot.js";
 export { trimDockActions, prioritizeDockActions } from "./ActionDock.js";
 
 import { installFatigueTracking } from "./fatigue.js";

@@ -439,7 +439,8 @@ Exported type: `ConfirmModalProps`. Voice: [HCW-UX-VOICE.md](../HCW-UX-VOICE.md)
 | `FATIGUE` | Operational-load thresholds |
 | `installFatigueTracking` · `pulseFatigueSession` · `suggestFatigueCopy` | Observe KPI events → `ux.fatigue_signal` |
 | `FatigueOfferBanner` | Soft pause/calm offer (never locks) |
-| `setDecisionAuditSink` · `recordFreezeAudit` | Durable explainability (product persists) |
+| `HcwTelemetryRoot` | Session start + optional fatigue banner under `KitRoot` |
+| `setDecisionAuditSink` · `freezeDecision` · `recordFreezeAudit` | Durable explainability (product persists) |
 | `estimateOrientMultiplier` | Explanatory load prior (not calibrated) |
 
 ### Toast
