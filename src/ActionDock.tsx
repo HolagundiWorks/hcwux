@@ -15,6 +15,7 @@
  *
  * Capacity: visible actions capped at {@link CAPACITY.dockVisibleActions} (trim + warn).
  * Telemetry: optional `track` / `outcome` on {@link DockAction} (see KPI instrument).
+ * Zones are **semantic roles** (destroy · create · commit), not physical sides — not remapped under RTL.
  *
  * **Modal exception:** while a create/edit `Dialog` is open, publish `[]` so the
  * dock does not compete with `DialogActions` (commit stays in the dialog). Re-publish

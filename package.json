@@ -1,6 +1,6 @@
 {
   "name": "@hcw/ui-kit",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "private": true,
   "type": "module",
   "sideEffects": ["*.scss"],
@@ -20,14 +20,21 @@
       "types": "./dist/tokens.d.ts",
       "default": "./dist/tokens.js"
     },
+    "./token-export": {
+      "types": "./dist/token-export.d.ts",
+      "default": "./dist/token-export.js"
+    },
+    "./tokens.json": "./dist/tokens.json",
+    "./tokens.css": "./dist/tokens.css",
     "./portal-chrome.scss": "./dist/portal-chrome.scss"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
-    "prepare": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
+    "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs && node scripts/export-tokens.mjs",
+    "prepare": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs && node scripts/export-tokens.mjs",
+    "export-tokens": "node scripts/export-tokens.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
     "size": "node scripts/size-budget.mjs",

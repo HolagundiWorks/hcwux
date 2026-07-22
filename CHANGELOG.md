@@ -4,6 +4,23 @@ All notable changes to the HCW Design System package. Versioning follows semver;
 the package is workspace-consumed (source-only), so versions mark **design-contract**
 changes, not npm releases.
 
+## 1.4.0 — 2026-07-22
+
+### Added
+- **RTL foundation (D15 kit half)** — `createHcwTheme({ direction })` ·
+  `KitRoot({ direction, locale })` (`dir`/`lang`/`data-hcw-direction`) ·
+  `createHcwRtlCacheOptions` · `useHcwLocale` / `HcwLocaleContext` · logical
+  properties on GlassRail, Toast, ConfirmModal, DecisionCard, TaskbarFooter,
+  picker header. Dock zones remain semantic roles under RTL.
+- **Figma Variables bridge (D16 kit half)** — `dist/tokens.json` + `dist/tokens.css`
+  from build; `@hcw/ui-kit/tokens.json` · `./tokens.css` · `./token-export`;
+  [02-TOKEN-EXPORT.md](docs/hcw-kit/02-TOKEN-EXPORT.md).
+- **[13-ROADMAPS.md](docs/hcw-kit/13-ROADMAPS.md)** — kit vs product scope split.
+
+### Docs
+- Debt register: kit roadmap halves retired; product i18n + Figma component library
+  remain DesignOps/esti.
+
 ## 1.3.1 — 2026-07-22
 
 ### Fixed

@@ -376,4 +376,5 @@ Package README: [`README.md`](../../README.md).
 3. Optional further shrink of `glass.scss` once orb class aliases fully migrate
    (`hcw-health-glass-orb*`).
 4. `Projects.tsx` / `Clients.tsx` remain parallel-WIP — do not edit unless asked.
-5. Roadmap (not kit defects): RTL/i18n · Figma variables bridge.
+5. Roadmap remainders (product/DesignOps only): full i18n catalogs · Figma
+   **component** library — kit halves shipped in 1.4.0 ([13-ROADMAPS.md](../hcw-kit/13-ROADMAPS.md)).

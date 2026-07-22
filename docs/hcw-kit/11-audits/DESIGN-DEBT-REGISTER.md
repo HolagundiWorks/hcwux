@@ -2,31 +2,34 @@
 
 **The single queue of known design debt.** Every audit deposits here; every fix
 withdraws. Agents: update this file in the same change that alters a fact
-(Rulebook §14). Ordered by severity × reach. **Updated:** 2026-07-21.
+(Rulebook §14). Ordered by severity × reach. **Updated:** 2026-07-22.
 
 ## Open
 
 ### Kit defects
 
-*None open — incompleteness from 1.3.0 closed in 1.3.1 (see Retired).*
+*None open.*
 
 ### Framework gaps
 
 *None open — F1–F5 closed in 1.3.0 (see Retired).*
 
-### Roadmap-class (not defect)
+### Roadmap-class
 
-- **RTL / i18n** (ex-D15) — product feature programme.
-- **Figma library / variables bridge** (ex-D16) — design-tool deliverable.
+*Kit halves of D15/D16 shipped in **1.4.0** — see [13-ROADMAPS.md](../13-ROADMAPS.md).*
+Product-only remainders (not kit defects):
+
+- **Product i18n** — message catalogs / locale switcher in consumer apps
+- **Figma component library** — designer-owned `.fig` mirroring primitives
+
+## Roadmap-class (tracked in 13-Roadmaps)
+
+- Product i18n · Figma component library — see [13-ROADMAPS.md](../13-ROADMAPS.md).
 
 *Assessed & sanctioned (no change): `ZonalComplianceCalculator`'s centralised
 9-colour SVG plot palette — canvas/SVG is an explicit token-rule exception; the
 values are bespoke AA-tuned and don't map to categorical `DATA_VIZ`, so forcing
 tokens would regress contrast.*
-
-## Roadmap-class (tracked in 13-Roadmaps)
-
-- **RTL / i18n** · **Figma bridge** — see above.
 
 ## Component conformance (Quality-checklist §Gate)
 
@@ -39,6 +42,7 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-22 · **Roadmap kit halves D15/D16 (1.4.0)** — RTL foundation (`direction`/`locale`, logical chrome, Emotion cache recipe); Figma Variables bridge (`tokens.json`/`tokens.css`); [13-ROADMAPS.md](../13-ROADMAPS.md). Product i18n + Figma component library remain DesignOps/esti.
 - 2026-07-22 · **Kit defect sweep (1.3.1)** — COGA calm chrome (`chromeIconSx` + `typeScaleSx`); theme scheme-aware borders/shadows; `CAPACITY.decisionAlternatives`; catalog + HCW-UI-KIT.md sync; ConfirmModal/AwarenessStrip prop types + tests; KB/audit hygiene.
 - 2026-07-21 · **Framework gaps F1–F5 closed (1.3.0)** — orchestration primitives + T10; CAPACITY on dock/KpiStrip; `KitRoot({ coga })`; `logUxEvent` + dock outcome; case studies in `11-audits/case-studies/`.
 - 2026-07-21 · **UX process + framework pairing (1.2.0)** — `HCW-UX.md` index; `HCW-UX-PROCESS.md` (Plan→Improve, RACI, gates); framework charter no longer “framework-only”.

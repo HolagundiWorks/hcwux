@@ -98,7 +98,7 @@ export function ToastHost() {
       aria-atomic="false"
       sx={{
         position: "fixed",
-        right: LAYOUT.margin,
+        insetInlineEnd: LAYOUT.margin,
         bottom: LAYOUT.margin,
         zIndex: Z_INDEX.toast,
         display: "flex",

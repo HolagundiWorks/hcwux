@@ -13,20 +13,28 @@
  */
 import { Box, IconButton, Tooltip, type BoxProps } from "@mui/material";
 import { useEffect, useState, type ReactNode } from "react";
+import { useHcwLocale } from "./MuiRoot.js";
 import { colors, NEU_RAISED, REDUCE_MOTION, FOCUS_RING, LAYOUT, TYPE_SCALE, DENSITY } from "./tokens.js";
 
 export const TASKBAR_HEIGHT = LAYOUT.taskbarHeight;
 
-function Clock() {
+function Clock({ locale }: { locale: string }) {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
     const t = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
-  const time = now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
-  const date = now.toLocaleDateString("en-IN", { day: "2-digit", month: "short" });
+  const time = now.toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit" });
+  const date = now.toLocaleDateString(locale, { day: "2-digit", month: "short" });
   return (
-    <Box sx={{ textAlign: "right", lineHeight: 1.15, fontVariantNumeric: "tabular-nums", pr: 0.5 }}>
+    <Box
+      sx={{
+        textAlign: "end",
+        lineHeight: 1.15,
+        fontVariantNumeric: "tabular-nums",
+        paddingInlineEnd: 0.5,
+      }}
+    >
       <Box sx={{ fontWeight: 700, fontSize: TYPE_SCALE.label, color: "text.primary" }}>{time}</Box>
       <Box sx={{ fontSize: TYPE_SCALE.micro, color: colors.textSecondary }}>{date}</Box>
     </Box>
@@ -74,6 +82,7 @@ export function TaskbarFooter({
   center,
   right,
   showClock = true,
+  locale: localeProp,
   sx,
   ...rest
 }: {
@@ -82,15 +91,18 @@ export function TaskbarFooter({
   /** Tray cluster (alerts, ID, sign-out). Clock prepends when `showClock`. */
   right?: ReactNode;
   showClock?: boolean;
+  /** BCP 47 locale for the clock (defaults to KitRoot locale / en-IN). */
+  locale?: string;
 } & BoxProps) {
+  const ctxLocale = useHcwLocale();
+  const locale = localeProp ?? ctxLocale;
   return (
     <Box
       component="footer"
       role="contentinfo"
       sx={{
         position: "fixed",
-        left: 0,
-        right: 0,
+        insetInline: 0,
         bottom: 0,
         zIndex: 1100,
         height: TASKBAR_HEIGHT,
@@ -109,7 +121,7 @@ export function TaskbarFooter({
         {center}
       </Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, minWidth: 0, justifyContent: "flex-end" }}>
-        {showClock && <Clock />}
+        {showClock && <Clock locale={locale} />}
         {right}
       </Box>
     </Box>

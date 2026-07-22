@@ -48,6 +48,7 @@ import {
   Z_INDEX,
   OPACITY,
 } from "./tokens.js";
+import type { TextDirection } from "./rtl.js";
 
 /** Build the AORMS MUI theme. Exposed as a factory so a portal can layer small
  *  overrides on top if it must, while sharing 100% of the brand defaults.
@@ -58,11 +59,13 @@ import {
  *  so treat non-light schemes as preview-grade (see tokens.ts § Colour schemes).
  *
  *  `density` selects comfortable (default) or compact control heights.
- *  `coga: "calm"` raises interactive floors and bumps caption/body type one step. */
+ *  `coga: "calm"` raises interactive floors and bumps caption/body type one step.
+ *  `direction` sets MUI `theme.direction` for RTL-ready chrome. */
 export function createAormsTheme(options?: {
   scheme?: SchemeName;
   density?: DensityName;
   coga?: CogaMode;
+  direction?: TextDirection;
 }): Theme {
   const CDS = SCHEMES[options?.scheme ?? "light"];
   // Scheme-matched surface recipes (neu/glass materials) — see tokens.ts.
@@ -71,7 +74,9 @@ export function createAormsTheme(options?: {
   const dens = densityFor(options?.density ?? "comfortable", cogaMode);
   const coga = cogaFor(cogaMode);
   const type = coga.type;
+  const direction = options?.direction ?? "ltr";
   return createTheme({
+    direction,
     shape: { borderRadius: GLASS_RADIUS },
     // Scale tokens drive the theme (parity with MUI defaults → no layout shift):
     // 8px spacing grid, the shared breakpoint ladder, and one z-index stack so
@@ -583,7 +588,7 @@ export function createAormsTheme(options?: {
       },
       MuiPickersCalendarHeader: {
         styleOverrides: {
-          root: { color: CDS.textPrimary, paddingLeft: SPACING_UNIT, paddingRight: SPACING_UNIT },
+          root: { color: CDS.textPrimary, paddingInline: SPACING_UNIT },
           label: { fontWeight: 600, fontSize: type.body2 },
         },
       },

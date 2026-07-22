@@ -9,7 +9,7 @@
 | --- | --- | --- |
 | **00** | **Vision** | [HCW-DESIGN-PLAYBOOK.md](../HCW-DESIGN-PLAYBOOK.md) · [**HCW-UX.md**](../HCW-UX.md) · [HCW-UX-FRAMEWORK.md](../HCW-UX-FRAMEWORK.md) · [HCW-UX-PROCESS.md](../HCW-UX-PROCESS.md) · [00-CONSTITUTION.md](00-CONSTITUTION.md) · brand: [AORMS-BRANDING-KIT.md](../esti/AORMS-BRANDING-KIT.md) |
 | **01** | **Foundations** | [HCW-UI-KIT.md](../esti/HCW-UI-KIT.md) (layers · shape · type · motion · spatial model) |
-| **02** | **Tokens** | `src/tokens.ts` (executable) · [02-TOKEN-GOVERNANCE.md](02-TOKEN-GOVERNANCE.md) |
+| **02** | **Tokens** | `src/tokens.ts` (executable) · [02-TOKEN-GOVERNANCE.md](02-TOKEN-GOVERNANCE.md) · [02-TOKEN-EXPORT.md](02-TOKEN-EXPORT.md) (Figma bridge) |
 | **03** | **Components** | `src/` + [CHANGELOG](../../CHANGELOG.md) · [03-COMPONENT-QUALITY-CHECKLIST.md](03-COMPONENT-QUALITY-CHECKLIST.md) |
 | **04** | **Patterns** | [HCW-UI-KIT.md](../esti/HCW-UI-KIT.md) §ActionDock/§Rail · [HCW-UI-UX-PRINCIPLES.md](../esti/HCW-UI-UX-PRINCIPLES.md) §6–7 |
 | **05** | **Templates** | [05-TEMPLATES.md](05-TEMPLATES.md) — canonical page anatomies |
@@ -20,7 +20,7 @@
 | **10** | **Elements** | [10-ELEMENTS.md](10-ELEMENTS.md) · **full:** [14-HCW-CATALOG.md](14-HCW-CATALOG.md) |
 | **11** | **Audits** | [11-audits/README.md](11-audits/README.md) · [DESIGN-DEBT-REGISTER.md](11-audits/DESIGN-DEBT-REGISTER.md) |
 | **12** | **AI agent rules** | [12-AI-AGENT-RULEBOOK.md](12-AI-AGENT-RULEBOOK.md) · [HCW-KIT-AI-KNOWLEDGE-BASE.md](../esti/HCW-KIT-AI-KNOWLEDGE-BASE.md) |
-| **13** | **Roadmaps** | [AORMS-UI-AUTOPILOT-ROADMAP.md](../esti/AORMS-UI-AUTOPILOT-ROADMAP.md) · [AORMS-PRODUCT-AUTOPILOT-ROADMAP.md](../esti/AORMS-PRODUCT-AUTOPILOT-ROADMAP.md) |
+| **13** | **Roadmaps** | [13-ROADMAPS.md](13-ROADMAPS.md) — kit vs product scope (RTL · i18n · Figma) |
 | **14** | **Catalog** | [14-HCW-CATALOG.md](14-HCW-CATALOG.md) |
 
 ## Reading order for a new agent (human or AI)

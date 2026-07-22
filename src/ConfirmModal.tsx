@@ -54,7 +54,7 @@ export function ConfirmModal({
               mt: 2,
               p: 1.5,
               backgroundColor: colors.layer02,
-              borderLeft: `3px solid ${danger ? colors.supportError : colors.accent}`,
+              borderInlineStart: `3px solid ${danger ? colors.supportError : colors.accent}`,
               ...typeScaleSx("body2"),
               color: colors.textSecondary,
             }}
