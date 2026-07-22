@@ -14,6 +14,18 @@ withdraws. Agents: update this file in the same change that alters a fact
 
 *None open — F1–F5 closed in 1.3.0 (see Retired).*
 
+### Empirical maturity (industry-reference bar — not kit defects)
+
+Published reaudit: [HCW-UX-EVALUATION.md](../../HCW-UX-EVALUATION.md) (**88/100**). Charter precedence: [HCW-UX-FRAMEWORK.md](../../HCW-UX-FRAMEWORK.md) §2.1. Path to **90–95**:
+
+| ID | Gap | Owner |
+| --- | --- | --- |
+| **V1** | External multi-org / multi-project validation | Product + research |
+| **V2** | Live KPI dashboards with before/after deltas | Product telemetry |
+| **V3** | Calibrated predictive models (capacity × interrupt → latency) | Research |
+| **V4** | Construction domain pattern library (RFI, NCR, claims…) | Product (not kit core) |
+| **V5** | Long-lived decision/freeze audit persistence | Product |
+
 ### Roadmap-class
 
 *Kit halves of D15/D16 shipped in **1.4.0** — see [13-ROADMAPS.md](../13-ROADMAPS.md).*
@@ -42,6 +54,7 @@ tokens would regress contrast.*
 
 ## Retired (most recent first)
 
+- 2026-07-22 · **Framework reaudit published (1.4.1)** — [HCW-UX-EVALUATION.md](../../HCW-UX-EVALUATION.md) weighted **88/100**; charter §2.1 precedence; construction labeled aware not CPM framework; open V1–V5 empirical (not kit).
 - 2026-07-22 · **Roadmap kit halves D15/D16 (1.4.0)** — RTL foundation (`direction`/`locale`, logical chrome, Emotion cache recipe); Figma Variables bridge (`tokens.json`/`tokens.css`); [13-ROADMAPS.md](../13-ROADMAPS.md). Product i18n + Figma component library remain DesignOps/esti.
 - 2026-07-22 · **Kit defect sweep (1.3.1)** — COGA calm chrome (`chromeIconSx` + `typeScaleSx`); theme scheme-aware borders/shadows; `CAPACITY.decisionAlternatives`; catalog + HCW-UI-KIT.md sync; ConfirmModal/AwarenessStrip prop types + tests; KB/audit hygiene.
 - 2026-07-21 · **Framework gaps F1–F5 closed (1.3.0)** — orchestration primitives + T10; CAPACITY on dock/KpiStrip; `KitRoot({ coga })`; `logUxEvent` + dock outcome; case studies in `11-audits/case-studies/`.
